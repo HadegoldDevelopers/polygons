@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@tailwind utilities;
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -19,8 +19,111 @@
   }
 }
 
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+/* ── Container matches source ── */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+/* ── Marquee ── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+/* ── Partner logo grayscale-to-color hover ── */
+.partner-logo {
+  filter: grayscale(1) brightness(0.8);
+  transition: filter 0.3s;
+}
+
+.partner-logo:hover {
+  filter: none;
+}
+/* ── Testnet stats background ── */
+.testnet-stats-box {
+  position: relative;
+}
+
+.testnet-stats-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/testnet-bg.webp');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.testnet-stats-box>* {
+  position: relative;
+  z-index: 1;
+}
+/* ── Hero background video ── */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+/* ── Roadmap phase cards ── */
+.phase-card {
+  transition: opacity 0.7s, transform 0.7s;
+}
+
+.phase-card.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+.roadmap ul li::marker {
+  color: #ff7900;
+  font-size: 20px;
+}
+/* ── Smooth scroll ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Word animation placeholder ── */
+.words-animation-box {
+  min-height: 45px;
+}
+
+@media (min-width: 768px) {
+  .words-animation-box {
+    min-height: 70px;
+  }
 }
