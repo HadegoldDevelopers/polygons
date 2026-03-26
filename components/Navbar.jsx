@@ -16,10 +16,11 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8 text-white font-medium uppercase text-sm">
-          <a href="#about" className="hover:text-[#FF7900]">About</a>
-          <a href="#features" className="hover:text-[#FF7900]">Features</a>
-          <a href="#token" className="hover:text-[#FF7900]">Token</a>
-          <a href="#faq" className="hover:text-[#FF7900]">FAQ</a>
+          <a href="/#about" className="hover:text-[#FF7900]">About</a>
+          <a href="/#features" className="hover:text-[#FF7900]">Features</a>
+          <a href="/#token" className="hover:text-[#FF7900]">Token</a>
+          <a href="/#faq" className="hover:text-[#FF7900]">FAQ</a>
+          <a href="/pricing" className="hover:text-[#FF7900]">Pricing</a>
           <a href="#balance" className="hover:text-[#FF7900]">Check Balance</a>
           <a href="#academy" className="hover:text-[#FF7900]">Academy</a>
         </nav>
