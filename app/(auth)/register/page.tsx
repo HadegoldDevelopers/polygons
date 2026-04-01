@@ -1,0 +1,106 @@
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Logo, PasswordInput, StrengthMeter } from "@/components/ui";
+
+export default function RegisterPage() {
+  const router = useRouter();
+  const [form, setForm] = useState({ firstName: "", lastName: "", email: "", password: "", confirm: "" });
+  const [terms, setTerms] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError("");
+    if (!form.firstName || !form.lastName || !form.email || !form.password) {
+      setError("Please fill in all fields."); return;
+    }
+    if (form.password !== form.confirm) { setError("Passwords do not match."); return; }
+    if (form.password.length < 8) { setError("Password must be at least 8 characters."); return; }
+    if (!terms) { setError("Please accept the Terms of Service."); return; }
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 900));
+    setLoading(false);
+    router.push("/dashboard");
+  }
+
+  return (
+    <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-10 shadow-2xl relative z-10">
+      <div className="flex justify-center mb-8">
+        <Logo size="md" />
+      </div>
+
+      <h1 className="text-2xl font-black text-center mb-1">Create account</h1>
+      <p className="text-sm text-white/45 text-center mb-7">Join PlutoChain and start trading</p>
+
+      {error && (
+        <div className="bg-[#ff4d6a]/10 border border-[#ff4d6a]/30 text-[#ff6b82] rounded-lg px-4 py-3 text-sm font-medium mb-5">
+          {error}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">First name</label>
+            <input type="text" className="field" placeholder="John" value={form.firstName} onChange={set("firstName")} />
+          </div>
+          <div>
+            <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">Last name</label>
+            <input type="text" className="field" placeholder="Doe" value={form.lastName} onChange={set("lastName")} />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">Email address</label>
+          <input type="email" className="field" placeholder="you@example.com" value={form.email} onChange={set("email")} />
+        </div>
+
+        <div>
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">Password</label>
+          <PasswordInput placeholder="Min. 8 characters" value={form.password} onChange={set("password")} />
+          <StrengthMeter password={form.password} />
+        </div>
+
+        <div>
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">Confirm password</label>
+          <PasswordInput placeholder="Repeat password" value={form.confirm} onChange={set("confirm")} />
+        </div>
+
+        <label className="flex items-start gap-2.5 cursor-pointer text-sm text-white/45">
+          <input
+            type="checkbox"
+            checked={terms}
+            onChange={(e) => setTerms(e.target.checked)}
+            className="accent-[#FF7900] w-4 h-4 mt-0.5"
+          />
+          <span>
+            I agree to the{" "}
+            <a href="#" className="text-[#FF7900]">Terms of Service</a>{" "}
+            and{" "}
+            <a href="#" className="text-[#FF7900]">Privacy Policy</a>
+          </span>
+        </label>
+
+        <button type="submit" className="btn-primary" disabled={loading}>
+          {loading ? (
+            <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+          ) : (
+            "Create Account →"
+          )}
+        </button>
+      </form>
+
+      <p className="text-center text-sm text-white/45 mt-6">
+        Already have an account?{" "}
+        <Link href="/login" className="text-[#FF7900] font-semibold hover:underline">
+          Sign in
+        </Link>
+      </p>
+    </div>
+  );
+}

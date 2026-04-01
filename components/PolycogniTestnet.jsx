@@ -39,7 +39,7 @@ export default function PolycogniTestnet() {
       {/* Exact JSX class from source */}
       <section className="jsx-665ac7b44f8795e4 relative">
         <h2 className="jsx-665ac7b44f8795e4 font-[800] text-[36px] md:text-[48px] text-white text-center uppercase pb-2">
-          PLUTOCHAIN TESTNET
+          Polycogni Capital TESTNET
         </h2>
 
         {/* testnet-stats-box: has the space background via CSS */}

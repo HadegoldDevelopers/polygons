@@ -27,7 +27,7 @@ const cards = [
     features: ["Instant Staking", "Easy to Use", "Governance Feature"],
   },
   {
-    title: "PLUTO Token",
+    title: "Polycogni Capital Token",
     video: "/videos/pluto_hand_compressed.mp4",
     poster: "/frames/pluto-token-frame.webp",
     features: ["Instant Finality", "Lightning Fast", "Governance Rights"],

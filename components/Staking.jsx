@@ -20,10 +20,10 @@ export default function Staking() {
           {/* Right: steps */}
           <div className="w-full lg:w-1/2 p-4">
             <h2 className="font-[800] md:text-[56px] text-[32px] text-[#fff] uppercase md:leading-[75px] leading-[40px] mb-4 text-center md:text-left">
-              PlutoChain Staking
+              Polycogni Capital Staking
             </h2>
             <p className="font-[500] text-[18px] leading-[22px] text-center md:text-left">
-              PlutoChain has created an awesome new staking system that rewards users who participate the most.
+              Polycogni Capital has created an awesome new staking system that rewards users who participate the most.
             </p>
 
             {/* Mobile coin video */}
@@ -37,7 +37,7 @@ export default function Staking() {
               <li>
                 <div className="flex items-center mb-4 gap-3">
                   <span className="bg-[#FF7900] text-[#000] text-[20px] uppercase px-[22px] py-2 rounded-[8px] font-[600]">1</span>
-                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Purchase PlutoChain tokens</p>
+                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Purchase Polycogni Capital tokens</p>
                 </div>
               </li>
               <li className="bg-black">

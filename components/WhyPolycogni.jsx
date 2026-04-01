@@ -1,6 +1,6 @@
 "use client";
 
-export default function WhyPlutoChain() {
+export default function WhyPolycogni() {
   const features = [
     { img: "/assets/wh1.png", title: "Scalability",            desc: "Helping to scale the Bitcoin blockchain with layer 2 technology and smart contracts" },
     { img: "/assets/wh2.png", title: "Low Transaction Cost",   desc: "Reducing transaction costs to a fraction of what Bitcoin typically incurs" },
@@ -12,7 +12,7 @@ export default function WhyPlutoChain() {
     <section className="pt-10" id="features">
       <div className="container">
         <h2 className="font-[800] md:text-[62px] text-[40px] text-[#FFFFFF] uppercase md:leading-[75px] leading-[40px] mb-4 text-center">
-          Why PlutoChain?
+          Why Polycogni Capital?
         </h2>
 
         <div className="flex pb-4 flex-wrap pt-5">

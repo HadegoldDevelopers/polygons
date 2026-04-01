@@ -7,12 +7,12 @@ export default function HowToBuy() {
       desc: `Go to Uniswap and click "Connect Wallet" and choose your preferred wallet and follow the prompts to connect.`,
     },
     {
-      n: "2", title: "Swap for PLUTO",
-      desc: `Select Ethereum as the input currency and enter the amount you want to spend, then select PLUTO as the output currency and review the swap details and click "Swap".`,
+      n: "2", title: "Swap for Polycogni Capital",
+      desc: `Select Ethereum as the input currency and enter the amount you want to spend, then select Polycogni Capital as the output currency and review the swap details and click "Swap".`,
     },
     {
       n: "3", title: "Confirm the Transaction",
-      desc: "Review the transaction details and confirm the swap, then wait for the transaction to process and receive your PLUTO tokens",
+      desc: "Review the transaction details and confirm the swap, then wait for the transaction to process and receive your Polycogni Capital tokens",
     },
   ];
 

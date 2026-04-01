@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="md:pt-20">
@@ -8,11 +10,12 @@ export default function Footer() {
           <div className="w-full lg:w-4/12 p-4">
             <div className="flex flex-col gap-6">
               <div className="md:pb-6">
-                <img src="/plutochain-logo.svg" alt="PlutoChain" />
+                <Image src="/logo.jpg" alt="Polycogni Logo" className="object-contain" width={100}
+                  height={100}/>
               </div>
-              <p className="text-[18px] leading-[22px]">Powering Next Gen Crypto</p>
-              <p className="text-[14px] leading-[18px]">© PlutoChain Copyright 2025</p>
-              <p className="text-[14px] leading-[18px]">All Rights Reserved</p>
+              <p className="text-[18px] leading-5.5">Powering Next Gen Crypto</p>
+              <p className="text-[14px] leading-4.5">© Polycogni Copyright 2025</p>
+              <p className="text-[14px] leading-4.5">All Rights Reserved</p>
             </div>
           </div>
 
@@ -33,7 +36,7 @@ export default function Footer() {
                     target={item.href.startsWith("mailto") ? undefined : "_blank"}
                     className="inline-flex items-center hover:text-[#FF7900] gap-3 uppercase text-[14px]"
                   >
-                    <img src={item.icon} height={24} width={24} alt="" />
+                    <Image src={item.icon} height={24} width={24} alt="" />
                     {item.label}
                   </a>
                 </li>
@@ -51,8 +54,8 @@ export default function Footer() {
                 { href: "https://docs.plutochain.io/resources/terms-and-conditions.html", icon: "/assets/d3.svg", label: "Terms and conditions" },
                 { href: "https://docs.plutochain.io/resources/privacy-policy.html",       icon: "/assets/d4.svg", label: "privacy policy"       },
                 { href: "/balance",                                             icon: "/assets/d5.svg", label: "Token balance checker" },
-                { href: "/academy",                                             icon: "/plutochain-logo-small-white.png", label: "PlutoChain Academy"  },
-                { href: "/education",                                           icon: "/plutochain-logo-small-white.png", label: "PlutoChain Education" },
+                { href: "/academy",                                             icon: "/plutochain-logo-small-white.png", label: "Polycogni Capital Academy"  },
+                { href: "/education",                                           icon: "/plutochain-logo-small-white.png", label: "Polycogni Capital Education" },
               ].map((item) => (
                 <li key={item.label} className="mb-3">
                   <a
@@ -60,7 +63,7 @@ export default function Footer() {
                     target="_blank"
                     className="inline-flex items-center hover:text-[#FF7900] gap-3 uppercase text-[14px]"
                   >
-                    <img src={item.icon} height={24} width={24} alt="" />
+                    <Image src={item.icon} height={24} width={24} alt="" />
                     {item.label}
                   </a>
                 </li>
@@ -70,20 +73,20 @@ export default function Footer() {
         </div>
 
         {/* Legal disclaimer — exact text from source */}
-        <p className="text-[14px] leading-[18px] p-4 text-white/40">
-          Disclaimer: By visiting this website, using our services, or buying PlutoChain, you agree to our{" "}
+        <p className="text-[14px] leading-4.5 p-4 text-white/40">
+          Disclaimer: By visiting this website, using our services, or buying Polycogni Capital, you agree to our{" "}
           <a href="https://docs.plutochain.io/resources/terms-and-conditions.html" target="_blank" className="underline">Terms of Service</a>
           {" "}and{" "}
           <a href="https://docs.plutochain.io/resources/privacy-policy.html" target="_blank" className="underline">Privacy Policy.</a>
           {" "}You also warrant that you have read and fully understood the{" "}
           <a href="https://docs.plutochain.io/resources/disclaimer.html" target="_blank" className="underline">Disclaimer</a>
-          {" "}about the risks of purchasing cryptocurrencies like PlutoChain. By completing a purchase, you also declare that you are not a citizen or resident of any banned country, or any other country where the purchase of PlutoChain may be prohibited by law. A complete list of banned countries is available{" "}
+          {" "}about the risks of purchasing cryptocurrencies like Polycogni Capital. By completing a purchase, you also declare that you are not a citizen or resident of any banned country, or any other country where the purchase of Polycogni Capital may be prohibited by law. A complete list of banned countries is available{" "}
           <a href="https://docs.plutochain.io/resources/restrictions.html" target="_blank" className="underline">here.</a>
           {" "}Our list of blocked countries and terms of service may be subject to updates, so please check the latest version.
           <br /><br />
-          PlutoChain is not an investment; it is created as an experimental new cryptocurrency. Plutochain tokens are not currently resellable. They are only usable as an ecosystem asset. There is no guarantee they will ever be resellable or tradable on any market. We do not guarantee or represent that PlutoChain holds any intrinsic value, that it will increase in price after the presale, or that it will have any value after the presale. We make no representations or warranties regarding PlutoChain and are not liable for any losses or errors that may occur during its use. All users should exercise caution and buy PlutoChain entirely at their own risk.
+          Polycogni Capital is not an investment; it is created as an experimental new cryptocurrency. Polycogni Capital tokens are not currently resellable. They are only usable as an ecosystem asset. There is no guarantee they will ever be resellable or tradable on any market. We do not guarantee or represent that Polycogni Capital holds any intrinsic value, that it will increase in price after the presale, or that it will have any value after the presale. We make no representations or warranties regarding Polycogni Capital and are not liable for any losses or errors that may occur during its use. All users should exercise caution and buy Polycogni Capital entirely at their own risk.
           <br /><br />
-          By using the PlutoChain platform and product, you accept it "as is", acknowledging that we may not update, enhance, or maintain it regularly. The services and interface may be unavailable or discontinued at any time.
+          By using the Polycogni Capital platform and product, you accept it as is, acknowledging that we may not update, enhance, or maintain it regularly. The services and interface may be unavailable or discontinued at any time.
         </p>
       </div>
     </footer>

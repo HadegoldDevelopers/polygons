@@ -14,7 +14,7 @@ export default function DeveloperSection() {
         {/* LEFT — Code Frame */}
         <div>
           <h2 className="text-white font-extrabold uppercase text-[32px] md:text-[42px] mb-6">
-            Develop on PlutoChain
+            Develop on Polycogni
           </h2>
 
           {/* FRAME BOX */}
@@ -51,7 +51,7 @@ export default function DeveloperSection() {
           </h2>
 
           <p className="text-lg mb-4">
-            Our easy to integrate library allows developers to build PlutoChain Apps in minutes.
+            Our easy to integrate library allows developers to build Polycogni Apps in minutes.
           </p>
 
           <p className="text-lg opacity-60 mb-8">
@@ -59,7 +59,7 @@ export default function DeveloperSection() {
           </p>
 
           <a
-            href="https://docs.plutochain.io"
+            href="https://docs.polycogni.io"
             target="_blank"
             className="border border-[#FF7900] px-6 py-3 rounded-lg uppercase font-bold"
           >

@@ -4,14 +4,13 @@ import WhatIsPolycogni from "@/components/WhatIsPolycogni";
 import PolycogniTestnet from "@/components/PolycogniTestnet";
 import HowToBuy from "@/components/HowToBuy";
 import UnleashBitcoin from "@/components/UnleashBitcoin";
-import WhyPlutoChain from "@/components/WhyPlutoChain";
+import WhyPolycogni from "@/components/WhyPolycogni";
 import Staking from "@/components/Staking";
 import DevelopmentPhases from "@/components/DevelopmentPhases";
 import Tokenomics from "@/components/Tokenomics";
 import DeveloperSection from "@/components/DeveloperSection";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-
 
 
 
@@ -23,7 +22,7 @@ export default function Home() {
       <WhatIsPolycogni/>
       <PolycogniTestnet />
       <UnleashBitcoin />
-      <WhyPlutoChain />
+      <WhyPolycogni />
       <Staking />
       <DevelopmentPhases />
       <Tokenomics />

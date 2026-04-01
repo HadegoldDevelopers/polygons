@@ -40,7 +40,7 @@ export default function UnleashBitcoin() {
               href="#presale"
               className="bg-[#FF7900] hover:bg-opacity-90 md:inline-block block text-center text-[#000] hover:text-[#000] text-[14px] uppercase px-6 py-3 rounded-[8px] md:px-20 font-[600]"
             >
-              BUY PLUTO TOKEN
+              BUY Polycogni Capital TOKEN
             </a>
           </div>
 

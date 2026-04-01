@@ -9,7 +9,7 @@ export default function CodeTyping() {
   useEffect(() => {
     const typed = new Typed(codeRef.current, {
       strings: [
-`import { Plutochain, usePlutochain } from "Plutochain";
+`import { Polycogni, usePolycogni } from "Polycogni";
 import { useEffect } from "react";
 import sample_contract from "sample_contract_abi";
 
@@ -18,7 +18,7 @@ function Child_Object {
         wallet_address, 
         request_authorization, 
         call_contract, 
-        register_callback } = usePlutochain();
+        register_callback } = usePolycogni();
 
   function login() {
     request_authorization();
@@ -69,9 +69,9 @@ function Child_Object {
 
 function Parent_Object {
   return (
-    <Plutochain>
+    <Polycogni>
       <Child_Object />
-    </Plutochain>
+    </Polycogni>
   );
 }
 

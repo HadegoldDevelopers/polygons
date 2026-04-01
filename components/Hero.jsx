@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 
 export default function Hero() {
   const words = ["DEFI", "AI", "GAMING", "NFTS", "MEMECOINS", "EVERYTHING"];
@@ -95,12 +96,12 @@ export default function Hero() {
         </p>
 
         {/* CTA BUTTON */}
-        <a
-          href="#"
+        <Link
+          href="/register"
           className="inline-flex items-center gap-2 mt-8 md:mt-10 bg-[#FF7900] text-black font-bold px-8 md:px-10 py-3 md:py-4 rounded-lg uppercase shadow-[0_0_10px_rgba(255,255,255,0.4)]"
         >
           REGISTER TO <span className="font-extrabold">Swap</span>
-        </a>
+        </Link>
 
         {/* LISTED ON */}
         <div className="mt-8 md:mt-10">

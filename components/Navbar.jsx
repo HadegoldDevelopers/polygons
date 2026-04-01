@@ -1,5 +1,7 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 import { IoMenu, IoClose } from "react-icons/io5";
 
 export default function Navbar() {
@@ -11,16 +13,20 @@ export default function Navbar() {
         
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img src="/logo.jpg" alt="PlutoChain" className="h-10" />
+        <Link href="/" className="text-white font-bold uppercase text-lg">
+          <Image src="/logo.jpg" alt="Polycogni Logo" className="object-contain" width={100}
+  height={100}/>
+        </Link>
+          
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8 text-white font-medium uppercase text-sm">
-          <a href="/#about" className="hover:text-[#FF7900]">About</a>
-          <a href="/#features" className="hover:text-[#FF7900]">Features</a>
-          <a href="/#token" className="hover:text-[#FF7900]">Token</a>
-          <a href="/#faq" className="hover:text-[#FF7900]">FAQ</a>
-          <a href="/pricing" className="hover:text-[#FF7900]">Pricing</a>
+          <Link href="/#about" className="hover:text-[#FF7900]">About</Link>
+          <Link href="/#features" className="hover:text-[#FF7900]">Features</Link>
+          <Link href="/#token" className="hover:text-[#FF7900]">Token</Link>
+          <Link href="/#faq" className="hover:text-[#FF7900]">FAQ</Link>
+          <Link href="/pricing" className="hover:text-[#FF7900]">Pricing</Link>
           <a href="#balance" className="hover:text-[#FF7900]">Check Balance</a>
           <a href="#academy" className="hover:text-[#FF7900]">Academy</a>
         </nav>
@@ -57,19 +63,20 @@ export default function Navbar() {
       {open && (
         <div className="lg:hidden bg-black/90 backdrop-blur-xl border-t border-white/10">
           <nav className="flex flex-col text-white text-lg uppercase p-6 gap-4">
-            <a href="#about" onClick={() => setOpen(false)}>About</a>
-            <a href="#features" onClick={() => setOpen(false)}>Features</a>
-            <a href="#token" onClick={() => setOpen(false)}>Token</a>
-            <a href="#faq" onClick={() => setOpen(false)}>FAQ</a>
-            <a href="#balance" onClick={() => setOpen(false)}>Check Balance</a>
-            <a href="#academy" onClick={() => setOpen(false)}>Academy</a>
+            <Link href="/#about" onClick={() => setOpen(false)}>About</Link>
+            <Link href="/#features" onClick={() => setOpen(false)}>Features</Link>
+            <Link href="/#token" onClick={() => setOpen(false)}>Token</Link>
+            <Link href="/#faq" onClick={() => setOpen(false)}>FAQ</Link>
+            <Link href="/pricing" onClick={() => setOpen(false)}>Pricing</Link>
+            <Link href="#balance" onClick={() => setOpen(false)}>Check Balance</Link>
+            <Link href="#academy" onClick={() => setOpen(false)}>Academy</Link>
 
-            <a
+            <Link
               href="#dashboard"
               className="border border-white/30 px-5 py-3 rounded-lg text-center"
             >
               Dashboard
-            </a>
+            </Link>
 
             <button className="bg-[#FF7900] text-black font-bold px-5 py-3 rounded-lg">
               Connect Wallet
