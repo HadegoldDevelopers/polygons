@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 /* ── Logo ──────────────────────────────────────────────────────── */
-export function Logo({ size = "md" }) {
+export function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizes = { sm: "w-8 h-8 text-sm", md: "w-10 h-10 text-base", lg: "w-12 h-12 text-lg" };
   const text = { sm: "text-base", md: "text-xl", lg: "text-2xl" };
   return (
@@ -18,7 +18,7 @@ export function Logo({ size = "md" }) {
 }
 
 /* ── Password input ────────────────────────────────────────────── */
-export function PasswordInput({ id, placeholder, value, onChange, className = "" }) {
+export function PasswordInput({ id, placeholder, value, onChange, className = "" }: { id: string; placeholder: string; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; className?: string }) {
   const [show, setShow] = useState(false);
   return (
     <div className="relative">
@@ -42,7 +42,7 @@ export function PasswordInput({ id, placeholder, value, onChange, className = ""
 }
 
 /* ── Strength meter ────────────────────────────────────────────── */
-export function StrengthMeter({ password }) {
+export function StrengthMeter({ password }: { password: string }) {
   let score = 0;
   if (password.length >= 8) score++;
   if (/[A-Z]/.test(password)) score++;
@@ -106,7 +106,7 @@ export function StatCard({ icon, value, label, change, changeDir }: StatCardProp
 
 
 /* ── Badge ─────────────────────────────────────────────────────── */
-export function Badge({ status }) {
+export function Badge({ status }: { status: "confirmed" | "pending" | "failed" }) {
   const styles = {
     confirmed: "bg-[#00d4aa]/10 text-[#00d4aa]",
     pending: "bg-yellow-400/10 text-yellow-400",
@@ -135,7 +135,7 @@ export function Toggle({ defaultOn = false }) {
 }
 
 /* ── Section heading ───────────────────────────────────────────── */
-export function PageHeading({ title, subtitle }) {
+export function PageHeading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <div className="mb-6">
       <h1 className="text-[22px] font-black mb-1">{title}</h1>
