@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 
 export default function CodeTyping() {
-  const codeRef = useRef(null);
-  const scrollRef = useRef(null);
+  const codeRef = useRef<HTMLElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const typed = new Typed(codeRef.current, {
       strings: [
