@@ -68,19 +68,33 @@ export const transactions: Transaction[] = [
 // -----------------------------
 // Coins
 // -----------------------------
-export const coins = [
+export interface Coin {
+  symbol: CoinSymbol;
+  name: string;
+  icon: string;
+  color: string;
+  balance: number;
+  price: number;
+}
+
+export const coins: Coin[] = [
   { symbol: "PLUTO", name: "PlutoChain", icon: "🪙", color: "#FF7900", balance: 48290, price: 0.20 },
   { symbol: "BTC",   name: "Bitcoin",    icon: "₿",  color: "#f7931a", balance: 0.0421, price: 67500 },
   { symbol: "ETH",   name: "Ethereum",   icon: "Ξ",  color: "#627eea", balance: 0.892,  price: 3880  },
   { symbol: "USDT",  name: "Tether",     icon: "$",  color: "#26a17b", balance: 100,    price: 1.00  },
 ];
 
+
 // -----------------------------
 // Swap Rates
 // -----------------------------
-export const swapRates = {
+export type CoinSymbol = "BTC" | "ETH" | "PLUTO" | "USDT";
+
+export const swapRates: Record<CoinSymbol, Partial<Record<CoinSymbol, number>>> = {
   BTC:  { PLUTO: 10000, ETH: 17.2, USDT: 67500 },
   ETH:  { PLUTO: 582,   BTC: 0.058, USDT: 3880 },
   PLUTO:{ BTC: 0.0001,  ETH: 0.00172, USDT: 0.20 },
   USDT: { PLUTO: 5,     BTC: 0.0000148, ETH: 0.000258 },
 };
+
+
