@@ -93,7 +93,7 @@ export default function TransactionsPage() {
                   </button>
                 </td>
                 <td className="px-5 py-4 text-xs text-white/45 whitespace-nowrap">{tx.date}</td>
-                <td className="px-5 py-4"><Badge status={tx.status} /></td>
+                <td className="px-5 py-4"><Badge status={tx.status as "confirmed" | "pending" | "failed"} /></td>
               </tr>
             ))}
           </tbody>

@@ -224,7 +224,7 @@ export default function SwapPage() {
                   <p className="text-sm font-bold text-[#00d4aa]">
                     +{s.toAmount.toLocaleString()} {s.to}
                   </p>
-                  <Badge status={s.status} />
+                  <Badge status={s.status as "confirmed" | "pending" | "failed"} />
                 </div>
               </div>
             ))}
