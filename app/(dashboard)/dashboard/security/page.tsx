@@ -47,16 +47,34 @@ export default function SecurityPage() {
           <form onSubmit={handlePasswordChange} className="space-y-4">
             <div>
               <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">Current Password</label>
-              <PasswordInput id="current-password" placeholder="••••••••" value={pw.current} onChange={(e) => setPw((p) => ({ ...p, current: e.target.value }))} />
-            </div>
+<PasswordInput
+  id="current-password"
+  placeholder="••••••••"
+  value={pw.current}
+  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+    setPw((p) => ({ ...p, current: e.target.value }))
+  }
+/>            </div>
             <div>
               <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">New Password</label>
-              <PasswordInput id="new-password" placeholder="••••••••" value={pw.newPw} onChange={(e) => setPw((p) => ({ ...p, newPw: e.target.value }))} />
-            </div>
+<PasswordInput
+  id="new-password"
+  placeholder="••••••••"
+  value={pw.newPw}
+  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+    setPw((p) => ({ ...p, newPw: e.target.value }))
+  }
+/>            </div>
             <div>
               <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">Confirm New Password</label>
-              <PasswordInput id="confirm-password" placeholder="••••••••" value={pw.confirm} onChange={(e) => setPw((p) => ({ ...p, confirm: e.target.value }))} />
-            </div>
+<PasswordInput
+  id="confirm-password"
+  placeholder="••••••••"
+  value={pw.confirm}
+  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+    setPw((p) => ({ ...p, confirm: e.target.value }))
+  }
+/>            </div>
             <button type="submit" className="btn-primary max-w-[180px]">Update Password</button>
           </form>
         </div>
