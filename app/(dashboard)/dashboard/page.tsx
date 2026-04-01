@@ -176,7 +176,7 @@ export default function DashboardPage() {
                     <p className={`text-sm font-bold ${tx.dir === "in" ? "text-[#00d4aa]" : "text-[#ff4d6a]"}`}>
                       {tx.dir === "in" ? "+" : ""}{tx.amount.toLocaleString()} {tx.coin}
                     </p>
-                    <Badge status={tx.status} />
+                    <Badge status={tx.status as "confirmed" | "pending" | "failed"} />
                   </div>
                 </div>
               ))}
