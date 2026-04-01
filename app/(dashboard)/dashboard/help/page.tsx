@@ -14,7 +14,7 @@ const faqs = [
 
 export default function HelpPage() {
   const { showToast } = useToast();
-  const [open, setOpen] = useState(null);
+  const [open, setOpen] = useState<number | null>(null);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
