@@ -17,13 +17,16 @@ const pageTitles = {
   "/dashboard/security":      "Security",
   "/dashboard/referral":      "Referral Program",
   "/dashboard/help":          "Help Center",
-};
+} as const;
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
-  const title = pageTitles[pathname] || "Dashboard";
-
+  const title =
+  pathname in pageTitles
+    ? pageTitles[pathname as keyof typeof pageTitles]
+    : "Dashboard";
+    
   return (
     <ToastProvider>
       <div className="flex h-screen overflow-hidden">
