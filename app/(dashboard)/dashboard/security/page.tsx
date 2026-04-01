@@ -7,7 +7,7 @@ export default function SecurityPage() {
   const { showToast } = useToast();
   const [pw, setPw] = useState({ current:"", newPw:"", confirm:"" });
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
     if (!pw.current || !pw.newPw || !pw.confirm) { showToast("Please fill in all fields", "error"); return; }
     if (pw.newPw !== pw.confirm) { showToast("New passwords do not match", "error"); return; }

@@ -18,7 +18,8 @@ export default function HelpPage() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleTicket = (e) => {
+  
+  const handleTicket = (e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
     if (!subject || !message) { showToast("Please fill in all fields", "error"); return; }
     showToast("Support ticket submitted! We'll respond within 24h ✓", "success");
