@@ -58,12 +58,14 @@ export default function LoginPage() {
             Password
           </label>
           <PasswordInput
+  id="password"
   placeholder="••••••••"
   value={password}
   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value)
   }
 />
+
         </div>
 
         <div className="flex items-center justify-between">
