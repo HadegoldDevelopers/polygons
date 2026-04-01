@@ -16,9 +16,9 @@ export default function SettingsPage() {
   const [form, setForm] = useState({ firstName:"John", lastName:"Doe", email:"demo@plutochain.io", phone:"+234 800 000 0000", country:"Nigeria" });
 
   const set =
-  (key: string) =>
-  (e: React.ChangeEvent<HTMLInputElement>) =>
-    setForm((f) => ({ ...f, [key]: e.target.value }));
+    (key: string) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+      setForm((f) => ({ ...f, [key]: e.target.value }));
 
   return (
     <div>
