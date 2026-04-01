@@ -3,7 +3,8 @@ import { useState } from "react";
 import { PageHeading, Badge } from "@/components/ui";
 import { useToast } from "@/context/ToastContext";
 
-const coins    = ["PLUTO","BTC","ETH","USDT"];
+const coins = ["PLUTO","BTC","ETH","USDT"] as const;
+
 const coinIcons= { PLUTO:"🪙", BTC:"₿", ETH:"Ξ", USDT:"$" };
 const networks = ["Ethereum (ERC-20)","BSC (BEP-20)","PlutoChain L2"];
 
