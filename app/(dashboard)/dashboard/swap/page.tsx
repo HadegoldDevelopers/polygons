@@ -2,17 +2,10 @@
 import { useState } from "react";
 import { Badge } from "@/components/ui";
 import { useToast } from "@/context/ToastContext";
-import { coins, swapRates } from "@/lib/mockData";
+import { coins, swapRates, type Coin, type CoinSymbol } from "@/lib/mockData";
 
 // ── Types ──────────────────────────────────────────────────────────
-interface Coin {
-  symbol: string;
-  name: string;
-  icon: string;
-  color: string;
-  balance: number;
-  price: number;
-}
+// Coin is imported from mockData — no local interface needed
 
 interface RecentSwap {
   from: string;
@@ -39,7 +32,9 @@ export default function SwapPage() {
   const [picking,  setPicking]  = useState<"from" | "to" | null>(null);
   const [loading,  setLoading]  = useState<boolean>(false);
 
-  const rate  = swapRates[fromCoin.symbol]?.[toCoin.symbol] ?? 1;
+  // Cast to CoinSymbol — fromCoin.symbol is CoinSymbol from mockData
+  // but TypeScript loses that info through useState, so we cast explicitly
+  const rate = swapRates[fromCoin.symbol as CoinSymbol]?.[toCoin.symbol as CoinSymbol] ?? 1;
   const toAmt = fromAmt ? (parseFloat(fromAmt) * rate).toFixed(4) : "";
 
   // ── Handlers ────────────────────────────────────────────────────
@@ -173,11 +168,7 @@ export default function SwapPage() {
             {swapDetails.map(([k, v]) => (
               <div key={k} className="flex justify-between text-sm">
                 <span className="text-white/45">{k}</span>
-                <span
-                  className={`font-semibold ${
-                    k === "Price impact" ? "text-[#00d4aa]" : ""
-                  }`}
-                >
+                <span className={`font-semibold ${k === "Price impact" ? "text-[#00d4aa]" : ""}`}>
                   {v}
                 </span>
               </div>
@@ -205,11 +196,7 @@ export default function SwapPage() {
           </div>
 
           {/* ── Swap button ───────────────────────────────────────── */}
-          <button
-            className="btn-primary"
-            onClick={handleSwap}
-            disabled={loading}
-          >
+          <button className="btn-primary" onClick={handleSwap} disabled={loading}>
             {loading ? (
               <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
             ) : (
@@ -230,9 +217,7 @@ export default function SwapPage() {
                   🔄
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-bold">
-                    {s.from} → {s.to}
-                  </p>
+                  <p className="text-sm font-bold">{s.from} → {s.to}</p>
                   <p className="text-xs text-white/40">{s.date}</p>
                 </div>
                 <div className="text-right">
