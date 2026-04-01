@@ -18,7 +18,7 @@ export default function TransactionsPage() {
     return matchFilter && matchSearch;
   });
 
-  const copyHash = (hash) => {
+  const copyHash = (hash : string) => {
     navigator.clipboard?.writeText(hash).catch(() => {});
     showToast("Transaction hash copied!", "success");
   };
