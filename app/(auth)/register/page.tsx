@@ -67,13 +67,13 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">Password</label>
-          <PasswordInput placeholder="Min. 8 characters" value={form.password} onChange={set("password")} />
+          <PasswordInput id="password" placeholder="Min. 8 characters" value={form.password} onChange={set("password")} />
           <StrengthMeter password={form.password} />
         </div>
 
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">Confirm password</label>
-          <PasswordInput placeholder="Repeat password" value={form.confirm} onChange={set("confirm")} />
+          <PasswordInput id="confirm" placeholder="Repeat password" value={form.confirm} onChange={set("confirm")} />
         </div>
 
         <label className="flex items-start gap-2.5 cursor-pointer text-sm text-white/45">
