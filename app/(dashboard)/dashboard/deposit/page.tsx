@@ -8,7 +8,7 @@ const coins = ["PLUTO","BTC","ETH","USDT"] as const;
 const coinIcons= { PLUTO:"🪙", BTC:"₿", ETH:"Ξ", USDT:"$" };
 const networks = ["Ethereum (ERC-20)","BSC (BEP-20)","PlutoChain L2"];
 
-const recentDeposits = [
+const recentDeposits: Array<{ coin: string; amount: number; from: string; status: "confirmed" | "pending" | "failed" }> = [
   { coin:"PLUTO", amount:5000,  from:"0x742d...B12C", status:"confirmed" },
   { coin:"PLUTO", amount:10000, from:"0xA3f8...D90E", status:"confirmed" },
 ];
