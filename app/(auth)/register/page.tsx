@@ -11,9 +11,14 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+  const set =
+  (key: keyof typeof form) =>
+  (e: React.ChangeEvent<HTMLInputElement>) =>
+    setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  async function handleSubmit(e) {
+
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+
     e.preventDefault();
     setError("");
     if (!form.firstName || !form.lastName || !form.email || !form.password) {
