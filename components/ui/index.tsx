@@ -70,22 +70,40 @@ export function StrengthMeter({ password }) {
 }
 
 /* ── Stat card ─────────────────────────────────────────────────── */
-export function StatCard({ icon, value, label, change, changeDir }) {
+type StatCardProps = {
+  icon: string;
+  value: string | number;
+  label: string;
+  change?: string;
+  changeDir?: "up" | "down";
+};
+
+export function StatCard({ icon, value, label, change, changeDir }: StatCardProps) {
   return (
     <div className="stat-card">
       <div className="w-11 h-11 rounded-xl bg-[var(--orange-dim)] flex items-center justify-center text-xl mb-4 relative z-10">
         {icon}
       </div>
-      <div className="text-2xl font-black mb-1 relative z-10" style={{ letterSpacing: "-0.5px" }}>{value}</div>
+      <div className="text-2xl font-black mb-1 relative z-10" style={{ letterSpacing: "-0.5px" }}>
+        {value}
+      </div>
       <div className="text-xs text-white/45 font-medium relative z-10">{label}</div>
+
       {change && (
-        <div className={`inline-flex items-center gap-1 mt-2 text-[11px] font-bold px-2 py-0.5 rounded-full relative z-10 ${changeDir === "up" ? "bg-[#00d4aa]/10 text-[#00d4aa]" : "bg-[#ff4d6a]/10 text-[#ff4d6a]"}`}>
+        <div
+          className={`inline-flex items-center gap-1 mt-2 text-[11px] font-bold px-2 py-0.5 rounded-full relative z-10 ${
+            changeDir === "up"
+              ? "bg-[#00d4aa]/10 text-[#00d4aa]"
+              : "bg-[#ff4d6a]/10 text-[#ff4d6a]"
+          }`}
+        >
           {changeDir === "up" ? "▲" : "▼"} {change}
         </div>
       )}
     </div>
   );
 }
+
 
 /* ── Badge ─────────────────────────────────────────────────────── */
 export function Badge({ status }) {
