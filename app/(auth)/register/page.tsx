@@ -20,6 +20,7 @@ export default function RegisterPage() {
   const [terms, setTerms] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  
 
   const set =
     (key: keyof typeof form) =>
@@ -87,16 +88,28 @@ export default function RegisterPage() {
       phone: form.phone,
     });
 
-    //2.  Create only the PLOYC wallet at signup
-await supabase.from("wallets").insert({
+    //2.  Create only the Coins wallet at signup
+function generateHexAddress() {
+  const bytes = crypto.getRandomValues(new Uint8Array(20));
+  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+  return "0x" + hex;
+}
+
+const coins = ["POLYC", "USDT", "BTC", "ETH"];
+
+const walletRows = coins.map((symbol) => ({
   id: crypto.randomUUID(),
   user_id: user.id,
-  symbol: "PLOYC",
+  symbol,
+  address: generateHexAddress(),
   amount: 0,
   usd_value: 0,
   price: 0.2,
   change_pct: 0,
-});
+}));
+
+await supabase.from("wallets").insert(walletRows);
+
 
     setLoading(false);
 

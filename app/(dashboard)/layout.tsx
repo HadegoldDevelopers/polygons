@@ -8,8 +8,6 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const {
     data: { user },
   } = await supabase.auth.getUser();
-console.log("SERVER USER:", user);
-
  
   if (!user) {
     redirect("/login");
