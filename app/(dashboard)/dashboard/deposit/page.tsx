@@ -64,8 +64,6 @@ export default function DepositPage() {
     user_id: user.id
   }),
 });
-
-
     const data = await res.json();
 
     if (data.error) {
