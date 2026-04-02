@@ -92,6 +92,10 @@ export default function DepositPage() {
     return net.toUpperCase();
   };
 
+
+
+
+  
   return (
     <div>
       <PageHeading
