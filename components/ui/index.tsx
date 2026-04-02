@@ -2,16 +2,32 @@
 import { useState } from "react";
 
 /* ── Logo ──────────────────────────────────────────────────────── */
+import Image from "next/image";
+
 export function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
-  const sizes = { sm: "w-8 h-8 text-sm", md: "w-10 h-10 text-base", lg: "w-12 h-12 text-lg" };
-  const text = { sm: "text-base", md: "text-xl", lg: "text-2xl" };
+  const sizes = {
+    sm: 32,
+    md: 40,
+    lg: 48,
+  };
+
+  const text = {
+    sm: "text-base",
+    md: "text-xl",
+    lg: "text-2xl",
+  };
+
   return (
     <div className="flex items-center gap-2.5">
-      <div className={`${sizes[size]} rounded-full bg-[#FF7900] flex items-center justify-center font-black text-black flex-shrink-0`}>
-        P
-      </div>
+      <Image
+        src="/logo.jpg"
+        alt="PolyCogni Logo"
+        width={sizes[size]}
+        height={sizes[size]}
+        className="rounded-full object-cover"
+      />
       <span className={`${text[size]} font-extrabold`}>
-        Pluto<span className="text-[#FF7900]">Chain</span>
+        Poly<span className="text-[#FF7900]">Cogni</span>
       </span>
     </div>
   );

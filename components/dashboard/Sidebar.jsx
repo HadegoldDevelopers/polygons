@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "@/components/ui";
+import { supabase } from "@/lib/supabaseClient";
+
 
 const navItems = [
   { label: "Dashboard",    href: "/dashboard",             icon: "🏠" },
@@ -49,9 +51,14 @@ export default function Sidebar({ onClose }) {
   return (
     <aside className="w-[260px] flex-shrink-0 bg-[#111118] border-r border-white/8 flex flex-col h-full">
       {/* Logo */}
-      <div className="px-5 py-6 border-b border-white/8">
+      
+        <div className="px-5 py-6 border-b border-white/8">
+        <Link href="/dashboard" className="flex items-center gap-2 px-5 py-6 ">
         <Logo size="sm" />
+        </Link>
       </div>
+      
+      
 
       {/* Nav */}
       <nav className="flex-1 px-3 py-4 overflow-y-auto">
@@ -77,12 +84,16 @@ export default function Sidebar({ onClose }) {
           </div>
         </Link>
         <button
-          onClick={() => router.push("/login")}
-          className="nav-item w-full text-[#ff4d6a] hover:bg-[#ff4d6a]/10"
-        >
-          <span className="text-lg w-5 text-center flex-shrink-0">🚪</span>
-          Sign Out
-        </button>
+  onClick={async () => {
+    await supabase.auth.signOut();
+    router.push("/login");
+  }}
+  className="nav-item w-full text-[#ff4d6a] hover:bg-[#ff4d6a]/10"
+>
+  <span className="text-lg w-5 text-center flex-shrink-0">🚪</span>
+  Sign Out
+</button>
+
       </div>
     </aside>
   );

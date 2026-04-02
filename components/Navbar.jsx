@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { IoMenu, IoClose } from "react-icons/io5";
+import { Logo } from "@/components/ui";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -14,8 +15,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-2">
         <Link href="/" className="text-white font-bold uppercase text-lg">
-          <Image src="/logo.jpg" alt="Polycogni Logo" className="object-contain" width={100}
-  height={100}/>
+          <Logo size="sm" />
         </Link>
           
         </div>
