@@ -55,6 +55,7 @@ export default function RegisterPage() {
       email: form.email,
       password: form.password,
       options: {
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback`,
         data: {
           first_name: form.firstName,
           last_name: form.lastName,
