@@ -62,6 +62,7 @@ export default function RegisterPage() {
         },
       },
     });
+console.log("SUPABASE URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
 
     if (signupError) {
       setError(signupError.message);
