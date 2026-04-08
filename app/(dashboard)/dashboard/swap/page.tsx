@@ -205,8 +205,13 @@ export default function SwapPage() {
 
     const from_amount = parseFloat(fromAmt);
     const to_amount = parseFloat(toAmt);
+const { data: { user }, } = await supabase.auth.getUser();
 
-    const user = (await supabase.auth.getUser()).data.user;
+if (!user) {
+  showToast("You must be logged in", "error");
+  setLoading(false);
+  return;
+}
 
     const res = await fetch("/api/swap", {
       method: "POST",
