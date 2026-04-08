@@ -25,7 +25,7 @@ const portfolioItems = [
 const accountItems = [
   { label: "Settings",     href: "/dashboard/settings",    icon: "⚙️" },
   { label: "Security",     href: "/dashboard/security",    icon: "🔒" },
-  // { label: "Help Center",  href: "/dashboard/help",        icon: "❓" },
+  { label: "Help Center",  href: "/dashboard/help",        icon: "❓" },
 ];
 
 export default function Sidebar({ onClose }) {
