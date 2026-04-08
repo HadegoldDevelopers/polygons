@@ -57,7 +57,7 @@ export default function StakingPage() {
   const loadPositions = async () => {
     const res = await fetch("/api/staking/position");
     const { positions: pos, balance: bal } = await res.json();
-    setPositions(pos ?? []);   // always an array
+    setPositions(pos ?? []); 
     setBalance(bal ?? 0);
   };
 
@@ -129,7 +129,7 @@ export default function StakingPage() {
 
     showToast("Staking successful! 🔒", "success");
     setAmount("");
-    await loadPositions();  // refresh all positions + balance
+    await loadPositions();
   };
 
   // ── Claim rewards for a specific position ────────────────────────
