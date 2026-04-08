@@ -136,19 +136,37 @@ export function Badge({ status }: { status: "confirmed" | "pending" | "failed" }
 }
 
 /* ── Toggle ────────────────────────────────────────────────────── */
-export function Toggle({ defaultOn = false }) {
+
+interface ToggleProps {
+  defaultOn?: boolean;
+  onChange?: (value: boolean) => void;
+}
+
+export function Toggle({ defaultOn = false, onChange }: ToggleProps) {
   const [on, setOn] = useState(defaultOn);
+
+  const toggle = () => {
+    const newVal = !on;
+    setOn(newVal);
+    if (onChange) onChange(newVal);
+  };
+
   return (
     <button
-      onClick={() => setOn(!on)}
-      className={`w-11 h-6 rounded-full relative transition-colors flex-shrink-0 ${on ? "bg-[#FF7900]" : "bg-white/10"}`}
+      onClick={toggle}
+      className={`w-11 h-6 rounded-full relative transition-colors flex-shrink-0 ${
+        on ? "bg-[#FF7900]" : "bg-white/10"
+      }`}
     >
       <span
-        className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${on ? "translate-x-5" : "translate-x-0.5"}`}
+        className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${
+          on ? "translate-x-5" : "translate-x-0.5"
+        }`}
       />
     </button>
   );
 }
+
 
 /* ── Section heading ───────────────────────────────────────────── */
 export function PageHeading({ title, subtitle }: { title: string; subtitle?: string }) {

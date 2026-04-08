@@ -1,16 +1,16 @@
-import Hero from "@/components/Hero";
-import FeaturedIn from "@/components/FeaturedIn";
-import WhatIsPolycogni from "@/components/WhatIsPolycogni";
-import PolycogniTestnet from "@/components/PolycogniTestnet";
-import HowToBuy from "@/components/HowToBuy";
-import UnleashBitcoin from "@/components/UnleashBitcoin";
-import WhyPolycogni from "@/components/WhyPolycogni";
-import Staking from "@/components/Staking";
-import DevelopmentPhases from "@/components/DevelopmentPhases";
-import Tokenomics from "@/components/Tokenomics";
-import DeveloperSection from "@/components/DeveloperSection";
-import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
+import Hero from "@/components/home/Hero";
+import FeaturedIn from "@/components/home/FeaturedIn";
+import WhatIsPolycogni from "@/components/home/WhatIsPolycogni";
+import PolycogniTestnet from "@/components/home/PolycogniTestnet";
+import HowToBuy from "@/components/home/HowToBuy";
+import UnleashBitcoin from "@/components/home/UnleashBitcoin";
+import WhyPolycogni from "@/components/home/WhyPolycogni";
+import Staking from "@/components/home/Staking";
+import DevelopmentPhases from "@/components/home/DevelopmentPhases";
+import Tokenomics from "@/components/home/Tokenomics";
+import DeveloperSection from "@/components/home/DeveloperSection";
+import FAQ from "@/components/home/FAQ";
+import Footer from "@/components/home/Footer";
 
 
 

@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 
-import CodeTyping from "@/components/CodeTyping";
+import CodeTyping from "@/components/home/CodeTyping";
 
 
 export default function DeveloperSection() {

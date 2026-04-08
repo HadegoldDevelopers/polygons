@@ -61,7 +61,7 @@ const txBg: Record<string, string> = {
   Swap: "bg-[#FF7900]/10",    Staking:  "bg-[#FF7900]/10",
 };
 const coinConfig: Record<string, { icon: string; iconBg: string; iconColor: string }> = {
-  POLYC: { icon: "🪙", iconBg: "bg-[#FF7900]/15", iconColor: "text-[#FF7900]" },
+  POLYCOGNICAPITAL: { icon: "🪙", iconBg: "bg-[#FF7900]/15", iconColor: "text-[#FF7900]" },
   BTC:   { icon: "₿",  iconBg: "bg-[#f7931a]/15", iconColor: "text-[#f7931a]" },
   ETH:   { icon: "Ξ",  iconBg: "bg-[#627eea]/15", iconColor: "text-[#627eea]" },
   USDT:  { icon: "$",  iconBg: "bg-[#26a17b]/15", iconColor: "text-[#26a17b]" },
@@ -125,7 +125,7 @@ export default function DashboardPage() {
 
   // ── Derived values ───────────────────────────────────────────────
   const totalUSD         = wallets.reduce((s, w) => s + (w.usd_value ?? 0), 0);
-  const polycWallet      = wallets.find((w) => w.symbol === "POLYC");
+  const polycWallet      = wallets.find((w) => w.symbol === "POLYCOGNI CAPITAL");
   const pendingCount     = recentTx.filter((t) => t.status === "pending").length;
 
   // Aggregate ALL stakes
@@ -180,7 +180,7 @@ export default function DashboardPage() {
         <StatCard
           icon="🪙"
           value={(polycWallet?.amount ?? 0).toLocaleString()}
-          label="POLYCongi Holdings"
+          label="POLYCOGNI CAPITAL Holdings"
           change={`${polycWallet?.change_pct ?? 0}% today`}
           changeDir={(polycWallet?.change_pct ?? 0) >= 0 ? "up" : "down"}
         />
@@ -207,11 +207,11 @@ export default function DashboardPage() {
       >
         <div className="absolute top-[-60px] right-[-60px] w-52 h-52 rounded-full bg-[#FF7900]/10 blur-3xl pointer-events-none" />
         <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
-          POLYC Token Balance
+          POLYCOGNI CAPITAL Token Balance
         </p>
         <div className="text-4xl font-black mb-1" style={{ letterSpacing: "-1.5px" }}>
           {(polycWallet?.amount ?? 0).toLocaleString()}{" "}
-          <span className="text-[#FF7900] text-2xl">POLYC</span>
+          <span className="text-[#FF7900] text-2xl">POLYCOGNI CAPITAL</span>
         </div>
         <p className="text-sm text-white/40 mb-6">
           ≈ ${(polycWallet?.usd_value ?? 0).toLocaleString()} USD ·{" "}
