@@ -23,7 +23,17 @@ export default function PreferencesSettings() {
     const load = async () => {
       const res = await fetch("/api/settings/preferences");
       const data = await res.json();
-      setPrefs(data);
+      if (!data) {
+  setPrefs({
+    dark_mode: true,
+    price_alerts: true,
+    auto_compound: false,
+    compact_view: false,
+    display_currency: "USD",
+  });
+} else {
+  setPrefs(data);
+}
       setLoading(false);
     };
     load();

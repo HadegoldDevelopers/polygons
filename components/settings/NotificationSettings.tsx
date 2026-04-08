@@ -24,7 +24,18 @@ export default function NotificationSettings() {
     const load = async () => {
       const res = await fetch("/api/settings/notifications");
       const data = await res.json();
-      setNotif(data);
+      if (!data) {
+        setNotif({
+          deposits: true,
+          withdrawals: true,
+          staking_rewards: true,
+          price_alerts: false,
+          security_alerts: true,
+          newsletter: false,
+        });
+      } else {
+        setNotif(data);
+      }
       setLoading(false);
     };
     load();
