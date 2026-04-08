@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
@@ -61,7 +62,7 @@ export default function PolycogniTestnet() {
                     {/* Orange icon box */}
                     <div className="bg-[#FF7900] rounded-lg p-2 w-10 mb-1">
                       {stat.useImg ? (
-                        <img
+                        <Image
                           alt=""
                           width={24}
                           height={24}

@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function HowToBuy() {
   const steps = [
@@ -23,7 +25,7 @@ export default function HowToBuy() {
 
           {/* Image */}
           <div className="w-full lg:w-1/2 p-10 pb-0 md:pb-20 md:p-20">
-            <img
+            <Image
               alt="How to buy" width={800} height={600}
               className="w-full min-h-[295px] md:min-h-[520px] object-cover rounded-[10px]"
               src="/how_to_buy_static7f6c.jpeg"
@@ -55,12 +57,12 @@ export default function HowToBuy() {
               ))}
             </ul>
             <div className="flex gap-4 items-center">
-              <a href="#presale" className="bg-[#FF7900] hover:bg-opacity-90 md:w-auto w-full text-center text-[#000] text-[14px] uppercase px-8 py-3 rounded-[8px] font-[800]">
+              <Link href="/login" className="bg-[#FF7900] hover:bg-opacity-90 md:w-auto w-full text-center text-[#000] text-[14px] uppercase px-8 py-3 rounded-[8px] font-[800]">
                 BUY NOW
-              </a>
-              <a href="https://docs.plutochain.io" target="_blank" className="border bg-[transparent] border-[#FF7900] md:w-auto w-full text-center text-[#fff] text-[14px] uppercase px-6 py-3 rounded-[8px] font-[800]">
+              </Link>
+              <Link href="/" target="_blank" className="border bg-[transparent] border-[#FF7900] md:w-auto w-full text-center text-[#fff] text-[14px] uppercase px-6 py-3 rounded-[8px] font-[800]">
                 Read Docs
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function UnleashBitcoin() {
   return (
@@ -37,12 +38,12 @@ export default function UnleashBitcoin() {
               ))}
             </ul>
 
-            <a
-              href="#presale"
+            <Link
+              href="/register"
               className="bg-[#FF7900] hover:bg-opacity-90 md:inline-block block text-center text-[#000] hover:text-[#000] text-[14px] uppercase px-6 py-3 rounded-[8px] md:px-20 font-[600]"
             >
               BUY Polycogni Capital TOKEN
-            </a>
+            </Link>
           </div>
 
           {/* Astronaut — desktop only */}

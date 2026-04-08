@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import Link from "next/link";
 
 import CodeTyping from "@/components/CodeTyping";
 
@@ -58,29 +59,23 @@ export default function DeveloperSection() {
             Don’t miss the chance to build the next generation of blockchain applications.
           </p>
 
-          <a
-            href="https://docs.polycogni.io"
+          <Link
+            href="/register"
             target="_blank"
             className="border border-[#FF7900] px-6 py-3 rounded-lg uppercase font-bold"
           >
             Get Started Now
-          </a>
+          </Link>
 
           <h3 className="text-3xl font-extrabold uppercase mt-10">
             Join the Growing Community of Developers
           </h3>
 
           <div className="flex gap-4 mt-6">
-            <a className="bg-[#FF7900] text-black px-8 py-3 rounded-lg font-bold uppercase">
+            <Link href="/register" className="bg-[#FF7900] text-black px-8 py-3 rounded-lg font-bold uppercase">
               Buy Now
-            </a>
-            <a
-              href="https://github.com/pluto-chain/plutochain-erc20"
-              target="_blank"
-              className="border border-[#FF7900] px-8 py-3 rounded-lg font-bold uppercase"
-            >
-              GitHub
-            </a>
+            </Link>
+           
           </div>
         </div>
 

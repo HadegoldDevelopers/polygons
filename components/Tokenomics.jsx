@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Tokenomics() {
   return (
@@ -15,12 +16,12 @@ export default function Tokenomics() {
               Explore Polycogni Capital tokenomics - simple and effective. Our smart contracts are fully audited, enhancing safety and transparency. Dive into our Investment Trading Plan to discover more about how Polycogni Capital Trading works
               </p>
             <div className="flex gap-4 items-center pt-6">
-              <a href="#presale" className="bg-[#FF7900] hover:bg-opacity-90 md:w-auto w-full text-center text-[#000] text-[14px] font-[800] uppercase px-9 py-3 rounded-[8px]">
+              <Link href="/register" className="bg-[#FF7900] hover:bg-opacity-90 md:w-auto w-full text-center text-[#000] text-[14px] font-[800] uppercase px-9 py-3 rounded-[8px]">
                 BUY NOW
-              </a>
-              <a href="https://plutochain.io/whitepaper.pdf" target="_blank" className="border bg-[transparent] border-[#FF7900] md:w-auto w-full text-center text-[#fff] text-[14px] font-[800] uppercase px-6 py-3 rounded-[8px]">
+              </Link>
+              <Link href="/whitepaper/Polycogni_Capital_Whitepaper.pdf" target="_blank" className="border bg-[transparent] border-[#FF7900] md:w-auto w-full text-center text-[#fff] text-[14px] font-[800] uppercase px-6 py-3 rounded-[8px]">
                 WHITEPAPER
-              </a>
+              </Link>
             </div>
           </div>
           <div className="w-full lg:w-1/2 p-4">

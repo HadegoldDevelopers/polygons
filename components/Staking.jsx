@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Staking() {
   return (
     <section>
@@ -63,12 +65,12 @@ export default function Staking() {
             </ul>
 
             <div className="flex gap-4 items-center pt-6 md:pt-0">
-              <a href="#presale" className="bg-[#FF7900] hover:bg-opacity-90 md:w-auto w-full text-center text-[#000] text-[14px] px-8 md:px-16 py-6 sm:py-3 rounded-[8px] font-[800]">
+              <Link href="/register" className="bg-[#FF7900] hover:bg-opacity-90 md:w-auto w-full text-center text-[#000] text-[14px] px-8 md:px-16 py-6 sm:py-3 rounded-[8px] font-[800]">
                 BUY NOW
-              </a>
-              <a href="https://plutochain.io/whitepaper.pdf" target="_blank" className="border bg-[transparent] border-[#FF7900] md:w-auto w-full text-center text-[#fff] text-[14px] uppercase px-6 py-3 rounded-[8px] font-[800]">
+              </Link>
+              <Link href="/whitepaper/Polycogni_Capital_Whitepaper.pdf" target="_blank" className="border bg-[transparent] border-[#FF7900] md:w-auto w-full text-center text-[#fff] text-[14px] uppercase px-6 py-3 rounded-[8px] font-[800]">
                 Read Whitepaper
-              </a>
+              </Link>
             </div>
           </div>
         </div>

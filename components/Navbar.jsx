@@ -27,22 +27,20 @@ export default function Navbar() {
           <Link href="/#token" className="hover:text-[#FF7900]">Token</Link>
           <Link href="/#faq" className="hover:text-[#FF7900]">FAQ</Link>
           <Link href="/pricing" className="hover:text-[#FF7900]">Pricing</Link>
-          <a href="#balance" className="hover:text-[#FF7900]">Check Balance</a>
-          <a href="#academy" className="hover:text-[#FF7900]">Academy</a>
         </nav>
 
         {/* Right Buttons */}
         <div className="hidden lg:flex items-center gap-4">
-          <a
-            href="#dashboard"
+          <Link
+            href="/dashboard"
             className="text-white border border-white/30 px-5 py-2 rounded-lg uppercase text-sm hover:border-[#FF7900]"
           >
             Dashboard
-          </a>
+          </Link>
 
-          <button className="bg-[#FF7900] text-black font-bold px-5 py-2 rounded-lg uppercase text-sm">
+          <Link href="/login" className="bg-[#FF7900] text-black font-bold px-5 py-2 rounded-lg uppercase text-sm hover:border-[#5d00ff]">
             Connect Wallet
-          </button>
+          </Link>
 
           {/* Language Selector */}
           <div className="text-white text-sm uppercase cursor-pointer">
@@ -68,19 +66,17 @@ export default function Navbar() {
             <Link href="/#token" onClick={() => setOpen(false)}>Token</Link>
             <Link href="/#faq" onClick={() => setOpen(false)}>FAQ</Link>
             <Link href="/pricing" onClick={() => setOpen(false)}>Pricing</Link>
-            <Link href="#balance" onClick={() => setOpen(false)}>Check Balance</Link>
-            <Link href="#academy" onClick={() => setOpen(false)}>Academy</Link>
 
             <Link
-              href="#dashboard"
+              href="/dashboard"
               className="border border-white/30 px-5 py-3 rounded-lg text-center"
             >
               Dashboard
             </Link>
 
-            <button className="bg-[#FF7900] text-black font-bold px-5 py-3 rounded-lg">
+            <Link href="/login" className="bg-[#FF7900] text-black font-bold px-5 py-3 rounded-lg">
               Connect Wallet
-            </button>
+            </Link>
 
             <div className="text-white text-sm uppercase mt-2">EN</div>
           </nav>

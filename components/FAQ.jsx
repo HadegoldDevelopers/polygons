@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 const faqs = [
   {
     q: "What is Polycogni Capital?",
@@ -52,26 +55,26 @@ export default function FAQ() {
 
           {/* Astronaut image — 5/12 */}
           <div className="w-full lg:w-5/12 p-4">
-            <img src="/assets/faq.webp" className="w-full md:block hidden" alt="" loading="lazy" />
+            <Image src="/assets/faq.webp" width={80} height={80} className="w-full md:block hidden" alt="" loading="lazy" />
           </div>
         </div>
 
         {/* Astronaut — mobile */}
-        <img src="/assets/faq.webp" className="w-full md:hidden block my-4 mt-0 p-4 pt-0 pb-20" alt="" loading="lazy" />
+        <Image src="/assets/faq.webp" width={80} height={80} className="w-full md:hidden block my-4 mt-0 p-4 pt-0 pb-20" alt="" loading="lazy" />
 
         {/* CTA buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto px-4 pb-10 md:pb-0 md:py-20">
-          <button className="bg-[#FF7900] hover:bg-opacity-90 text-[#000] text-center font-[800] py-4 px-6 rounded-lg text-[16px] uppercase transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+          <Link href="mailto:info@polycognicapital.com" className="bg-[#FF7900] hover:bg-opacity-90 text-[#000] text-center font-[800] py-4 px-6 rounded-lg text-[16px] uppercase transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
             Contact Us
-          </button>
-          <a
-            href="https://docs.plutochain.io"
+          </Link>
+          <Link
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-transparent hover:bg-[#FF7900] hover:bg-opacity-10 text-white text-center font-[800] py-4 px-6 rounded-lg text-[16px] uppercase border-2 border-[#FF7900] transition-all duration-300 hover:scale-[1.02]"
           >
             Help Docs
-          </a>
+          </Link>
         </div>
       </div>
     </section>

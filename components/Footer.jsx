@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -24,11 +25,11 @@ export default function Footer() {
             <h6 className="text-[14px] text-[#FF7900] mb-4 uppercase">JOIN US</h6>
             <ul>
               {[
-                { href: "https://x.com/plutochain/",                          icon: "/assets/s1.svg",                     label: "twitter"  },
-                { href: "https://t.me/PlutoChainAnnouncements/",              icon: "/icons/tg.svg",                      label: "Telegram" },
-                { href: "https://github.com/pluto-chain/plutochain-erc20",    icon: "/assets/s3.svg",                     label: "Github"   },
-                { href: "https://discord.gg/PlutoChain",                      icon: "/icons/discord.svg",                 label: "Discord"  },
-                { href: "mailto:info@plutochain.io",                          icon: "/assets/s4.svg",                     label: "Contact"  },
+                { href: "#",                          icon: "/icons/s1.svg",                     label: "twitter"  },
+                { href: "#",              icon: "/icons/tg.svg",                      label: "Telegram" },
+                { href: "#",    icon: "/icons/s3.svg",                     label: "Github"   },
+                { href: "#",                      icon: "/icons/discord.svg",                 label: "Discord"  },
+                { href: "mailto:info@polycognicapital.com",                          icon: "/icons/s4.svg",                     label: "Contact"  },
               ].map((item) => (
                 <li key={item.label} className="mb-3">
                   <a
@@ -49,13 +50,11 @@ export default function Footer() {
             <h6 className="text-[14px] text-[#FF7900] mb-4 uppercase">Documentation</h6>
             <ul>
               {[
-                { href: "https://plutochain.io/whitepaper.pdf",                icon: "/assets/d1.svg", label: "Whitepaper"            },
-                { href: "https://github.com/Quillhash",                        icon: "/assets/d2.svg", label: "Security and Audits"   },
-                { href: "https://docs.plutochain.io/resources/terms-and-conditions.html", icon: "/assets/d3.svg", label: "Terms and conditions" },
-                { href: "https://docs.plutochain.io/resources/privacy-policy.html",       icon: "/assets/d4.svg", label: "privacy policy"       },
-                { href: "/balance",                                             icon: "/assets/d5.svg", label: "Token balance checker" },
-                { href: "/academy",                                             icon: "/plutochain-logo-small-white.png", label: "Polycogni Capital Academy"  },
-                { href: "/education",                                           icon: "/plutochain-logo-small-white.png", label: "Polycogni Capital Education" },
+                { href: "#",                icon: "/icons/d1.svg", label: "Whitepaper"            },
+                { href: "#",                        icon: "/icons/d2.svg", label: "Security and Audits"   },
+                { href: "#", icon: "/icons/d3.svg", label: "Terms and conditions" },
+                { href: "#",       icon: "/icons/d4.svg", label: "privacy policy"       },
+                { href: "/balance",                                             icon: "/icons/d5.svg", label: "Token balance checker" },
               ].map((item) => (
                 <li key={item.label} className="mb-3">
                   <a
@@ -75,13 +74,13 @@ export default function Footer() {
         {/* Legal disclaimer — exact text from source */}
         <p className="text-[14px] leading-4.5 p-4 text-white/40">
           Disclaimer: By visiting this website, using our services, or buying Polycogni Capital, you agree to our{" "}
-          <a href="https://docs.plutochain.io/resources/terms-and-conditions.html" target="_blank" className="underline">Terms of Service</a>
+          <Link href="/" target="_blank" className="underline">Terms of Service</Link>
           {" "}and{" "}
-          <a href="https://docs.plutochain.io/resources/privacy-policy.html" target="_blank" className="underline">Privacy Policy.</a>
+          <Link href="/" target="_blank" className="underline">Privacy Policy.</Link>
           {" "}You also warrant that you have read and fully understood the{" "}
-          <a href="https://docs.plutochain.io/resources/disclaimer.html" target="_blank" className="underline">Disclaimer</a>
+          <Link href="/" target="_blank" className="underline">Disclaimer</Link>
           {" "}about the risks of purchasing cryptocurrencies like Polycogni Capital. By completing a purchase, you also declare that you are not a citizen or resident of any banned country, or any other country where the purchase of Polycogni Capital may be prohibited by law. A complete list of banned countries is available{" "}
-          <a href="https://docs.plutochain.io/resources/restrictions.html" target="_blank" className="underline">here.</a>
+          <Link href="/" target="_blank" className="underline">here.</Link>
           {" "}Our list of blocked countries and terms of service may be subject to updates, so please check the latest version.
           <br /><br />
           Polycogni Capital is not an investment; it is created as an experimental new cryptocurrency. Polycogni Capital tokens are not currently resellable. They are only usable as an ecosystem asset. There is no guarantee they will ever be resellable or tradable on any market. We do not guarantee or represent that Polycogni Capital holds any intrinsic value, that it will increase in price after the presale, or that it will have any value after the presale. We make no representations or warranties regarding Polycogni Capital and are not liable for any losses or errors that may occur during its use. All users should exercise caution and buy Polycogni Capital entirely at their own risk.

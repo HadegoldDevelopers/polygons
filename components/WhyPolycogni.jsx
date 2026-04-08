@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 
 export default function WhyPolycogni() {
@@ -28,12 +29,12 @@ export default function WhyPolycogni() {
         </div>
 
         <div className="flex flex-col md:flex-row md:justify-center gap-4 pb-10 pt-6 px-4 md:px-0">
-          <a href="#presale" className="bg-[#FF7900] hover:bg-opacity-90 text-[#000000] hover:text-[#000000] text-[14px] font-[800] uppercase px-16 py-3.5 rounded-[8px] text-center">
+          <Link href="/register" className="bg-[#FF7900] hover:bg-opacity-90 text-[#000000] hover:text-[#000000] text-[14px] font-[800] uppercase px-16 py-3.5 rounded-[8px] text-center">
             BUY NOW
-          </a>
-          <a href="https://plutochain.io/whitepaper.pdf" target="_blank" className="border border-[#FF7900] text-[#FFF] md:text-[#FF7900] hover:text-[#FFFFFF] text-[14px] font-[800] uppercase px-7 py-3.5 rounded-[8px] text-center">
+          </Link>
+          <Link href="/whitepaper/Polycogni_Capital_Whitepaper.pdf" target="_blank" className="border border-[#FF7900] text-[#FFF] md:text-[#FF7900] hover:text-[#FFFFFF] text-[14px] font-[800] uppercase px-7 py-3.5 rounded-[8px] text-center">
             READ WHITEPAPER
-          </a>
+          </Link>
         </div>
       </div>
     </section>
