@@ -445,12 +445,12 @@ export default function SettingsPage() {
                       <p className="text-sm font-bold">{item.label}</p>
                       <p className="text-xs text-white/40 mt-0.5">{item.desc}</p>
                     </div>
-                    <Toggle
+                    {/* <Toggle
                       defaultOn={notifPrefs[item.key]}
                       onChange={(val) =>
                         setNotifPrefs((prev) => ({ ...prev, [item.key]: val }))
                       }
-                    />
+                    /> */}
                   </div>
                 ))}
               </div>
