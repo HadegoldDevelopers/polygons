@@ -40,10 +40,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         {/* Sidebar — fixed on mobile, static on desktop */}
         <div className={`fixed md:static inset-y-0 left-0 z-40 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
-         <Sidebar
-        isOpen={sidebarOpen}
-        onClose={() => setSidebarOpen(false)}
-      />
+          <Sidebar onClose={() => setSidebarOpen(false)} />
         </div>
 
         {/* Main */}
