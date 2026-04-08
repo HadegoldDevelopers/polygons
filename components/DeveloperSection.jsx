@@ -14,7 +14,7 @@ export default function DeveloperSection() {
         {/* LEFT — Code Frame */}
         <div>
           <h2 className="text-white font-extrabold uppercase text-[32px] md:text-[42px] mb-6">
-            Develop on Polycogni
+            Develop on Polycogni Capital
           </h2>
 
           {/* FRAME BOX */}

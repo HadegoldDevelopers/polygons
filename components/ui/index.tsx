@@ -27,7 +27,7 @@ export function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
         className="rounded-full object-cover"
       />
       <span className={`${text[size]} font-extrabold`}>
-        Poly<span className="text-[#FF7900]">Cogni</span>
+        Polyconi<span className="text-[#FF7900]">Capital</span>
       </span>
     </div>
   );

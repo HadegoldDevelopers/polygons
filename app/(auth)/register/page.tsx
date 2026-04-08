@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabase/supabaseClient";
 import { Logo, PasswordInput, StrengthMeter } from "@/components/ui";
 
 export default function RegisterPage() {
@@ -78,7 +78,7 @@ console.log("SUPABASE URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
     }
 
     // -----------------------------------------
-    // ✅ CREATE DATABASE RECORDS FOR NEW USER
+    //  CREATE DATABASE RECORDS FOR NEW USER
     // -----------------------------------------
 
     // 1. Create profile
@@ -97,7 +97,7 @@ function generateHexAddress() {
   return "0x" + hex;
 }
 
-const coins = ["POLYC", "USDT", "BTC", "ETH"];
+const coins = ["POLYC", "USDT", "BTC", "ETH", "BNB", "ADA", "SOL", "XRP", "DOT", "DOGE"];
 
 const walletRows = coins.map((symbol) => ({
   id: crypto.randomUUID(),

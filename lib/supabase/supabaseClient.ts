@@ -1,3 +1,8 @@
+// Use this in:
+// React components
+// Client-side hooks
+// Realtime listeners
+
 import { createBrowserClient } from "@supabase/ssr";
 
 export const supabase = createBrowserClient(

@@ -4,14 +4,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "@/components/ui";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabase/supabaseClient";
+
+
 
 const navItems = [
   { label: "Dashboard",    href: "/dashboard",             icon: "🏠" },
   { label: "Deposit",      href: "/dashboard/deposit",     icon: "⬇️" },
   { label: "Withdraw",     href: "/dashboard/withdraw",    icon: "⬆️" },
   { label: "Swap",         href: "/dashboard/swap",        icon: "🔄" },
-  { label: "Transactions", href: "/dashboard/transactions",icon: "📋", badge: "3" },
+  { label: "Transactions", href: "/dashboard/transactions",icon: "📋" },
 ];
 
 const portfolioItems = [
@@ -27,6 +29,7 @@ const accountItems = [
 ];
 
 export default function Sidebar({ onClose }) {
+  const [txCount, setTxCount] = useState(0);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -53,6 +56,48 @@ export default function Sidebar({ onClose }) {
     loadProfile();
   }, []);
 
+useEffect(() => {
+  async function loadTxCount() {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { count } = await supabase
+      .from("transactions")
+      .select("*", { count: "exact", head: true })
+      .eq("user_id", user.id);
+
+    setTxCount(count || 0);
+  }
+
+  loadTxCount();
+}, []);
+
+
+useEffect(() => {
+  const channel = supabase
+    .channel("tx-listener")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "transactions",
+      },
+      (payload) => {
+        // Only count transactions for this user
+        if (payload.new.user_id === profile?.id) {
+          setTxCount((prev) => prev + 1);
+        }
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+}, [profile]);
   // 2. Prevent hydration mismatch by rendering a stable placeholder
   if (!profile) {
     return (
@@ -70,23 +115,28 @@ export default function Sidebar({ onClose }) {
     .toUpperCase();
 
   const NavLink = ({ item }) => {
-    const active = pathname === item.href;
-    return (
-      <Link
-        href={item.href}
-        onClick={onClose}
-        className={`nav-item ${active ? "active" : ""}`}
-      >
-        <span className="text-lg w-5 text-center flex-shrink-0">{item.icon}</span>
-        <span className="flex-1">{item.label}</span>
-        {item.badge && (
-          <span className="bg-[#FF7900] text-black text-[10px] font-black px-2 py-0.5 rounded-full">
-            {item.badge}
-          </span>
-        )}
-      </Link>
-    );
-  };
+  const active = pathname === item.href;
+
+  const isTransactions = item.label === "Transactions";
+
+  return (
+    <Link
+      href={item.href}
+      onClick={onClose}
+      className={`nav-item ${active ? "active" : ""}`}
+    >
+      <span className="text-lg w-5 text-center flex-shrink-0">{item.icon}</span>
+      <span className="flex-1">{item.label}</span>
+
+      {isTransactions && txCount > 0 && (
+        <span className="bg-[#FF7900] text-black text-[10px] font-black px-2 py-0.5 rounded-full">
+          {txCount}
+        </span>
+      )}
+    </Link>
+  );
+};
+
 
   return (
     <aside className="w-[260px] flex-shrink-0 bg-[#111118] border-r border-white/8 flex flex-col h-full">

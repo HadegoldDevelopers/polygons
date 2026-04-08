@@ -69,11 +69,11 @@ export default function WhatIsPolycogni() {
             fontSize: "clamp(32px, 6vw, 64px)",
           }}
         >
-          WHAT IS POLYCOGNI?
+          WHAT IS POLYCOGNI CAPITAL?
         </h2>
 
         <p className="text-white/60 text-center max-w-2xl mx-auto mb-12 text-base leading-relaxed">
-          Polycogni is a cryptocurrency project that seeks to unlock the full potential of the
+          Polycogni Capital is a cryptocurrency project that seeks to unlock the full potential of the
           Bitcoin blockchain by bringing smart contracts and decentralized applications to Bitcoin.
         </p>
 

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { StatCard, Badge, PageHeading } from "@/components/ui";
-import { supabase } from "@/lib/supabaseClient";
+import { supabase } from "@/lib/supabase/supabaseClient";
 
 // ── Types ──────────────────────────────────────────────────────────
 interface Profile {

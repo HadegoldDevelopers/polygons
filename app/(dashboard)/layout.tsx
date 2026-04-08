@@ -1,4 +1,4 @@
-import { supabaseServer } from "@/lib/supabaseServer";
+import { supabaseServer } from "@/lib/supabase/supabaseServer";
 import { redirect } from "next/navigation";
 import DashboardShell from "./DashboardShell";
 

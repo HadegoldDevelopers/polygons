@@ -14,7 +14,7 @@ export default function Footer() {
                   height={100}/>
               </div>
               <p className="text-[18px] leading-5.5">Powering Next Gen Crypto</p>
-              <p className="text-[14px] leading-4.5">© Polycogni Copyright 2025</p>
+              <p className="text-[14px] leading-4.5">© Polycogni Capital Copyright 2025</p>
               <p className="text-[14px] leading-4.5">All Rights Reserved</p>
             </div>
           </div>

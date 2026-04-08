@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 export default function UnleashBitcoin() {
   return (
@@ -15,7 +16,7 @@ export default function UnleashBitcoin() {
             </p>
 
             {/* Astronaut — mobile only */}
-            <img
+            <Image
               alt="astronaut" width={625} height={565}
               className="w-full md:hidden block mt-5"
               src="/unleashc240.jpeg"
@@ -29,7 +30,7 @@ export default function UnleashBitcoin() {
               ].map((text, i) => (
                 <li key={i}>
                   <div className="flex items-start mb-4 gap-2">
-                    <img alt="check" width={24} height={24} src="/assets/check.svg" />
+                    <Image alt="check" width={24} height={24} src="/assets/check.svg" />
                     <p>{text}</p>
                   </div>
                 </li>
@@ -46,7 +47,7 @@ export default function UnleashBitcoin() {
 
           {/* Astronaut — desktop only */}
           <div className="w-full lg:w-1/2 p-4">
-            <img
+            <Image
               alt="astronaut" width={625} height={565}
               className="w-full md:block hidden"
               src="/unleashc240.jpeg"

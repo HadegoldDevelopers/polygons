@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function WhyPolycogni() {
   const features = [
     { img: "/assets/wh1.png", title: "Scalability",            desc: "Helping to scale the Bitcoin blockchain with layer 2 technology and smart contracts" },
@@ -18,7 +20,7 @@ export default function WhyPolycogni() {
         <div className="flex pb-4 flex-wrap pt-5">
           {features.map((f, i) => (
             <div key={i} className="w-1/2 lg:w-3/12 p-4 md:px-6 px-4 text-center">
-              <img alt={`wh${i+1}`} width={80} height={80} className="w-[80px] h-[80px] mb-4 mx-auto" src={f.img} />
+              <Image alt={`wh${i+1}`} width={80} height={80} className="w-[80px] h-[80px] mb-4 mx-auto" src={f.img} />
               <h4 className="font-[800] text-[20px] leading-[24px] mb-3 text-[#FF7900]">{f.title}</h4>
               <p className="font-[500] text-[14px] leading-[18px] text-[#fff]">{f.desc}</p>
             </div>

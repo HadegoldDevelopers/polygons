@@ -92,7 +92,7 @@ export default function Hero() {
 
         {/* SUBHEADLINE */}
         <p className="text-white max-w-xl mt-6 md:mt-10 text-base md:text-xl font-semibold">
-          Polycogni is the First Hybrid Layer 2 Blockchain that introduces smart contracts to Bitcoin.
+          Polycogni Capital is the First Hybrid Layer 2 Blockchain that introduces smart contracts to Bitcoin.
         </p>
 
         {/* CTA BUTTON */}

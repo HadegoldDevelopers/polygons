@@ -1,3 +1,6 @@
+// lib/supabase/supabaseServer.ts
+// Use this for: Server-side rendering, API routes, Server components, Authentication checks, Data fetching on the server
+
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import type { CookieOptions } from "@supabase/ssr";

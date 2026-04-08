@@ -1,4 +1,7 @@
 "use client";
+
+import Image from "next/image";
+
 export default function Tokenomics() {
   return (
     <section className="lg:pt-10" id="token">
@@ -21,7 +24,7 @@ export default function Tokenomics() {
             </div>
           </div>
           <div className="w-full lg:w-1/2 p-4">
-            <img
+            <Image
               alt="Tokenomics" width={410} height={600}
               className="w-full max-w-[410px] mx-auto"
               src="/assets/tokenomics.jpeg"
