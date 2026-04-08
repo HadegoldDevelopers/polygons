@@ -50,11 +50,10 @@ export default function Footer() {
             <h6 className="text-[14px] text-[#FF7900] mb-4 uppercase">Documentation</h6>
             <ul>
               {[
-                { href: "#",                icon: "/icons/d1.svg", label: "Whitepaper"            },
+                { href: "/whitepaper/Polycogni_Capital_Whitepaper.pdf",                icon: "/icons/d1.svg", label: "Whitepaper"            },
                 { href: "#",                        icon: "/icons/d2.svg", label: "Security and Audits"   },
                 { href: "#", icon: "/icons/d3.svg", label: "Terms and conditions" },
                 { href: "#",       icon: "/icons/d4.svg", label: "privacy policy"       },
-                { href: "/balance",                                             icon: "/icons/d5.svg", label: "Token balance checker" },
               ].map((item) => (
                 <li key={item.label} className="mb-3">
                   <a
