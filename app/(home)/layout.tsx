@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/home/Navbar";
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
   return (
