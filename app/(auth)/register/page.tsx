@@ -1,12 +1,23 @@
 "use client";
-import { useState } from "react";
+
+export const dynamic = "force-dynamic";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabaseClient";
 import { Logo, PasswordInput, StrengthMeter } from "@/components/ui";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [referralCode, setReferralCode] = useState<string | null>(null);
+
+  useEffect(() => {
+    setReferralCode(searchParams.get("ref"));
+  }, [searchParams]);
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -20,29 +31,41 @@ export default function RegisterPage() {
   const [terms, setTerms] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
 
   const set =
     (key: keyof typeof form) =>
     (e: React.ChangeEvent<HTMLInputElement>) =>
       setForm((f) => ({ ...f, [key]: e.target.value }));
 
+  function generateHexAddress() {
+    return (
+      "0x" +
+      Array.from({ length: 40 }, () =>
+        Math.floor(Math.random() * 16).toString(16)
+      ).join("")
+    );
+  }
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
 
+    // VALIDATION
     if (!form.firstName || !form.lastName || !form.email || !form.password) {
       setError("Please fill in all fields.");
       return;
     }
+
     if (form.password !== form.confirm) {
       setError("Passwords do not match.");
       return;
     }
+
     if (form.password.length < 8) {
       setError("Password must be at least 8 characters.");
       return;
     }
+
     if (!terms) {
       setError("Please accept the Terms of Service.");
       return;
@@ -50,7 +73,7 @@ export default function RegisterPage() {
 
     setLoading(true);
 
-    // SIGN UP USER
+    // SIGN UP
     const { data, error: signupError } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
@@ -70,64 +93,100 @@ export default function RegisterPage() {
     }
 
     const user = data.user;
+
     if (!user) {
       setError("Signup failed.");
       setLoading(false);
       return;
     }
 
-    // -----------------------------------------
-    //  CREATE DATABASE RECORDS FOR NEW USER
-    // -----------------------------------------
+    try {
+      // 1. CREATE PROFILE
+      await supabase.from("profiles").insert({
+        id: user.id,
+        name: `${form.firstName} ${form.lastName}`,
+        email: form.email,
+        country: form.country,
+        phone: form.phone,
+      });
 
-    // 1. Create profile
-    await supabase.from("profiles").insert({
-      id: user.id,
-      name: `${form.firstName} ${form.lastName}`,
-      email: form.email,
-      country: form.country,
-      phone: form.phone,
-    });
+      // 2. CREATE WALLETS
+      const coins = [
+        "POLYC",
+        "USDT",
+        "BTC",
+        "ETH",
+        "BNB",
+        "ADA",
+        "SOL",
+        "XRP",
+        "DOT",
+        "DOGE",
+      ];
 
-    //2.  Create only the Coins wallet at signup
-function generateHexAddress() {
-  const bytes = crypto.getRandomValues(new Uint8Array(20));
-  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
-  return "0x" + hex;
-}
+      const walletRows = coins.map((symbol) => ({
+        id: Math.random().toString(36).substring(2),
+        user_id: user.id,
+        symbol,
+        address: generateHexAddress(),
+        amount: 0,
+        usd_value: 0,
+        price: 0.2,
+        change_pct: 0,
+      }));
 
-const coins = ["POLYC", "USDT", "BTC", "ETH", "BNB", "ADA", "SOL", "XRP", "DOT", "DOGE"];
+      await supabase.from("wallets").insert(walletRows);
 
-const walletRows = coins.map((symbol) => ({
-  id: crypto.randomUUID(),
-  user_id: user.id,
-  symbol,
-  address: generateHexAddress(),
-  amount: 0,
-  usd_value: 0,
-  price: 0.2,
-  change_pct: 0,
-}));
+      // 3. REFERRAL HANDLING
+      let referrerId: string | null = null;
 
-await supabase.from("wallets").insert(walletRows);
+      if (referralCode) {
+        const { data: refUser } = await supabase
+          .from("profiles")
+          .select("id")
+          .eq("referral_code", referralCode)
+          .single();
 
+        if (refUser) {
+          referrerId = refUser.id;
+        }
+      }
+
+      const email = user.email ?? "user";
+
+      const newReferralCode =
+        email.split("@")[0].replace(/[^a-zA-Z0-9]/g, "").toUpperCase() +
+        Math.floor(1000 + Math.random() * 9000);
+
+      await supabase
+        .from("profiles")
+        .update({
+          referral_code: newReferralCode,
+          referred_by: referrerId,
+        })
+        .eq("id", user.id);
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong. Please try again.");
+      setLoading(false);
+      return;
+    }
 
     setLoading(false);
-
-    // 4. Redirect to dashboard
     router.push("/dashboard");
   }
 
   return (
     <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-10 shadow-2xl relative z-10">
       <div className="flex justify-center mb-8">
-        <Link href="/" className="flex items-center gap-2"> 
-        <Logo size="md" />
+        <Link href="/" className="flex items-center gap-2">
+          <Logo size="md" />
         </Link>
-       
       </div>
 
-      <h1 className="text-2xl font-black text-center mb-1">Create account</h1>
+      <h1 className="text-2xl font-black text-center mb-1">
+        Create account
+      </h1>
       <p className="text-sm text-white/45 text-center mb-7">
         Join PlutoChain and start trading
       </p>
@@ -139,131 +198,44 @@ await supabase.from("wallets").insert(walletRows);
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-              First name
-            </label>
-            <input
-              type="text"
-              className="field"
-              placeholder="John"
-              value={form.firstName}
-              onChange={set("firstName")}
-            />
-          </div>
-          <div>
-            <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-              Last name
-            </label>
-            <input
-              type="text"
-              className="field"
-              placeholder="Doe"
-              value={form.lastName}
-              onChange={set("lastName")}
-            />
-          </div>
-        </div>
+        <input className="field" placeholder="First name" value={form.firstName} onChange={set("firstName")} />
+        <input className="field" placeholder="Last name" value={form.lastName} onChange={set("lastName")} />
+        <input className="field" type="email" placeholder="Email" value={form.email} onChange={set("email")} />
+        <input className="field" placeholder="Country" value={form.country} onChange={set("country")} />
+        <input className="field" placeholder="Phone" value={form.phone} onChange={set("phone")} />
 
-        <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="field"
-            placeholder="you@example.com"
-            value={form.email}
-            onChange={set("email")}
-          />
-        </div>
+        <PasswordInput
+          id="password"
+          placeholder="Password"
+          value={form.password}
+          onChange={set("password")}
+        />
+        <StrengthMeter password={form.password} />
 
-        <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Country
-          </label>
-          <input
-            type="text"
-            className="field"
-            placeholder="United States"
-            value={form.country}
-            onChange={set("country")}
-          />
-        </div>
+        <PasswordInput
+          id="confirm"
+          placeholder="Confirm password"
+          value={form.confirm}
+          onChange={set("confirm")}
+        />
 
-        <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Phone number
-          </label>
-          <input
-            type="number"
-            className="field"
-            placeholder="+1 555-123-4567"
-            value={form.phone}
-            onChange={set("phone")}
-          />
-        </div>
-
-        <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Password
-          </label>
-          <PasswordInput
-            id="password"
-            placeholder="Min. 8 characters"
-            value={form.password}
-            onChange={set("password")}
-          />
-          <StrengthMeter password={form.password} />
-        </div>
-
-        <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Confirm password
-          </label>
-          <PasswordInput
-            id="confirm"
-            placeholder="Repeat password"
-            value={form.confirm}
-            onChange={set("confirm")}
-          />
-        </div>
-
-        <label className="flex items-start gap-2.5 cursor-pointer text-sm text-white/45">
+        <label className="flex gap-2 text-sm">
           <input
             type="checkbox"
             checked={terms}
             onChange={(e) => setTerms(e.target.checked)}
-            className="accent-[#FF7900] w-4 h-4 mt-0.5"
           />
-          <span>
-            I agree to the{" "}
-            <a href="#" className="text-[#FF7900]">
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a href="#" className="text-[#FF7900]">
-              Privacy Policy
-            </a>
-          </span>
+          I agree to Terms
         </label>
 
         <button type="submit" className="btn-primary" disabled={loading}>
-          {loading ? (
-            <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-          ) : (
-            "Create Account →"
-          )}
+          {loading ? "Creating..." : "Create Account"}
         </button>
       </form>
 
-      <p className="text-center text-sm text-white/45 mt-6">
+      <p className="text-center text-sm mt-6">
         Already have an account?{" "}
-        <Link
-          href="/login"
-          className="text-[#FF7900] font-semibold hover:underline"
-        >
+        <Link href="/login" className="text-orange-500">
           Sign in
         </Link>
       </p>
