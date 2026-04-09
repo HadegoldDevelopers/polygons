@@ -9,8 +9,9 @@ export interface SessionItem {
   current: boolean;
 }
 
-interface Props {
+export interface Props {
   sessions: SessionItem[];
+  reload: () => Promise<void>;
 }
 
 export function ActiveSessionsCard({ sessions }: Props) {
