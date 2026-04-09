@@ -37,10 +37,12 @@ export async function POST(req: Request) {
     }
 
     // 1. CREATE PROFILE
+     const normalizedEmail = email.toLowerCase();
+
     await supabaseService.from("profiles").insert({
       id: user_id,
       name: `${first_name} ${last_name}`,
-      email,
+      email: normalizedEmail,
       country,
       phone,
     });
@@ -64,7 +66,7 @@ if (walletError) {
   console.error("Wallet creation failed:", walletError);
 }
     // 3. GENERATE REFERRAL CODE
-    const newReferralCode = generateReferralCode(email);
+    const newReferralCode = generateReferralCode(normalizedEmail);
 
     const { error: referralError } = await supabaseService
   .from("profiles")
@@ -77,17 +79,22 @@ if (referralError) {
 ;
 
     // 4. FIND REFERRER
-    let referrerId: string | null = null;
+let referrerId: string | null = null;
 
-    if (referral_code_used) {
-      const { data: refCodeRow } = await supabaseService
-        .from("profiles")
-        .select("id")
-        .eq("referral_code", referral_code_used)
-        .single();
+const normalizedReferralCodeUsed = referral_code_used
+  ? referral_code_used.toUpperCase()
+  : null;
 
-      if (refCodeRow) referrerId = refCodeRow.id;
-    }
+if (normalizedReferralCodeUsed) {
+  const { data: refUser } = await supabaseService
+    .from("profiles")
+    .select("id")
+    .eq("referral_code", normalizedReferralCodeUsed)
+    .single();
+
+  if (refUser) referrerId = refUser.id;
+}
+
 
     // 5. CREATE REFERRAL RECORD
     if (referrerId) {
