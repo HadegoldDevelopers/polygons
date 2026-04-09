@@ -8,6 +8,7 @@ interface Referral {
   profiles: {
     name: string;
   };
+  earnings: { amount: number }[];
 }
 
 export function useReferrals() {
@@ -29,8 +30,25 @@ export function useReferrals() {
         monthly: statsRes?.monthly ?? 0,
       });
 
-      // THE IMPORTANT FIX
-      setReferrals(Array.isArray(listRes) ? listRes : []);
+      // NORMALIZE THE API RESPONSE HERE
+     const normalized: Referral[] = Array.isArray(listRes)
+  ? listRes.map((r) => ({
+      created_at: r.created_at,
+      referred_id: r.referred_id,
+      profiles: {
+        name: r.profiles?.name ?? "Unknown",
+      },
+      earnings:
+        r.profiles?.earnings?.map(
+          (e: { amount: number | string }) => ({
+            amount: Number(e.amount),
+          })
+        ) ?? [],
+    }))
+  : [];
+
+
+      setReferrals(normalized);
 
       setLoading(false);
     };

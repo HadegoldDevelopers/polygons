@@ -1,4 +1,3 @@
-
 interface Referral {
   created_at: string;
   referred_id: string;
@@ -13,8 +12,7 @@ interface ReferralListProps {
 }
 
 export function ReferralList({ referrals }: ReferralListProps) {
-  console.log("REFERRALS FROM API:", referrals);
-
+  
   return (
     <div className="card">
       <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-4">
