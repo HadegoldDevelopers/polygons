@@ -13,7 +13,7 @@ export default function SecurityPage() {
   useEffect(() => {
     loadSessions();
   }, [loadSessions]);
-
+// gggggg
   return (
     <div>
       <PageHeading title="Security 🔒" subtitle="Protect your account and assets." />
