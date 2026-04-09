@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabaseClient";
@@ -9,7 +9,11 @@ import { Logo, PasswordInput, StrengthMeter } from "@/components/ui";
 export default function RegisterPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const referralCode = searchParams.get("ref");
+const [referralCode, setReferralCode] = useState<string | null>(null);
+
+useEffect(() => {
+  setReferralCode(searchParams.get("ref"));
+}, [searchParams]);
 
   const [form, setForm] = useState({
     firstName: "",
