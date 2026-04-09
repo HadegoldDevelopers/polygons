@@ -94,8 +94,6 @@ if (normalizedReferralCodeUsed) {
 
   if (refUser) referrerId = refUser.id;
 }
-
-
     // 5. CREATE REFERRAL RECORD
     if (referrerId) {
       await supabaseService.from("referrals").insert({
@@ -115,7 +113,6 @@ if (referrerId) {
     console.error("Failed to update referred_by:", updateError);
   }
 }
-
     return NextResponse.json({
       success: true,
       referral_code: newReferralCode,

@@ -3,10 +3,15 @@
 import { useEffect, useState } from "react";
 import { useToast } from "@/context/ToastContext";
 
+interface ApiKey {
+  id: string;
+  key: string;
+  status: "active" | "revoked";
+}
 export default function ApiKeysSettings() {
   const { showToast } = useToast();
-  const [loading, setLoading] = useState(true);
-  const [keys, setKeys] = useState<any[]>([]);
+  const [loadingPage, setLoading] = useState(true);
+  const [keys, setKeys] = useState<ApiKey[]>([]);
 
   const load = async () => {
     const res = await fetch("/api/settings/api-keys");
@@ -42,7 +47,16 @@ export default function ApiKeysSettings() {
     load();
   };
 
-  if (loading) return <p className="text-white/40">Loading…</p>;
+  if (loadingPage) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="flex flex-col items-center gap-3">
+          <span className="w-8 h-8 border-2 border-[#FF7900]/30 border-t-[#FF7900] rounded-full animate-spin" />
+          <p className="text-sm text-white/40">Loading Api…</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>

@@ -1,4 +1,4 @@
-// app/api/staking/stake/route.ts
+import { supabaseService } from "@/lib/supabase/service";
 import { supabaseServer } from "@/lib/supabase/supabaseServer";
 import { recordTransaction } from "@/lib/helper/transactions";
 import { createNotification } from "@/lib/helper/notifications";
@@ -91,6 +91,72 @@ export async function POST(req: Request) {
     user.id,
     `You staked ${amount} PC for ${plan.duration_days} days.`
   );
+
+/// 4. REFERRAL REWARD LOGIC
+const { data: profile } = await supabase
+  .from("profiles")
+  .select("referred_by")
+  .eq("id", user.id)
+  .single();
+
+if (profile?.referred_by) {
+  const referrerId = profile.referred_by;
+
+  // Fetch referral percentage from staking plan
+  const referralPct = plan.referral_bonus || 0;
+
+  if (referralPct > 0) {
+    const reward = (amount * referralPct) / 100;
+
+    // Fetch referrer's PC wallet using service role
+    const { data: refWallet } = await supabaseService
+      .from("wallets")
+      .select("*")
+      .eq("user_id", referrerId)
+      .eq("symbol", "PC")
+      .single();
+
+    if (!refWallet) {
+      console.error("Referrer has no PC wallet — unexpected.");
+      return;
+    }
+
+    // 1. Credit reward to referrer wallet
+    await supabaseService
+      .from("wallets")
+      .update({ amount: refWallet.amount + reward })
+      .eq("id", refWallet.id);
+
+    // 2. Insert referral earnings
+    await supabaseService.from("referral_earnings").insert({
+      referrer_id:  referrerId,
+    referred_id:  user.id,
+    amount: reward,
+    created_at: new Date(),
+  })
+  .select();
+    // 3. Record referral transaction
+    await recordTransaction({
+      user_id: referrerId,
+      type: "Bonus",
+      direction: "in",
+      coin: "PC",
+      amount: reward,
+      metadata: {
+        referred_user: user.id,
+        stake_amount: amount,
+        plan_id,
+        referral_pct: referralPct,
+      },
+    });
+
+    // 4. Notify referrer
+    await createNotification(
+      referrerId,
+      `You earned ${reward} PC from your referral's stake of ${amount} PC.`
+    );
+  }
+}
 
   return Response.json({ success: true });
 }

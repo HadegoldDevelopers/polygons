@@ -5,7 +5,7 @@ import { useToast } from "@/context/ToastContext";
 
 export default function ProfileSettings() {
   const { showToast } = useToast();
-  const [loading, setLoading] = useState(true);
+  const [loadingPage, setLoading] = useState(true);
 
   const [form, setForm] = useState({
     firstName: "",
@@ -50,7 +50,16 @@ export default function ProfileSettings() {
     showToast("Profile saved!", "success");
   };
 
-  if (loading) return <p className="text-white/40">Loading…</p>;
+  if (loadingPage) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="flex flex-col items-center gap-3">
+          <span className="w-8 h-8 border-2 border-[#FF7900]/30 border-t-[#FF7900] rounded-full animate-spin" />
+          <p className="text-sm text-white/40">Loading profile…</p>
+        </div>
+      </div>
+    );
+  }
 
   const initials = `${form.firstName?.[0] ?? ""}${form.lastName?.[0] ?? ""}`.toUpperCase();
 

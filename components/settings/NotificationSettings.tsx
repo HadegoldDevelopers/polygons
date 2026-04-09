@@ -6,7 +6,7 @@ import { useToast } from "@/context/ToastContext";
 
 export default function NotificationSettings() {
   const { showToast } = useToast();
-  const [loading, setLoading] = useState(true);
+  const [loadingPage, setLoading] = useState(true);
 
   const [notif, setNotif] = useState({
     deposits: true,
@@ -53,12 +53,21 @@ export default function NotificationSettings() {
     showToast("Notification settings saved!", "success");
   };
 
-  if (loading) return <p className="text-white/40">Loading…</p>;
+  if (loadingPage) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="flex flex-col items-center gap-3">
+          <span className="w-8 h-8 border-2 border-[#FF7900]/30 border-t-[#FF7900] rounded-full animate-spin" />
+          <p className="text-sm text-white/40">Loading notifications…</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <h3 className="text-lg font-black mb-1">Notifications</h3>
-      <p className="text-sm text-white/40 mb-6">Choose what you're notified about</p>
+      <p className="text-sm text-white/40 mb-6">Choose what you are notified about</p>
 
       <div className="divide-y divide-white/8">
         <div className="flex items-center justify-between py-4">

@@ -12,7 +12,7 @@ interface Referral {
 }
 
 export function useReferrals() {
-  const [loading, setLoading] = useState(true);
+  const [loadingPage, setLoading] = useState(true);
   const [link, setLink] = useState("");
   const [stats, setStats] = useState({ total: 0, monthly: 0 });
   const [referrals, setReferrals] = useState<Referral[]>([]);
@@ -56,5 +56,5 @@ export function useReferrals() {
     load();
   }, []);
 
-  return { loading, link, stats, referrals };
+  return { loadingPage, link, stats, referrals };
 }

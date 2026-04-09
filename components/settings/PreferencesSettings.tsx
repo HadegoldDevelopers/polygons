@@ -6,7 +6,7 @@ import { useToast } from "@/context/ToastContext";
 
 export default function PreferencesSettings() {
   const { showToast } = useToast();
-  const [loading, setLoading] = useState(true);
+  const [loadingPage, setLoading] = useState(true);
 
   const [prefs, setPrefs] = useState({
     dark_mode: true,
@@ -51,8 +51,16 @@ export default function PreferencesSettings() {
     showToast("Preferences saved!", "success");
   };
 
-  if (loading) return <p className="text-white/40">Loading…</p>;
-
+  if (loadingPage) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="flex flex-col items-center gap-3">
+          <span className="w-8 h-8 border-2 border-[#FF7900]/30 border-t-[#FF7900] rounded-full animate-spin" />
+          <p className="text-sm text-white/40">Loading preferences…</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <h3 className="text-lg font-black mb-1">Preferences</h3>
