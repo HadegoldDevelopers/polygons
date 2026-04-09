@@ -22,7 +22,7 @@ export async function GET() {
     .from("wallets")
     .select("*")
     .eq("user_id", user.id)
-    .eq("symbol", "POLYC")
+    .eq("symbol", "PC")
     .single();
 
   return Response.json({

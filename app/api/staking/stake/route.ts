@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
   if (amount < plan.min_deposit) {
     return Response.json(
-      { error: `Minimum stake is ${plan.min_deposit} POLYC` },
+      { error: `Minimum stake is ${plan.min_deposit} PC` },
       { status: 400 }
     );
   }
@@ -31,15 +31,15 @@ export async function POST(req: Request) {
     .from("wallets")
     .select("*")
     .eq("user_id", user.id)
-    .eq("symbol", "POLYC")
+    .eq("symbol", "PC")
     .single();
 
   if (!wallet) {
-    return Response.json({ error: "POLYC wallet not found" }, { status: 400 });
+    return Response.json({ error: "PC wallet not found" }, { status: 400 });
   }
 
   if (wallet.amount < amount) {
-    return Response.json({ error: "Insufficient POLYC balance" }, { status: 400 });
+    return Response.json({ error: "Insufficient PC balance" }, { status: 400 });
   }
 
   // Deduct POLYC from wallet
@@ -78,7 +78,7 @@ export async function POST(req: Request) {
     user_id: user.id,
     type: "Staking",
     direction: "out",
-    coin: "POLYC",
+    coin: "PC",
     amount,
     metadata: {
       plan_id: plan.id,
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
   // Notification
   await createNotification(
     user.id,
-    `You staked ${amount} POLYC for ${plan.duration_days} days.`
+    `You staked ${amount} PC for ${plan.duration_days} days.`
   );
 
   return Response.json({ success: true });

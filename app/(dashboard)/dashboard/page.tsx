@@ -61,7 +61,7 @@ const txBg: Record<string, string> = {
   Swap: "bg-[#FF7900]/10",    Staking:  "bg-[#FF7900]/10",
 };
 const coinConfig: Record<string, { icon: string; iconBg: string; iconColor: string }> = {
-  POLYCOGNICAPITAL: { icon: "🪙", iconBg: "bg-[#FF7900]/15", iconColor: "text-[#FF7900]" },
+  PC: { icon: "🪙", iconBg: "bg-[#FF7900]/15", iconColor: "text-[#FF7900]" },
   BTC:   { icon: "₿",  iconBg: "bg-[#f7931a]/15", iconColor: "text-[#f7931a]" },
   ETH:   { icon: "Ξ",  iconBg: "bg-[#627eea]/15", iconColor: "text-[#627eea]" },
   USDT:  { icon: "$",  iconBg: "bg-[#26a17b]/15", iconColor: "text-[#26a17b]" },
@@ -125,7 +125,7 @@ export default function DashboardPage() {
 
   // ── Derived values ───────────────────────────────────────────────
   const totalUSD         = wallets.reduce((s, w) => s + (w.usd_value ?? 0), 0);
-  const polycWallet      = wallets.find((w) => w.symbol === "POLYCOGNI CAPITAL");
+  const polycWallet      = wallets.find((w) => w.symbol === "PC");
   const pendingCount     = recentTx.filter((t) => t.status === "pending").length;
 
   // Aggregate ALL stakes

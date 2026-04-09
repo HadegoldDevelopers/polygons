@@ -1,6 +1,3 @@
-// app/(auth)/register/RegisterForm.tsx
-// This is a separate "use client" component
-// It must be inside <Suspense> because it uses useSearchParams()
 "use client";
 
 import { useState, useEffect } from "react";
@@ -9,42 +6,23 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabaseClient";
 import { Logo, PasswordInput, StrengthMeter } from "@/components/ui";
 
-function generateHexAddress(): string {
-  return (
-    "0x" +
-    Array.from({ length: 40 }, () =>
-      Math.floor(Math.random() * 16).toString(16)
-    ).join("")
-  );
-}
-
-const COINS = [
-  "POLYC", "USDT", "BTC", "ETH", "BNB",
-  "ADA", "SOL", "XRP", "DOT", "DOGE",
-];
-
 export default function RegisterForm() {
-  const router       = useRouter();
+  const router = useRouter();
   const searchParams = useSearchParams();
-
-  const [referralCode, setReferralCode] = useState<string | null>(null);
-
-  useEffect(() => {
-    setReferralCode(searchParams.get("ref"));
-  }, [searchParams]);
+  const referralCode = searchParams.get("ref");
 
   const [form, setForm] = useState({
     firstName: "",
-    lastName:  "",
-    email:     "",
-    country:   "",
-    phone:     "",
-    password:  "",
-    confirm:   "",
+    lastName: "",
+    email: "",
+    country: "",
+    phone: "",
+    password: "",
+    confirm: "",
   });
 
-  const [terms,   setTerms]   = useState(false);
-  const [error,   setError]   = useState("");
+  const [terms, setTerms] = useState(false);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const set =
@@ -56,9 +34,8 @@ export default function RegisterForm() {
     e.preventDefault();
     setError("");
 
-    // Validation
     if (!form.firstName || !form.lastName || !form.email || !form.password) {
-      setError("Please fill in all required fields.");
+      setError("Please fill in all fields.");
       return;
     }
     if (form.password !== form.confirm) {
@@ -76,15 +53,15 @@ export default function RegisterForm() {
 
     setLoading(true);
 
-    // 1. Sign up with Supabase Auth
+    // 1. SIGN UP USER
     const { data, error: signupError } = await supabase.auth.signUp({
-      email:    form.email,
+      email: form.email,
       password: form.password,
       options: {
         emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/auth/callback`,
         data: {
           first_name: form.firstName,
-          last_name:  form.lastName,
+          last_name: form.lastName,
         },
       },
     });
@@ -97,93 +74,34 @@ export default function RegisterForm() {
 
     const user = data.user;
     if (!user) {
-      setError("Signup failed. Please try again.");
+      setError("Signup failed.");
       setLoading(false);
       return;
     }
 
-    try {
-      // 2. Generate referral code for new user
-      const newReferralCode =
-        form.email.split("@")[0].replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(0, 5) +
-        Math.floor(1000 + Math.random() * 9000);
-
-      // 3. Resolve referrer if referral code was passed in URL
-      let referrerId: string | null = null;
-      if (referralCode) {
-        const { data: refProfile } = await supabase
-          .from("profiles")
-          .select("id")
-          .eq("referral_code", referralCode)
-          .single();
-
-        if (refProfile) referrerId = refProfile.id;
-      }
-
-      // 4. Create profile
-      await supabase.from("profiles").upsert({
-        id:            user.id,
-        name:          `${form.firstName} ${form.lastName}`,
-        first_name:    form.firstName,
-        last_name:     form.lastName,
-        email:         form.email,
-        country:       form.country,
-        phone:         form.phone,
-        referral_code: newReferralCode,
-        referred_by:   referrerId,
-      });
-
-      // 5. Create wallets for all supported coins
-      const walletRows = COINS.map((symbol) => ({
-        user_id:    user.id,
-        symbol,
-        address:    generateHexAddress(),
-        amount:     0,
-        usd_value:  0,
-        price:      symbol === "POLYC" ? 0.2 : 0,
-        change_pct: 0,
-      }));
-
-      await supabase.from("wallets").insert(walletRows);
-
-      // 6. Create referral record if referred by someone
-      if (referrerId) {
-        await supabase.from("referrals").insert({
-          referrer_id: referrerId,
-          referred_id: user.id,
-          status:      "active",
-          total_earned: 0,
-        });
-
-        // Also store in referral_codes table
-        await supabase.from("referral_codes").insert({
-          user_id: user.id,
-          code:    newReferralCode,
-        });
-      } else {
-        // Create referral code record regardless
-        await supabase.from("referral_codes").insert({
-          user_id: user.id,
-          code:    newReferralCode,
-        });
-      }
-
-    } catch (err) {
-      console.error("Post-signup setup error:", err);
-      // Don't block the user — account was created, setup can be retried
-    }
+    // 2. CALL API TO CREATE PROFILE + WALLETS + REFERRAL
+    await fetch("/api/auth/setup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: user.id,
+        email: form.email,
+        first_name: form.firstName,
+        last_name: form.lastName,
+        country: form.country,
+        phone: form.phone,
+        referral_code_used: referralCode ?? null,
+      }),
+    });
 
     setLoading(false);
     router.push("/dashboard");
-    router.refresh();
   }
 
   return (
-    <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-8 md:p-10 shadow-2xl relative z-10">
-
-      {/* Logo */}
+    <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-10 shadow-2xl relative z-10">
       <div className="flex justify-center mb-8">
-        <Link href="/">
+        <Link href="/" className="flex items-center gap-2">
           <Logo size="md" />
         </Link>
       </div>
@@ -191,14 +109,8 @@ export default function RegisterForm() {
       <h1 className="text-2xl font-black text-center mb-1">Create account</h1>
       <p className="text-sm text-white/45 text-center mb-7">
         Join PlutoChain and start trading
-        {referralCode && (
-          <span className="block mt-1 text-[#FF7900] font-semibold">
-            🎁 Referral code applied: {referralCode}
-          </span>
-        )}
       </p>
 
-      {/* Error */}
       {error && (
         <div className="bg-[#ff4d6a]/10 border border-[#ff4d6a]/30 text-[#ff6b82] rounded-lg px-4 py-3 text-sm font-medium mb-5">
           {error}
@@ -206,81 +118,74 @@ export default function RegisterForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name row */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
-              First Name
+            <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
+              First name
             </label>
             <input
+              type="text"
               className="field"
               placeholder="John"
               value={form.firstName}
               onChange={set("firstName")}
-              autoComplete="given-name"
             />
           </div>
           <div>
-            <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
-              Last Name
+            <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
+              Last name
             </label>
             <input
+              type="text"
               className="field"
               placeholder="Doe"
               value={form.lastName}
               onChange={set("lastName")}
-              autoComplete="family-name"
             />
           </div>
         </div>
 
-        {/* Email */}
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
-            Email
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
+            Email address
           </label>
           <input
-            className="field"
             type="email"
+            className="field"
             placeholder="you@example.com"
             value={form.email}
             onChange={set("email")}
-            autoComplete="email"
           />
         </div>
 
-        {/* Country */}
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
             Country
           </label>
           <input
+            type="text"
             className="field"
-            placeholder="Nigeria"
+            placeholder="United States"
             value={form.country}
             onChange={set("country")}
-            autoComplete="country-name"
           />
         </div>
 
-        {/* Phone */}
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
-            Phone <span className="text-white/25 normal-case font-normal">(optional)</span>
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
+            Phone number
           </label>
           <input
+            type="number"
             className="field"
-            type="tel"
-            placeholder="+234 800 000 0000"
+            placeholder="+1 555-123-4567"
             value={form.phone}
             onChange={set("phone")}
-            autoComplete="tel"
           />
         </div>
 
-        {/* Password */}
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
             Password
           </label>
           <PasswordInput
@@ -292,10 +197,9 @@ export default function RegisterForm() {
           <StrengthMeter password={form.password} />
         </div>
 
-        {/* Confirm */}
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
-            Confirm Password
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
+            Confirm password
           </label>
           <PasswordInput
             id="confirm"
@@ -303,32 +207,27 @@ export default function RegisterForm() {
             value={form.confirm}
             onChange={set("confirm")}
           />
-          {form.confirm && form.password !== form.confirm && (
-            <p className="text-xs text-[#ff4d6a] mt-1.5">Passwords do not match</p>
-          )}
         </div>
 
-        {/* Terms */}
-        <label className="flex items-start gap-2.5 text-sm cursor-pointer">
+        <label className="flex items-start gap-2.5 cursor-pointer text-sm text-white/45">
           <input
             type="checkbox"
             checked={terms}
             onChange={(e) => setTerms(e.target.checked)}
-            className="accent-[#FF7900] w-4 h-4 mt-0.5 flex-shrink-0"
+            className="accent-[#FF7900] w-4 h-4 mt-0.5"
           />
-          <span className="text-white/50 leading-relaxed">
+          <span>
             I agree to the{" "}
-            <Link href="/terms" className="text-[#FF7900] hover:underline font-semibold">
+            <a href="#" className="text-[#FF7900]">
               Terms of Service
-            </Link>{" "}
+            </a>{" "}
             and{" "}
-            <Link href="/privacy" className="text-[#FF7900] hover:underline font-semibold">
+            <a href="#" className="text-[#FF7900]">
               Privacy Policy
-            </Link>
+            </a>
           </span>
         </label>
 
-        {/* Submit */}
         <button type="submit" className="btn-primary" disabled={loading}>
           {loading ? (
             <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />

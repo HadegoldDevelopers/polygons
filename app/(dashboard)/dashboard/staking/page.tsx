@@ -109,11 +109,11 @@ export default function StakingPage() {
   const handleStake = async () => {
     if (!selectedPlan) return;
     if (!amount || Number(amount) < selectedPlan.min_deposit) {
-      showToast(`Minimum stake is ${selectedPlan.min_deposit} POLYC`, "error");
+      showToast(`Minimum stake is ${selectedPlan.min_deposit} POLYCOGNI CAPITAL`, "error");
       return;
     }
     if (Number(amount) > balance) {
-      showToast("Insufficient POLYC balance", "error");
+      showToast("Insufficient POLYCOGNI CAPITAL balance", "error");
       return;
     }
 
@@ -163,19 +163,19 @@ export default function StakingPage() {
   // ── Render ────────────────────────────────────────────────────────
   return (
     <div>
-      <PageHeading title="Staking" subtitle="Stake POLYC to earn passive rewards." />
+      <PageHeading title="Staking" subtitle="Stake POLYCOGNI CAPITAL to earn passive rewards." />
 
       {/* ── Stats — aggregated across ALL positions ─────────────── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard
           icon="🔒"
           value={totalStaked.toLocaleString()}
-          label="Total POLYC Staked"
+          label="Total POLYCOGNI CAPITAL Staked"
         />
         <StatCard
           icon="🎁"
           value={totalEarned.toLocaleString()}
-          label="Total POLYC Earned"
+          label="Total POLYCOGNI CAPITAL Earned"
           change={activeCount > 0 ? `${activeCount} active plan${activeCount !== 1 ? "s" : ""}` : undefined}
           changeDir="up"
         />
@@ -187,7 +187,7 @@ export default function StakingPage() {
         <StatCard
           icon="💰"
           value={balance.toLocaleString()}
-          label="Available POLYC"
+          label="Available POLYCOGNI CAPITAL"
         />
       </div>
 
@@ -196,7 +196,7 @@ export default function StakingPage() {
         {/* ── Stake form ──────────────────────────────────────────── */}
         <div className="card space-y-5">
           <p className="text-[11px] font-bold uppercase tracking-widest text-white/40">
-            Stake POLYC
+            Stake POLYCOGNI CAPITAL
           </p>
 
           <div>
@@ -207,7 +207,7 @@ export default function StakingPage() {
               <input
                 type="number"
                 className="field pr-16"
-                placeholder={`Min. ${selectedPlan?.min_deposit ?? 0} POLYC`}
+                placeholder={`Min. ${selectedPlan?.min_deposit ?? 0} POLYCOGNI CAPITAL`}
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
@@ -219,7 +219,7 @@ export default function StakingPage() {
               </button>
             </div>
             <p className="text-xs text-white/40 mt-1.5">
-              Available: {balance.toLocaleString()} POLYC
+              Available: {balance.toLocaleString()} POLYCOGNI CAPITAL
             </p>
           </div>
 
@@ -252,11 +252,11 @@ export default function StakingPage() {
           <div className="bg-[#1a1a24] rounded-xl p-4 space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-white/45">Est. daily reward</span>
-              <span className="font-bold text-[#00d4aa]">~{daily} POLYC</span>
+              <span className="font-bold text-[#00d4aa]">~{daily} POLYCOGNI CAPITAL</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-white/45">Est. monthly reward</span>
-              <span className="font-bold text-[#00d4aa]">~{monthly} POLYC</span>
+              <span className="font-bold text-[#00d4aa]">~{monthly} POLYCOGNI CAPITAL</span>
             </div>
           </div>
 
@@ -268,7 +268,7 @@ export default function StakingPage() {
             {loadingAction ? (
               <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
             ) : (
-              "Stake POLYC 🔒"
+              "Stake POLYCOGNI CAPITAL 🔒"
             )}
           </button>
         </div>
@@ -309,7 +309,7 @@ export default function StakingPage() {
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-white/45">Staked amount</span>
-                      <span className="font-bold">{(pos.amount ?? 0).toLocaleString()} POLYC</span>
+                      <span className="font-bold">{(pos.amount ?? 0).toLocaleString()} POLYCOGNI CAPITAL</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-white/45">Unlocks in</span>
@@ -318,7 +318,7 @@ export default function StakingPage() {
                     <div className="flex justify-between text-sm">
                       <span className="text-white/45">Accumulated rewards</span>
                       <span className="font-bold text-[#00d4aa]">
-                        +{(pos.earned ?? 0).toLocaleString()} POLYC
+                        +{(pos.earned ?? 0).toLocaleString()} POLYCOGNI CAPITAL
                       </span>
                     </div>
                   </div>
@@ -365,7 +365,7 @@ export default function StakingPage() {
                   className="flex justify-between items-center py-2.5 border-b border-white/8 last:border-0 text-sm"
                 >
                   <div>
-                    <p className="font-bold">{(h.amount ?? 0).toLocaleString()} POLYC</p>
+                    <p className="font-bold">{(h.amount ?? 0).toLocaleString()} POLYCOGNI CAPITAL</p>
                     <p className="text-xs text-white/40">
                       {new Date(h.created_at).toLocaleDateString()}
                     </p>

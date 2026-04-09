@@ -28,11 +28,11 @@ export async function POST() {
     .from("wallets")
     .select("*")
     .eq("user_id", user.id)
-    .eq("symbol", "POLYC")
+    .eq("symbol", "PC")
     .single();
 
   if (!wallet) {
-    return Response.json({ error: "POLYC wallet not found" }, { status: 400 });
+    return Response.json({ error: "PC wallet not found" }, { status: 400 });
   }
 
   // Credit earned POLYC
@@ -52,7 +52,7 @@ export async function POST() {
     user_id: user.id,
     type: "Staking",
     direction: "in",
-    coin: "POLYC",
+    coin: "PC",
     amount: pos.earned,
     metadata: {
       position_id: pos.id,
@@ -62,7 +62,7 @@ export async function POST() {
   // Notification
   await createNotification(
     user.id,
-    `You claimed ${pos.earned} POLYC in staking rewards.`
+    `You claimed ${pos.earned} PC in staking rewards.`
   );
 
   return Response.json({ success: true });
