@@ -21,10 +21,7 @@ export function ReferralList({ referrals }: ReferralListProps) {
 
       <div className="divide-y divide-white/8">
         {referrals.map((r, i) => {
-          const total =
-  r.profiles?.earnings?.reduce((sum, e) => sum + Number(e.amount), 0) ?? 0;
-
-
+          const total = r.earnings.reduce((sum, e) => sum + e.amount, 0);
           return (
             <div key={i} className="flex items-center gap-3 py-3.5">
               <div className="w-9 h-9 rounded-full bg-linear-to-br from-[#FF7900]/40 to-[#ff4d6a]/40 flex items-center justify-center text-sm font-black flex-shrink-0">
