@@ -108,7 +108,7 @@ export default function RegisterForm() {
 
       <h1 className="text-2xl font-black text-center mb-1">Create account</h1>
       <p className="text-sm text-white/45 text-center mb-7">
-        Join PlutoChain and start trading
+        Join the waitlist to get early access and be the first to know when we launch!
       </p>
 
       {error && (

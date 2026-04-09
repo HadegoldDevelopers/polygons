@@ -45,12 +45,15 @@ export default function LoginPage() {
   return (
     <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-10 shadow-2xl relative z-10">
       <div className="flex justify-center mb-8">
+        <Link href="/"> 
         <Logo size="md" />
+        </Link>
+        
       </div>
 
       <h1 className="text-2xl font-black text-center mb-1">Welcome back 👋</h1>
       <p className="text-sm text-white/45 text-center mb-7">
-        Sign in to your PlutoChain account
+        Sign in to your account to access the dashboard and manage your stakes.
       </p>
 
       {error && (

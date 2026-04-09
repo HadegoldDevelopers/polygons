@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function PricingPage() {
   const coins = [
     "/icons/bitcoin-btc-logo.png",
@@ -9,49 +12,49 @@ export default function PricingPage() {
 
   const plans = [
     {
-      title: "Premier Master",
+      title: "PC Master",
       deposit: "$500 – $50,000",
       profit: "0.83% Daily",
       apr: "25% – 30 Days APR",
       referral: null,
     },
     {
-      title: "Premier Token Trust",
+      title: "PC Token Trust",
       deposit: "$50,000 – $150,000",
       profit: "1% Daily",
       apr: "30% – 30 Days APR",
       referral: "4%",
     },
     {
-      title: "Premier Cera",
+      title: "PC Cera",
       deposit: "$150,000 – $300,000",
       profit: "1.2% Daily",
       apr: "36%+ – 30 Days APR",
       referral: "6%",
     },
     {
-      title: "Premier Defi",
+      title: "PC Defi",
       deposit: "$300,000 – $500,000",
       profit: "1.5% Daily",
       apr: "45%+ APR",
       referral: "8%",
     },
     {
-      title: "Premier Master Hall of Fame",
+      title: "PC Master Hall of Fame",
       deposit: "$500,000",
       profit: "2% Daily",
       apr: "720%+ – 360 Days APR",
       referral: "10%",
     },
     {
-      title: "Premier NFP",
+      title: "PC NFP",
       deposit: "$100,000+",
       profit: "35% – 50% Single Day Trade",
       apr: "51% – 80% Twin Trade",
       extra: "Trade: Every Last Friday of the Month",
     },
     {
-      title: "Business Cooperative",
+      title: "PC Business Cooperative",
       deposit: "$200,000",
       profit: "1.3% Daily",
       apr: "39%+ – 30 Days APR",
@@ -73,7 +76,7 @@ export default function PricingPage() {
             Join the Financial System of the Future
           </h1>
           <p className="mt-4 text-lg opacity-70 max-w-2xl mx-auto">
-            Choose from a range of premium investment plans designed for serious crypto investors.
+            Stake Polycogni Capital and earn up to 720% APR.
           </p>
         </div>
 
@@ -98,7 +101,9 @@ export default function PricingPage() {
               {/* Crypto Icons */}
               <div className="flex gap-3 mb-6 opacity-90">
                 {coins.map((icon, idx) => (
-                  <img
+                  <Image 
+                    width={32} 
+                    height={32}
                     key={idx}
                     src={icon}
                     alt="coin"
@@ -136,7 +141,7 @@ export default function PricingPage() {
               </div>
 
               {/* Button */}
-              <button
+              <Link href="/auth/register"
                 className="
                   mt-6 
                   w-full 
@@ -151,8 +156,8 @@ export default function PricingPage() {
                   transition
                 "
               >
-                Register
-              </button>
+                Buy Now
+              </Link>
             </div>
           ))}
         </div>
