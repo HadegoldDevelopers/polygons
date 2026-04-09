@@ -141,7 +141,7 @@ export default function PricingPage() {
               </div>
 
               {/* Button */}
-              <Link href="/auth/register"
+              <button
                 className="
                   mt-6 
                   w-full 
@@ -156,8 +156,8 @@ export default function PricingPage() {
                   transition
                 "
               >
-                Buy Now
-              </Link>
+                <Link href="/register">Buy Polycogni Token</Link>
+              </button>
             </div>
           ))}
         </div>
