@@ -14,10 +14,7 @@ export default function Navbar() {
         
         {/* Logo */}
         <div className="flex items-center gap-2">
-        <Link href="/" className="text-white font-bold uppercase text-lg">
           <Logo size="sm" />
-        </Link>
-          
         </div>
 
         {/* Desktop Navigation */}

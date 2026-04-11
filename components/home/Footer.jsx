@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Logo } from "@/components/ui";
 
 export default function Footer() {
   return (
@@ -11,8 +12,7 @@ export default function Footer() {
           <div className="w-full lg:w-4/12 p-4">
             <div className="flex flex-col gap-6">
               <div className="md:pb-6">
-                <Image src="/logo.jpg" alt="Polycogni Logo" className="object-contain" width={100}
-                  height={100}/>
+                <Logo size="md" />
               </div>
               <p className="text-[18px] leading-5.5">Powering Next Gen Crypto</p>
               <p className="text-[14px] leading-4.5">© Polycogni Capital Copyright 2025</p>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Logo, PasswordInput } from "@/components/ui";
 
+
 export default function LoginPage() {
   const router = useRouter();
   const [email,    setEmail]    = useState("");
@@ -45,10 +46,7 @@ export default function LoginPage() {
   return (
     <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-10 shadow-2xl relative z-10">
       <div className="flex justify-center mb-8">
-        <Link href="/"> 
         <Logo size="md" />
-        </Link>
-        
       </div>
 
       <h1 className="text-2xl font-black text-center mb-1">Welcome back 👋</h1>

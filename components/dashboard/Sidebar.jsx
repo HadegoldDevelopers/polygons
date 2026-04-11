@@ -142,9 +142,7 @@ useEffect(() => {
     <aside className="w-[260px] flex-shrink-0 bg-[#111118] border-r border-white/8 flex flex-col h-full">
       {/* Logo */}
       <div className="px-5 py-6 border-b border-white/8">
-        <Link href="/dashboard" className="flex items-center gap-2 px-5 py-6 ">
           <Logo size="sm" />
-        </Link>
       </div>
 
       {/* Nav */}

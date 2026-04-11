@@ -3,6 +3,7 @@ import { useState } from "react";
 
 /* ── Logo ──────────────────────────────────────────────────────── */
 import Image from "next/image";
+import Link from "next/link";
 
 export function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const sizes = {
@@ -18,18 +19,20 @@ export function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   };
 
   return (
+     <Link href="/">
     <div className="flex items-center gap-2.5">
-      <Image
-        src="/logo.jpg"
-        alt="PolyCogni Logo"
-        width={sizes[size]}
-        height={sizes[size]}
-        className="rounded-full object-cover"
+     <Image
+          src="/logo.jpg"
+          alt="PolyCogni Logo"
+          width={sizes[size]}
+          height={sizes[size]}
+          className="rounded-full object-cover"
       />
       <span className={`${text[size]} font-extrabold`}>
         Polyconi<span className="text-[#FF7900]">Capital</span>
       </span>
     </div>
+     </Link>
   );
 }
 

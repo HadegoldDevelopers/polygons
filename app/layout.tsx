@@ -1,9 +1,7 @@
-
 import type { Metadata } from "next";
 import AuthListener from "@/app/client/AuthListener";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
 import { ToastProvider } from "@/context/ToastContext";
 
 const geistSans = Geist({
@@ -17,15 +15,45 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Polycogni Capital",
-  description: "Polycogni Capital is the First Hybrid Layer 2 Blockchain that introduces smart contracts to Bitcoin",
+  title: {
+    default: "Polycogni Capital",
+    template: "%s | Polycogni Capital",
+  },
+  description:
+    "Polycogni Capital is the First Hybrid Layer 2 Blockchain that introduces smart contracts to Bitcoin.",
+  icons: {
+    icon: "/logo.jpg",
+    shortcut: "/logo.jpg",
+    apple: "/logo.jpg",
+  },
+  manifest: "/site.webmanifest",
+  themeColor: "#000000",
+  openGraph: {
+    title: "Polycogni Capital",
+    description:
+      "Polycogni Capital is the First Hybrid Layer 2 Blockchain that introduces smart contracts to Bitcoin.",
+    url: "https://www.polycognicapital.com",
+    siteName: "Polycogni Capital",
+    images: [
+      {
+        url: "/logo.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Polycogni Capital",
+    description:
+      "Polycogni Capital is the First Hybrid Layer 2 Blockchain that introduces smart contracts to Bitcoin.",
+    images: ["/logo.jpg"],
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
@@ -33,10 +61,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <AuthListener />
-         <ToastProvider>
-          {children}
-        </ToastProvider>
-        </body>
+        <ToastProvider>{children}</ToastProvider>
+      </body>
     </html>
   );
 }

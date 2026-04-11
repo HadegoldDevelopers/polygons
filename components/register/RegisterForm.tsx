@@ -101,9 +101,7 @@ export default function RegisterForm() {
   return (
     <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-10 shadow-2xl relative z-10">
       <div className="flex justify-center mb-8">
-        <Link href="/" className="flex items-center gap-2">
           <Logo size="md" />
-        </Link>
       </div>
 
       <h1 className="text-2xl font-black text-center mb-1">Create account</h1>
