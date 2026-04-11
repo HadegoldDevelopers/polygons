@@ -1,28 +1,10 @@
-"use client";
+import SecurityPage from "./SecurityPage";
 
-import { PageHeading } from "@/components/ui";
-import { TwoFactorCard } from "@/components/security/TwoFactorCard";
-import { ChangePasswordCard } from "@/components/security/ChangePasswordCard";
-import { ActiveSessionsCard } from "@/components/security/ActiveSessionsCard";
-import { useSecurity } from "@/hooks/useSecurity";
-import { useEffect } from "react";
+export const metadata = {
+  title: "Security",
+  description: "Manage your account security settings and active sessions.",
+};
 
-export default function SecurityPage() {
-  const { sessions, loadSessions } = useSecurity();
-
-  useEffect(() => {
-    loadSessions();
-  }, [loadSessions]);
-
-  return (
-    <div>
-      <PageHeading title="Security 🔒" subtitle="Protect your account and assets." />
-
-      <div className="max-w-[560px] space-y-5">
-        <TwoFactorCard />
-        <ChangePasswordCard />
-        <ActiveSessionsCard sessions={sessions} reload={loadSessions} />
-      </div>
-    </div>
-  );
+export default function Page() {
+  return <SecurityPage />;
 }

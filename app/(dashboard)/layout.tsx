@@ -1,8 +1,12 @@
 import { supabaseServer } from "@/lib/supabase/supabaseServer";
 import { redirect } from "next/navigation";
 import DashboardShell from "./DashboardShell";
+
 export const metadata = {
-  title: "Dashboard",
+  title: {
+    default: "Dashboard",
+    template: "%s | Polycogni Capital",
+  },
   description: "Your Polycogni Capital dashboard.",
 };
 
