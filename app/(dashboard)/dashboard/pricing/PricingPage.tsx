@@ -7,7 +7,7 @@ import { useToast } from "@/context/ToastContext";
 import { PricingForm } from "@/components/pricing/PricingForm";
 import { ActivePlans } from "@/components/pricing/ActivePlans";
 
-import { PricingPlan, PricingPosition, HistoryItem } from "@/hooks/usePricing";
+import type { PricingPlan, PricingPosition, HistoryItem } from "@/hooks/usePricing";
 
 export default function PricingPage() {
   const { showToast } = useToast();
@@ -24,41 +24,45 @@ export default function PricingPage() {
   const [historyLimit, setHistoryLimit] = useState(5);
 
   // ───────────────────────────────────────────────
-  // Load positions (with computed fields)
+  // Helper: compute derived fields for a position
   // ───────────────────────────────────────────────
-  const { positions: pos, balance: bal } = await res.json();
+  const computePosition = (p: PricingPosition) => {
+    const daily = p.daily_profit_snapshot;
+    const duration = p.duration_days_snapshot;
 
+    const created = new Date(p.created_at);
+    const end = new Date(p.end_date);
+    const now = new Date();
+
+    const msElapsed = now.getTime() - created.getTime();
+    const daysElapsed = Math.floor(msElapsed / (1000 * 60 * 60 * 24));
+
+    const msLeft = end.getTime() - now.getTime();
+    const daysLeft = Math.max(Math.ceil(msLeft / (1000 * 60 * 60 * 24)), 0);
+
+    const progress =
+      duration > 0 ? Math.min((daysElapsed / duration) * 100, 100) : 0;
+
+    const earned = p.amount * (daily / 100) * daysElapsed;
+
+    return {
+      ...p,
+      earned,
+      days_left: daysLeft,
+      progress,
+    };
+  };
+
+  // ───────────────────────────────────────────────
+  // Load positions
+  // ───────────────────────────────────────────────
   const loadPositions = async () => {
     const res = await fetch("/api/user/pricing/position");
-
     const { positions: pos, balance: bal } = await res.json();
 
-const computed = (pos ?? []).map((p: PricingPosition) => {
-  const daily = p.daily_profit_snapshot;
-  const duration = p.duration_days_snapshot;
-
-      const created = new Date(p.created_at);
-      const end = new Date(p.end_date);
-      const now = new Date();
-
-      const msElapsed = now.getTime() - created.getTime();
-      const daysElapsed = Math.floor(msElapsed / (1000 * 60 * 60 * 24));
-
-      const msLeft = end.getTime() - now.getTime();
-      const daysLeft = Math.max(Math.ceil(msLeft / (1000 * 60 * 60 * 24)), 0);
-
-      const progress =
-        duration > 0 ? Math.min((daysElapsed / duration) * 100, 100) : 0;
-
-      const earned = p.amount * (daily / 100) * daysElapsed;
-
-      return {
-        ...p,
-        earned,
-        days_left: daysLeft,
-        progress,
-      };
-    });
+    const computed = (pos ?? []).map((p: PricingPosition) =>
+      computePosition(p)
+    );
 
     setPositions(computed);
     setBalance(bal ?? 0);
@@ -72,7 +76,7 @@ const computed = (pos ?? []).map((p: PricingPosition) => {
       try {
         const [resPlans, resPos, resHistory] = await Promise.all([
           fetch("/api/user/pricing/plans"),
-          fetch("/api/user/pricing/activity"),
+          fetch("/api/user/pricing/position"),
           fetch("/api/user/pricing/history"),
         ]);
 
@@ -84,33 +88,9 @@ const computed = (pos ?? []).map((p: PricingPosition) => {
         setSelectedPlan(p?.[0] ?? null);
         setHistory(hist ?? []);
 
-        // Compute positions here too
-        const computed = (pos ?? []).map((p) => {
-          const daily = p.daily_profit_snapshot;
-          const duration = p.duration_days_snapshot;
-
-          const created = new Date(p.created_at);
-          const end = new Date(p.end_date);
-          const now = new Date();
-
-          const msElapsed = now.getTime() - created.getTime();
-          const daysElapsed = Math.floor(msElapsed / (1000 * 60 * 60 * 24));
-
-          const msLeft = end.getTime() - now.getTime();
-          const daysLeft = Math.max(Math.ceil(msLeft / (1000 * 60 * 60 * 24)), 0);
-
-          const progress =
-            duration > 0 ? Math.min((daysElapsed / duration) * 100, 100) : 0;
-
-          const earned = p.amount * (daily / 100) * daysElapsed;
-
-          return {
-            ...p,
-            earned,
-            days_left: daysLeft,
-            progress,
-          };
-        });
+        const computed = (pos ?? []).map((p: PricingPosition) =>
+          computePosition(p)
+        );
 
         setPositions(computed);
         setBalance(bal ?? 0);

@@ -45,15 +45,12 @@ export default function Staking() {
               <li className="bg-black">
                 <div className="flex items-center mb-4 gap-3">
                   <span className="bg-[#FF7900] text-[#000] text-[20px] uppercase px-5 py-2 rounded-[8px] bg-opacity-70 font-[600]">2</span>
-                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Stake your tokens </p>
-                  <span className="uppercase bg-[#FF7900] text-[#000] font-[600] px-3 py-[1px] text-[12px] rounded-[4px] text-center bg-opacity-80">soon</span>
-                </div>
+                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Stake your tokens </p>                </div>
               </li>
               <li>
                 <div className="flex items-center mb-4 gap-3">
                   <span className="bg-[#FF7900] text-[#000] text-[20px] uppercase px-5 py-2 rounded-[8px] bg-opacity-70 font-[600]">3</span>
                   <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Login daily and claim rewards </p>
-                  <span className="uppercase bg-[#FF7900] text-[#000] font-[600] px-3 py-[1px] text-[12px] mr-[6px] rounded-[4px] text-center bg-opacity-80">soon</span>
                 </div>
               </li>
               <li>

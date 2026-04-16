@@ -5,12 +5,12 @@ import Link from "next/link";
 export default function HowToBuy() {
   const steps = [
     {
-      n: "1", title: "Connect Your Wallet",
-      desc: `Go to Uniswap and click "Connect Wallet" and choose your preferred wallet and follow the prompts to connect.`,
+      n: "1", title: "CREATE YOUR ACCOUNT",
+      desc: `Create an Account with us or Connect your wallet to our website, Load Wallet With Crypto: Use BTC, ETH, USDT, USDC, or your preferred crypto`,
     },
     {
-      n: "2", title: "Swap for Polycogni Capital",
-      desc: `Select Ethereum as the input currency and enter the amount you want to spend, then select Polycogni Capital as the output currency and review the swap details and click "Swap".`,
+      n: "2", title: "SWAP FOR POLYCOGNI CAPITAL",
+      desc: `SELECT BITCOIN, ETHEREUM, USDT OR USDC AS THE INPUT CURRENCY AND ENTER THE AMOUNT YOU WANT TO SPEND, THEN SELECT POLYCOGNI CAPITAL AS THE OUTPUT CURRENCY.`,
     },
     {
       n: "3", title: "Confirm the Transaction",

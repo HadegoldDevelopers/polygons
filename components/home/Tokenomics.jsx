@@ -28,7 +28,7 @@ export default function Tokenomics() {
             <Image
               alt="Tokenomics" width={410} height={600}
               className="w-full max-w-[410px] mx-auto"
-              src="/assets/tokenomics.jpeg"
+              src="/assets/tokenomics.png"
             />
           </div>
         </div>

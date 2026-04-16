@@ -20,7 +20,7 @@ export default function UnleashBitcoin() {
             <Image
               alt="astronaut" width={625} height={565}
               className="w-full md:hidden block mt-5"
-              src="/unleashc240.jpeg"
+              src="/assets/unleashed.png"
             />
 
             <ul className="md:my-10 my-6">
@@ -51,7 +51,7 @@ export default function UnleashBitcoin() {
             <Image
               alt="astronaut" width={625} height={565}
               className="w-full md:block hidden"
-              src="/unleashc240.jpeg"
+              src="/assets/unleashed.png"
             />
           </div>
         </div>

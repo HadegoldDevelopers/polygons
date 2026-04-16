@@ -71,12 +71,12 @@ export default function FAQ() {
 
           {/* Astronaut image — 5/12 */}
           <div className="w-full lg:w-5/12 p-4">
-            <Image src="/assets/faq.webp" width={80} height={80} className="w-full md:block hidden" alt="" loading="lazy" />
+            <Image src="/assets/faq.png" width={80} height={80} className="w-full md:block hidden" alt="" loading="lazy" />
           </div>
         </div>
 
         {/* Astronaut — mobile */}
-        <Image src="/assets/faq.webp" width={80} height={80} className="w-full md:hidden block my-4 mt-0 p-4 pt-0 pb-20" alt="" loading="lazy" />
+        <Image src="/assets/faq.png" width={80} height={80} className="w-full md:hidden block my-4 mt-0 p-4 pt-0 pb-20" alt="" loading="lazy" />
 
         {/* CTA buttons */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto px-4 pb-10 md:pb-0 md:py-20">
