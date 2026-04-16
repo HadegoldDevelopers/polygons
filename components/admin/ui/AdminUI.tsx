@@ -42,10 +42,14 @@ export function StatusBadge({ status }: BadgeProps) {
     is_admin:     "bg-[#FF7900]/15 text-[#FF7900]",
     user:      "bg-white/8 text-white/50",
   };
+   const key = typeof status === "string" ? status : "user";
+
   return (
-    <span className={`text-[10px] font-bold px-2 py-0.5 rounded capitalize ${styles[status] ?? "bg-white/8 text-white/50"}`}>
-      {status}
-    </span>
+   
+    <span className={`text-[10px] font-bold px-2 py-0.5 rounded capitalize ${styles[key]}`}>
+  {key}
+</span>
+
   );
 }
 

@@ -10,6 +10,7 @@ import DevelopmentPhases from "@/components/home/DevelopmentPhases";
 import Tokenomics from "@/components/home/Tokenomics";
 import DeveloperSection from "@/components/home/DeveloperSection";
 import FAQ from "@/components/home/FAQ";
+import TradingBotFeatures from "@/components/home/FeatureCard/TradingBotFeatures";
 import Footer from "@/components/home/Footer";
 
 
@@ -29,6 +30,8 @@ export default function Home() {
       <HowToBuy />
       <DeveloperSection />
       <FAQ/>
+      <TradingBotFeatures />
+
       <Footer />
     </main>
   );
