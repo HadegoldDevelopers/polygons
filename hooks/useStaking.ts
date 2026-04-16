@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   StakingTerm,
   StakingPosition,
-  StakingHistoryItem,
   ApiListResponse,
   StakeClaimResponse,
 } from "@/lib/staking/types";
@@ -13,8 +12,7 @@ export function useStaking(showToast: (msg: string, type: string) => void) {
 
   const [terms, setTerms] = useState<StakingTerm[]>([]);
   const [positions, setPositions] = useState<StakingPosition[]>([]);
-  const [history, setHistory] = useState<StakingHistoryItem[]>([]);
-  const [balance, setBalance] = useState<number>(0); // FIXED
+  const [balance, setBalance] = useState<number>(0);
 
   // ─────────────────────────────────────────────
   // Load positions + balance
