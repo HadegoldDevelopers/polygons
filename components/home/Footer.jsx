@@ -70,21 +70,23 @@ export default function Footer() {
           </div>
         </div>
 
+
         {/* Legal disclaimer — exact text from source */}
         <p className="text-[14px] leading-4.5 p-4 text-white/40">
-          Disclaimer: By visiting this website, using our services, or buying Polycogni Capital, you agree to our{" "}
-          <Link href="/" target="_blank" className="underline">Terms of Service</Link>
+          Disclaimer: By accessing this website, using our services, or purchasing Polycogni Capital tokens, you acknowledge that you have read, understood, and agreed to be bound by our{" "}
+          <Link href="/" target="_blank" className="underline"> Terms of Service </Link>
           {" "}and{" "}
           <Link href="/" target="_blank" className="underline">Privacy Policy.</Link>
-          {" "}You also warrant that you have read and fully understood the{" "}
-          <Link href="/" target="_blank" className="underline">Disclaimer</Link>
-          {" "}about the risks of purchasing cryptocurrencies like Polycogni Capital. By completing a purchase, you also declare that you are not a citizen or resident of any banned country, or any other country where the purchase of Polycogni Capital may be prohibited by law. A complete list of banned countries is available{" "}
-          <Link href="/" target="_blank" className="underline">here.</Link>
-          {" "}Our list of blocked countries and terms of service may be subject to updates, so please check the latest version.
+          {" "}You further confirm that you fully understand the risks associated with cryptocurrencies, including but not limited to price volatility, regulatory uncertainty, and potential loss of funds. Participation in the Polycogni Capital ecosystem is entirely at your own discretion and risk.
           <br /><br />
-          Polycogni Capital is not an investment; it is created as an experimental new cryptocurrency. Polycogni Capital tokens are not currently resellable. They are only usable as an ecosystem asset. There is no guarantee they will ever be resellable or tradable on any market. We do not guarantee or represent that Polycogni Capital holds any intrinsic value, that it will increase in price after the presale, or that it will have any value after the presale. We make no representations or warranties regarding Polycogni Capital and are not liable for any losses or errors that may occur during its use. All users should exercise caution and buy Polycogni Capital entirely at their own risk.
+          Polycogni Capital is a blockchain based project designed to enhance the capabilities of the Bitcoin network by enabling smart contracts and decentralized applications. While we are committed to building a robust and innovative platform, cryptocurrency markets are inherently unpredictable, and no guarantees can be made regarding future performance, price appreciation, or liquidity.
           <br /><br />
-          By using the Polycogni Capital platform and product, you accept it as is, acknowledging that we may not update, enhance, or maintain it regularly. The services and interface may be unavailable or discontinued at any time.
+          By proceeding with a purchase, you represent and warrant that: {" "}
+           <ol>
+            <li>•	You are not a citizen or resident of any jurisdiction where participation in token sales or cryptocurrency investments is restricted or prohibited.</li>
+            <li>•	You are legally permitted to engage in such transactions under the laws applicable to you.</li>
+           </ol>
+          {" "}If you do not agree with these terms, please do not use our services or purchase our tokens.
         </p>
       </div>
     </footer>

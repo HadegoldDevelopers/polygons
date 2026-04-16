@@ -26,13 +26,16 @@ export default function PricingPage() {
   // ───────────────────────────────────────────────
   // Load positions (with computed fields)
   // ───────────────────────────────────────────────
+  const { positions: pos, balance: bal } = await res.json();
+
   const loadPositions = async () => {
     const res = await fetch("/api/user/pricing/position");
+
     const { positions: pos, balance: bal } = await res.json();
 
-    const computed = (pos ?? []).map((p) => {
-      const daily = p.daily_profit_snapshot;
-      const duration = p.duration_days_snapshot;
+const computed = (pos ?? []).map((p: PricingPosition) => {
+  const daily = p.daily_profit_snapshot;
+  const duration = p.duration_days_snapshot;
 
       const created = new Date(p.created_at);
       const end = new Date(p.end_date);

@@ -6,6 +6,19 @@ const faqs = [
     q: "What is Polycogni Capital?",
     a: "The Future of Bitcoin Layer 2, Polycogni Capital is a state-of-the-art layer 2 solution that aims to address the scalability challenges faced by Bitcoin: By leveraging advanced scaling mechanisms such as state channels, sidechains, and blockchain rollups, Polycogni Capital enhances transaction speed and reduces fees, making Bitcoin and Ethereum more accessible and efficient for users worldwide",
 },
+{
+  q: "Why Polycogni Capital?",
+  a: `
+    Polycogni Capital is positioned at the intersection of Bitcoin security and next generation blockchain innovation. By introducing smart contract capabilities and decentralized applications to the Bitcoin ecosystem, we aim to unlock new possibilities for developers, investors, and global users.<br><br>
+
+    Our focus is on long‑term value creation through:<br>
+    • Scalable and efficient blockchain infrastructure<br>
+    • Strategic development and continuous innovation<br>
+    • A growing ecosystem designed for real‑world adoption<br><br>
+
+    As the digital asset space continues to evolve, Polycogni Capital seeks to be part of the transformation shaping the future of global finance.
+  `,
+},
   {
     q: "What is Layer 2?",
 a: "Layer 2 is a solution built on top of the Bitcoin and Ethereum Network, offering faster and cheaper transactions, enabling double staking rewards for Polycogni Capital."
@@ -44,7 +57,10 @@ export default function FAQ() {
                         <summary className="text-[18px] text-[#fff] font-semibold list-none cursor-pointer">
                           <span className="text-white/60 mr-1">+</span> {faq.q}
                         </summary>
-                        <p className="pt-4 text-white/70 text-[15px] leading-relaxed">{faq.a}</p>
+<p
+  className="pt-4 text-white/70 text-[15px] leading-relaxed"
+  dangerouslySetInnerHTML={{ __html: faq.a }}
+/>
                       </details>
                     </li>
                   ))}
