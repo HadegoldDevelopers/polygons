@@ -74,19 +74,21 @@ export default function PricingPage() {
   useEffect(() => {
     const load = async () => {
       try {
-        const [resPlans, resPos, resHistory] = await Promise.all([
+        const [resPlans, resPos] = await Promise.all([
           fetch("/api/user/pricing/plans"),
-          fetch("/api/user/pricing/position"),
-          fetch("/api/user/pricing/history"),
+          fetch("/api/user/pricing/activity"),
         ]);
 
         const { plans: p } = await resPlans.json();
         const { positions: pos, balance: bal } = await resPos.json();
-        const { history: hist } = await resHistory.json();
+
+console.log("PLANS:", p);
+console.log("POSITIONS:", pos);
+console.log("BALANCE:", bal);
+
 
         setPlans(p ?? []);
         setSelectedPlan(p?.[0] ?? null);
-        setHistory(hist ?? []);
 
         const computed = (pos ?? []).map((p: PricingPosition) =>
           computePosition(p)
