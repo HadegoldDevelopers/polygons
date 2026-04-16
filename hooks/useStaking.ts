@@ -49,7 +49,6 @@ export function useStaking(showToast: (msg: string, type: string) => void) {
         setTerms(termsData.data ?? []);
         setPositions(posData.data ?? []);
         setBalance(posData.balance ?? 0);
-        setHistory(histData.history ?? []);
       } catch (err) {
         console.error(err);
         showToast("Failed to load staking data", "error");
