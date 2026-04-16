@@ -14,7 +14,7 @@ export default function ApiKeysSettings() {
   const [keys, setKeys] = useState<ApiKey[]>([]);
 
   const load = async () => {
-    const res = await fetch("/api/settings/api-keys");
+    const res = await fetch("/api/user/settings/api-keys");
     const data = await res.json();
     setKeys(data);
     setLoading(false);
@@ -25,7 +25,7 @@ export default function ApiKeysSettings() {
   }, []);
 
   const generate = async () => {
-    const res = await fetch("/api/settings/api-keys", { method: "POST" });
+    const res = await fetch("/api/user/settings/api-keys", { method: "POST" });
     const data = await res.json();
 
     if (!res.ok) return showToast(data.error, "error");
@@ -35,7 +35,7 @@ export default function ApiKeysSettings() {
   };
 
   const revoke = async (id: string) => {
-    const res = await fetch("/api/settings/api-keys", {
+    const res = await fetch("/api/user/settings/api-keys", {
       method: "DELETE",
       body: JSON.stringify({ id }),
     });

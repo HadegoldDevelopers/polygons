@@ -18,6 +18,7 @@ const navItems = [
 
 const portfolioItems = [
   { label: "Portfolio",    href: "/dashboard/portfolio",   icon: "💼" },
+  { label: "Pricing",      href: "/dashboard/pricing",     icon: "🏷️" },
   { label: "Staking",      href: "/dashboard/staking",     icon: "🪙" },
   { label: "Referral",     href: "/dashboard/referral",    icon: "🎁" },
 ];

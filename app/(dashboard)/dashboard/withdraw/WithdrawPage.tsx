@@ -145,7 +145,7 @@ const receiveAmount =
         return;
       }
 
-      const res = await fetch("/api/withdraw/create", {
+      const res = await fetch("/api/user/withdraw/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

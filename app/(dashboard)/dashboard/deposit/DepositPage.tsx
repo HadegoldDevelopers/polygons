@@ -89,7 +89,7 @@ if (!user) {
   return;
 }
 
-  const res = await fetch("/api/deposit/create-session", {
+  const res = await fetch("/api/user/deposit/create-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

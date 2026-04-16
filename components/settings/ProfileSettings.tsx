@@ -22,7 +22,7 @@ export default function ProfileSettings() {
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetch("/api/settings/profile");
+      const res = await fetch("/api/user/settings/profile");
       const data = await res.json();
 
       setForm({
@@ -39,7 +39,7 @@ export default function ProfileSettings() {
   }, []);
 
   const save = async () => {
-    const res = await fetch("/api/settings/profile", {
+    const res = await fetch("/api/user/settings/profile", {
       method: "POST",
       body: JSON.stringify(form),
     });

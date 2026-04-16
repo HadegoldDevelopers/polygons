@@ -213,7 +213,7 @@ if (!user) {
   return;
 }
 
-    const res = await fetch("/api/swap", {
+    const res = await fetch("/api/user/swap", {
       method: "POST",
       body: JSON.stringify({
         user_id: user.id,

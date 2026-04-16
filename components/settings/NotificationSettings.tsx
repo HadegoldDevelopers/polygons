@@ -22,7 +22,7 @@ export default function NotificationSettings() {
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetch("/api/settings/notifications");
+      const res = await fetch("/api/user/settings/notifications");
       const data = await res.json();
       if (!data) {
         setNotif({
@@ -42,7 +42,7 @@ export default function NotificationSettings() {
   }, []);
 
   const save = async () => {
-    const res = await fetch("/api/settings/notifications", {
+    const res = await fetch("/api/user/settings/notifications", {
       method: "POST",
       body: JSON.stringify(notif),
     });

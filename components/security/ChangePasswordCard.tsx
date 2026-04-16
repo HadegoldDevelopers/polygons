@@ -33,7 +33,7 @@ export function ChangePasswordCard() {
     }
 
     // API CALL — this is the correct place
-    const res = await fetch("/api/security/change-password", {
+    const res = await fetch("/api/user/security/change-password", {
       method: "POST",
       body: JSON.stringify({
         current: pw.current,

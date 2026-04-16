@@ -31,7 +31,7 @@ export default function TransactionsPage() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("/api/transactions");
+        const res = await fetch("/api/user/transactions");
         const data = await res.json();
         setTransactions(data);
       } catch (err) {

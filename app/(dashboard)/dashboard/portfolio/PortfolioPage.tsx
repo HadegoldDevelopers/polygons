@@ -22,7 +22,7 @@ export default function PortfolioPage() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("/api/portfolio");
+        const res = await fetch("/api/user/portfolio");
         const data = await res.json();
 
         setAssets(data.assets || []);

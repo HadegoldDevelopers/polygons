@@ -1,109 +1,147 @@
 "use client";
 
-import { StakingPlan } from "@/hooks/useStaking";
+import { StakingTerm, StakingPlan, Wallet } from "@/lib/staking/types";
 
 interface Props {
+  wallets: Wallet[];
+  terms: StakingTerm[];
+  selectedCoin: string;
+  selectedTerm: StakingTerm | null;
   amount: string;
+  acting: string | null;
+  availableBal: number;
+  dailyEst: string;
+  totalEst: string;
+  setSelectedCoin: (c: string) => void;
+  setSelectedTerm: (t: StakingTerm) => void;
   setAmount: (v: string) => void;
-  balance: number;
-  plans: StakingPlan[];
-  selectedPlan: StakingPlan | null;
-  setSelectedPlan: (p: StakingPlan) => void;
-  daily: string;
-  monthly: string;
-  loadingAction: boolean;
   handleStake: () => void;
+  coinIcons: Record<string, string>;
 }
 
-export function StakeForm({
+export default function StakeForm({
+  wallets,
+  terms,
+  selectedCoin,
+  selectedTerm,
   amount,
+  acting,
+  availableBal,
+  dailyEst,
+  totalEst,
+  setSelectedCoin,
+  setSelectedTerm,
   setAmount,
-  balance,
-  plans,
-  selectedPlan,
-  setSelectedPlan,
-  daily,
-  monthly,
-  loadingAction,
   handleStake,
+  coinIcons,
 }: Props) {
   return (
     <div className="card space-y-5">
-      <p className="text-[11px] font-bold uppercase tracking-widest text-white/40">
-        Stake POLYCOGNI CAPITAL
-      </p>
+      <p className="text-[11px] font-bold uppercase tracking-widest text-white/40">New Stake</p>
 
+      {/* Coin Selector */}
       <div>
         <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
-          Amount to Stake
+          Select Coin
         </label>
-        <div className="relative">
-          <input
-            type="number"
-            className="field pr-16"
-            placeholder={`Min. ${selectedPlan?.min_deposit ?? 0} POLYCOGNI CAPITAL`}
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          <button
-            onClick={() => setAmount(String(balance))}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#FF7900] hover:underline"
-          >
-            MAX
-          </button>
-        </div>
-        <p className="text-xs text-white/40 mt-1.5">
-          Available: {balance.toLocaleString()} POLYCOGNI CAPITAL
-        </p>
-      </div>
 
-      <div>
-        <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-3">
-          Choose Plan
-        </label>
-        <div className="flex flex-col gap-2">
-          {plans.map((p) => (
+        <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
+          {wallets.map((w) => (
             <button
-              key={p.id}
-              onClick={() => setSelectedPlan(p)}
-              className={`flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-bold transition-all ${
-                selectedPlan?.id === p.id
+              key={w.symbol}
+              onClick={() => { setSelectedCoin(w.symbol); setAmount(""); }}
+              className={`flex flex-col items-center gap-1 p-2.5 rounded-xl border text-xs font-bold transition-all active:scale-95 ${
+                selectedCoin === w.symbol
                   ? "bg-[#FF7900]/15 border-[#FF7900]/40 text-[#FF7900]"
                   : "bg-[#1a1a24] border-white/8 hover:border-white/20"
               }`}
             >
-              <span>{p.name ?? `${p.duration_days} days`}</span>
-              <span
-                className={
-                  selectedPlan?.id === p.id
-                    ? "text-[#FF7900]"
-                    : "text-[#00d4aa]"
-                }
-              >
-                {p.apr}% APY
-              </span>
+              <span className="text-lg">{coinIcons[w.symbol] ?? "🪙"}</span>
+              <span>{w.symbol}</span>
             </button>
           ))}
         </div>
       </div>
 
-      <div className="bg-[#1a1a24] rounded-xl p-4 space-y-2">
-        <div className="flex justify-between text-sm">
-          <span className="text-white/45">Est. daily reward</span>
-          <span className="font-bold text-[#00d4aa]">~{daily} POLYCOGNI CAPITAL</span>
+      {/* Amount */}
+      {selectedCoin && (
+        <div>
+          <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
+            Amount
+          </label>
+
+          <div className="relative">
+            <input
+              type="number"
+              inputMode="decimal"
+              className="field pr-16"
+              placeholder={`0.00 ${selectedCoin}`}
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+
+            <button
+              onClick={() => setAmount(String(availableBal))}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#FF7900] hover:underline"
+            >
+              MAX
+            </button>
+          </div>
+
+          <p className="text-xs text-white/40 mt-1.5">
+            Available: <strong className="text-white">{availableBal.toLocaleString()} {selectedCoin}</strong>
+          </p>
         </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-white/45">Est. monthly reward</span>
-          <span className="font-bold text-[#00d4aa]">~{monthly} POLYCOGNI CAPITAL</span>
+      )}
+
+      {/* Term Selector */}
+      <div>
+        <label className="block text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
+          Select Term
+        </label>
+
+        <div className="flex flex-col gap-2">
+          {terms.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setSelectedTerm(t)}
+              className={`flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-bold transition-all ${
+                selectedTerm?.id === t.id
+                  ? "bg-[#FF7900]/15 border-[#FF7900]/40 text-[#FF7900]"
+                  : "bg-[#1a1a24] border-white/8 hover:border-white/20"
+              }`}
+            >
+              <span>{t.name}</span>
+              <span className="text-[#00d4aa]">{t.apr}% APR</span>
+            </button>
+          ))}
         </div>
       </div>
 
-      <button className="btn-primary" onClick={handleStake} disabled={loadingAction}>
-        {loadingAction ? (
-          <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-        ) : (
-          "Stake POLYCOGNI CAPITAL 🔒"
-        )}
+      {/* Estimated Rewards */}
+      {amount && selectedTerm && (
+        <div className="bg-[#1a1a24] rounded-xl p-4 space-y-2">
+          <div className="flex justify-between text-sm">
+            <span className="text-white/45">Daily Reward</span>
+            <span className="font-bold text-[#00d4aa]">~{dailyEst} {selectedCoin}</span>
+          </div>
+
+          <div className="flex justify-between text-sm">
+            <span className="text-white/45">Total Reward</span>
+            <span className="font-bold text-[#00d4aa]">~{totalEst} {selectedCoin}</span>
+          </div>
+        </div>
+      )}
+
+      {/* Stake Button */}
+      <button
+        className="btn-primary"
+        onClick={handleStake}
+        disabled={acting === "stake"}
+      >
+        {acting === "stake"
+          ? <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+          : "Stake Now 🔒"}
       </button>
     </div>
   );

@@ -33,7 +33,7 @@ export function useSecurity() {
   const loadSessions = useCallback(async () => {
     setLoading(true);
 
-    const res = await fetch("/api/security/sessions");
+    const res = await fetch("/api/user/security/sessions");
     const data = await res.json();
 
     if (res.ok) {
@@ -55,7 +55,7 @@ export function useSecurity() {
 
   // Change password
   const changePassword = async (current: string, newPw: string) => {
-    const res = await fetch("/api/security/change-password", {
+    const res = await fetch("/api/user/security/change-password", {
       method: "POST",
       body: JSON.stringify({ current, newPw }),
     });
@@ -65,7 +65,7 @@ export function useSecurity() {
 
   // Revoke one session
   const revokeSession = async (sessionId: string) => {
-    const res = await fetch("/api/security/sessions/revoke", {
+    const res = await fetch("/api/user/security/sessions/revoke", {
       method: "POST",
       body: JSON.stringify({ sessionId }),
     });
@@ -75,7 +75,7 @@ export function useSecurity() {
 
   // Revoke all except current
   const revokeAllSessions = async () => {
-    const res = await fetch("/api/security/sessions/revoke-all", {
+    const res = await fetch("/api/user/security/sessions/revoke-all", {
       method: "POST",
     });
 

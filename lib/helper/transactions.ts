@@ -6,7 +6,8 @@ export type TransactionType =
   | "Swap"
   | "Staking"
   | "Fee"
-  | "Bonus";
+  |"Investment"
+  | "Earnings";
 
 export type TransactionDirection = "in" | "out" | "swap";
 

@@ -80,7 +80,7 @@ export default function RegisterForm() {
     }
 
     // 2. CALL API TO CREATE PROFILE + WALLETS + REFERRAL
-    await fetch("/api/auth/setup", {
+    await fetch("/api/user/auth/setup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

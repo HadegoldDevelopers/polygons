@@ -69,8 +69,8 @@ export function StrengthMeter({ password }: { password: string }) {
   if (/[^A-Za-z0-9]/.test(password)) score++;
 
   const colors = ["", "bg-[#ff4d6a]", "bg-yellow-400", "bg-[#00d4aa]", "bg-[#00d4aa]"];
-  const labels = ["", "Weak", "Fair", "Strong", "Very Strong"];
-  const labelColors = ["", "text-[#ff4d6a]", "text-yellow-400", "text-[#00d4aa]", "text-[#00d4aa]"];
+  const names = ["", "Weak", "Fair", "Strong", "Very Strong"];
+  const nameColors = ["", "text-[#ff4d6a]", "text-yellow-400", "text-[#00d4aa]", "text-[#00d4aa]"];
 
   if (!password) return null;
   return (
@@ -83,21 +83,27 @@ export function StrengthMeter({ password }: { password: string }) {
           />
         ))}
       </div>
-      <p className={`text-[11px] mt-1 ${labelColors[score]}`}>{labels[score]}</p>
+      <p className={`text-[11px] mt-1 ${nameColors[score]}`}>{names[score]}</p>
     </div>
   );
 }
 
 /* ── Stat card ─────────────────────────────────────────────────── */
+// components/ui/index.tsx (or wherever StatCard lives)
+
+/* ── Stat card ─────────────────────────────────────────────────── */
 type StatCardProps = {
   icon: string;
-  value: string | number;
-  label: string;
+  value: React.ReactNode;
+  label?: string;          // <─ add
+  name?: string;           // existing
   change?: string;
   changeDir?: "up" | "down";
 };
 
-export function StatCard({ icon, value, label, change, changeDir }: StatCardProps) {
+export function StatCard({ icon, value, label, name, change, changeDir }: StatCardProps) {
+  const finalLabel = label ?? name ?? "";
+
   return (
     <div className="stat-card">
       <div className="w-11 h-11 rounded-xl bg-[var(--orange-dim)] flex items-center justify-center text-xl mb-4 relative z-10">
@@ -106,7 +112,9 @@ export function StatCard({ icon, value, label, change, changeDir }: StatCardProp
       <div className="text-2xl font-black mb-1 relative z-10" style={{ letterSpacing: "-0.5px" }}>
         {value}
       </div>
-      <div className="text-xs text-white/45 font-medium relative z-10">{label}</div>
+      <div className="text-xs text-white/45 font-medium relative z-10">
+        {finalLabel}
+      </div>
 
       {change && (
         <div

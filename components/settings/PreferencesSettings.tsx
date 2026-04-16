@@ -21,7 +21,7 @@ export default function PreferencesSettings() {
 
   useEffect(() => {
     const load = async () => {
-      const res = await fetch("/api/settings/preferences");
+      const res = await fetch("/api/user/settings/preferences");
       const data = await res.json();
       if (!data) {
   setPrefs({
@@ -40,7 +40,7 @@ export default function PreferencesSettings() {
   }, []);
 
   const save = async () => {
-    const res = await fetch("/api/settings/preferences", {
+    const res = await fetch("/api/user/settings/preferences", {
       method: "POST",
       body: JSON.stringify(prefs),
     });

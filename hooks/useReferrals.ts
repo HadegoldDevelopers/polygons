@@ -19,9 +19,9 @@ export function useReferrals() {
 
   useEffect(() => {
     const load = async () => {
-      const linkRes = await fetch("/api/referrals/link").then(r => r.json());
-      const statsRes = await fetch("/api/referrals/earnings").then(r => r.json());
-      const listRes = await fetch("/api/referrals/list").then(r => r.json());
+      const linkRes = await fetch("/api/user/referrals/link").then(r => r.json());
+      const statsRes = await fetch("/api/user/referrals/earnings").then(r => r.json());
+      const listRes = await fetch("/api/user/referrals/list").then(r => r.json());
 
       setLink(linkRes?.link ?? "");
 

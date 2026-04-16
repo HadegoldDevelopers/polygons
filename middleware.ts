@@ -27,15 +27,34 @@ export async function middleware(request: NextRequest) {
 
   // Refresh session — this is the critical part
   const { data: { user } } = await supabase.auth.getUser();
+  const { pathname } = request.nextUrl;
 
-  // Protect dashboard routes
+  // User Dashboard Protection routes
   if (
     !user &&
     request.nextUrl.pathname.startsWith("/dashboard")
   ) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
-
+// ── Admin protection ───────────────────────────────────────────
+  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
+    if (!user) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
+ 
+    // Check admin role in profiles table
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .single();
+ 
+    if (!profile || profile.is_admin !== true) {
+      // Not an admin — redirect to home
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
+ 
   // Redirect logged-in users away from auth pages
   if (
     user &&

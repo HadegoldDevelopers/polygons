@@ -1,93 +1,59 @@
 import { useEffect, useState } from "react";
+import {
+  StakingTerm,
+  StakingPosition,
+  StakingHistoryItem,
+  ApiListResponse,
+  StakeClaimResponse,
+} from "@/lib/staking/types";
 
-// ─────────────────────────────────────────────
-// Types (inside the hook file)
-// ─────────────────────────────────────────────
-export interface StakingPlan {
-  id: string;
-  name: string;
-  min_deposit: number;
-  max_deposit?: number;
-  apr: number;
-  duration_days: number;
-  daily_profit?: number;
-  referral_bonus?: number;
-  notes?: string[];
-}
-
-export interface StakingPosition {
-  id: string;
-  user_id: string;
-  amount: number;
-  earned: number;
-  apy: number;
-  lock_days: number;
-  days_left: number;
-  progress: number;
-  status: string;
-  plan_id?: string;
-  created_at: string;
-  staking_plans?: StakingPlan;
-}
-
-export interface HistoryItem {
-  id: string;
-  amount: number;
-  event_type: string;
-  created_at: string;
-}
-
-export interface StakingPlansResponse {
-  plans: StakingPlan[];
-}
-
-export interface StakingPositionResponse {
-  positions: StakingPosition[];
-  balance: number;
-}
-
-export interface StakingHistoryResponse {
-  history: HistoryItem[];
-}
-
-// ─────────────────────────────────────────────
-// Hook
-// ─────────────────────────────────────────────
 export function useStaking(showToast: (msg: string, type: string) => void) {
   const [loadingPage, setLoadingPage] = useState(true);
   const [loadingAction, setLoadingAction] = useState(false);
 
-  const [plans, setPlans] = useState<StakingPlan[]>([]);
+  const [terms, setTerms] = useState<StakingTerm[]>([]);
   const [positions, setPositions] = useState<StakingPosition[]>([]);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
-  const [balance, setBalance] = useState<number>(0);
+  const [history, setHistory] = useState<StakingHistoryItem[]>([]);
+  const [balance, setBalance] = useState<number>(0); // FIXED
 
+  // ─────────────────────────────────────────────
+  // Load positions + balance
+  // ─────────────────────────────────────────────
   const loadPositions = async () => {
-    const res = await fetch("/api/staking/position");
-    const data: StakingPositionResponse = await res.json();
+    try {
+      const res = await fetch("/api/user/staking/position");
+      const json = await res.json();
 
-    setPositions(data.positions ?? []);
-    setBalance(data.balance ?? 0);
+      setPositions(json.data ?? []);
+      setBalance(json.balance ?? 0);
+    } catch (err) {
+      console.error(err);
+      showToast("Failed to load positions", "error");
+    }
   };
 
+  // ─────────────────────────────────────────────
+  // Load everything
+  // ─────────────────────────────────────────────
   useEffect(() => {
     const load = async () => {
       try {
-        const [p, pos, h] = await Promise.all([
-          fetch("/api/staking/plans"),
-          fetch("/api/staking/position"),
-          fetch("/api/staking/history"),
+        const [t, p, h] = await Promise.all([
+          fetch("/api/user/staking/terms"),
+          fetch("/api/user/staking/position"),
+          fetch("/api/user/staking/history"),
         ]);
 
-        const plansData: StakingPlansResponse = await p.json();
-        const posData: StakingPositionResponse = await pos.json();
-        const histData: StakingHistoryResponse = await h.json();
+        const termsData = (await t.json()) as ApiListResponse<StakingTerm>;
+        const posData = await p.json();
+        const histData = await h.json();
 
-        setPlans(plansData.plans ?? []);
-        setPositions(posData.positions ?? []);
+        setTerms(termsData.data ?? []);
+        setPositions(posData.data ?? []);
         setBalance(posData.balance ?? 0);
         setHistory(histData.history ?? []);
-      } catch {
+      } catch (err) {
+        console.error(err);
         showToast("Failed to load staking data", "error");
       } finally {
         setLoadingPage(false);
@@ -97,14 +63,69 @@ export function useStaking(showToast: (msg: string, type: string) => void) {
     load();
   }, []);
 
+  // ─────────────────────────────────────────────
+  // Stake
+  // ─────────────────────────────────────────────
+  const stake = async (amount: number, coin: string, termId: string) => {
+    setLoadingAction(true);
+
+    const res = await fetch("/api/user/staking/stake", {
+      method: "POST",
+      body: JSON.stringify({
+        amount,
+        coin,
+        term_id: termId, // FIXED
+      }),
+    });
+
+    const json = await res.json();
+    setLoadingAction(false);
+
+    if (!res.ok) {
+      showToast(json.error ?? "Failed to stake", "error");
+      return false;
+    }
+
+    showToast("Staking successful!", "success");
+    await loadPositions();
+    return true;
+  };
+
+  // ─────────────────────────────────────────────
+  // Claim
+  // ─────────────────────────────────────────────
+  const claim = async (positionId: string) => {
+    setLoadingAction(true);
+
+    const res = await fetch("/api/user/staking/claim", {
+      method: "POST",
+      body: JSON.stringify({
+        position_id: positionId, // FIXED
+      }),
+    });
+
+    const json = (await res.json()) as StakeClaimResponse;
+    setLoadingAction(false);
+
+    if (!res.ok) {
+      showToast(json.error ?? "Failed to claim rewards", "error");
+      return false;
+    }
+
+    showToast("Rewards claimed!", "success");
+    await loadPositions();
+    return true;
+  };
+
   return {
     loadingPage,
     loadingAction,
-    setLoadingAction,
-    plans,
+    terms,
     positions,
     history,
     balance,
     loadPositions,
+    stake,
+    claim,
   };
 }

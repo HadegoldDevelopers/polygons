@@ -26,8 +26,7 @@ export const metadata: Metadata = {
     shortcut: "/logo.jpg",
     apple: "/logo.jpg",
   },
-  manifest: "/site.webmanifest",
-  themeColor: "#000000",
+  //manifest: "/site.webmanifest",
   openGraph: {
     title: "Polycogni Capital",
     description:
