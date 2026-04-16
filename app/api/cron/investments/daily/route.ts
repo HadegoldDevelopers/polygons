@@ -32,25 +32,28 @@ export async function GET() {
     if (daysSince <= 0) continue;
 
     // Compute daily earnings
-    const dailyEarn =
-      p.amount * (p.daily_profit_snapshot / 100);
-
+    const dailyEarn = p.amount * (p.daily_profit_snapshot / 100);
     const creditAmount = dailyEarn * daysSince;
 
     // Fetch wallet
-    const { data: wallet } = await supabase
+    const { data: wallet, error: walletErr } = await supabase
       .from("wallets")
       .select("amount")
       .eq("user_id", p.user_id)
       .eq("symbol", "USD")
       .single();
 
+    if (walletErr || !wallet) {
+      console.error("Wallet not found for user:", p.user_id);
+      continue; // skip this user safely
+    }
+
     // Credit wallet with daily earnings
+    const newBalance = wallet.amount + creditAmount;
+
     await supabase
       .from("wallets")
-      .update({
-        amount: wallet.amount + creditAmount,
-      })
+      .update({ amount: newBalance })
       .eq("user_id", p.user_id)
       .eq("symbol", "USD");
 
@@ -86,12 +89,12 @@ export async function GET() {
 
     // Check if plan ended
     if (now >= new Date(p.end_date)) {
+      const finalBalance = newBalance + p.amount;
+
       // Return principal
       await supabase
         .from("wallets")
-        .update({
-          amount: wallet.amount + creditAmount + p.amount,
-        })
+        .update({ amount: finalBalance })
         .eq("user_id", p.user_id)
         .eq("symbol", "USD");
 
