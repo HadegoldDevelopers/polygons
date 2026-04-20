@@ -103,16 +103,6 @@ export default function Hero() {
           REGISTER TO <span className="font-extrabold">Swap</span>
         </Link>
 
-        {/* LISTED ON */}
-        <div className="mt-8 md:mt-10">
-          <p className="text-white text-xs md:text-sm font-semibold mb-2">We are listed on</p>
-          <img
-            src="/coinmarketcap-logo-black3bef.png"
-            alt="CoinMarketCap"
-            className="h-6 md:h-8 invert opacity-90"
-          />
-        </div>
-
         {/* AUDIT BADGES */}
         <div className="flex gap-4 md:gap-6 mt-6 md:mt-8">
           <img src="/sp-horizontala1ee.png" className="h-10 md:h-14" alt="SolidProof" />
