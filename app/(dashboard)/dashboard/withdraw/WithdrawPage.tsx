@@ -322,7 +322,7 @@ const receiveAmount =
                   onChange={(e) => setNetwork(e.target.value)}
                 >
                   {token.coin?.networks.map((n) => (
-                    <option key={n}>{n}</option>
+                    <option key={n}>{n.toUpperCase()} </option>
                   ))}
                 </select>
               </div>

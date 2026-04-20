@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Logo } from "@/components/ui"; {/* Logo */}
+      
 import { supabase } from "@/lib/supabase/supabaseClient";
 
 export default function AdminLoginPage() {
@@ -54,13 +56,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-[400px] bg-[#111118] border border-white/8 rounded-2xl p-8 shadow-2xl relative z-10">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-xl bg-[#FF7900] flex items-center justify-center font-black text-black text-xl mb-3">
-            P
-          </div>
-          <p className="text-lg font-black">PlutoChain</p>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#FF7900] mt-0.5">
-            Admin Panel
-          </span>
+           <Logo size="sm" />
         </div>
 
         <h1 className="text-xl font-black text-center mb-1">Admin Sign In</h1>

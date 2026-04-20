@@ -13,7 +13,6 @@ export default function PreferencesSettings() {
     price_alerts: true,
     auto_compound: false,
     compact_view: false,
-    display_currency: "USD",
   });
 
   const toggle = (key: string) => (val: boolean) =>
@@ -29,7 +28,6 @@ export default function PreferencesSettings() {
     price_alerts: true,
     auto_compound: false,
     compact_view: false,
-    display_currency: "USD",
   });
 } else {
   setPrefs(data);
@@ -98,22 +96,6 @@ export default function PreferencesSettings() {
           </div>
           <Toggle defaultOn={prefs.compact_view} onChange={toggle("compact_view")} />
         </div>
-      </div>
-
-      <div className="mt-5">
-        <label className="block text-[11px] font-bold uppercase text-white/40 mb-2">
-          Display Currency
-        </label>
-        <select
-          className="field max-w-[240px]"
-          value={prefs.display_currency}
-          onChange={(e) => setPrefs((p) => ({ ...p, display_currency: e.target.value }))}
-        >
-          <option>USD</option>
-          <option>EUR</option>
-          <option>GBP</option>
-          <option>NGN</option>
-        </select>
       </div>
 
       <button className="btn-primary max-w-[140px] mt-5" onClick={save}>

@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { supabaseService } from "@/lib/supabase/service";
 import { AdminTable, SearchBar, FilterChip, StatusBadge, AdminModal, TableSkeleton } from "@/components/admin/ui/AdminUI";
 import type { WithdrawalRequest } from "@/lib/admin/types";
 
@@ -16,17 +15,14 @@ export default function WithdrawalsPage() {
   const [acting,   setActing]   = useState(false);
 
   const load = async () => {
-    setLoading(true);
-    let query = supabaseService
-      .from("withdrawal_requests")
-      .select("*, profiles(name, email)")
-      .order("created_at", { ascending: false });
-    if (filter !== "all") query = query.eq("status", filter);
-    const { data } = await query;
-    setRequests(data ?? []);
-    setFiltered(data ?? []);
-    setLoading(false);
-  };
+  setLoading(true);
+  const res = await fetch(`/api/admin/withdrawals?filter=${filter}`);
+  const json = await res.json();
+  setRequests(json.data ?? []);
+  setFiltered(json.data ?? []);
+  setLoading(false);
+};
+
 
   useEffect(() => { load(); }, [filter]);
 
@@ -36,76 +32,47 @@ export default function WithdrawalsPage() {
     setFiltered(requests.filter((r) =>
       (r.profiles as any)?.name?.toLowerCase().includes(q) ||
       (r.profiles as any)?.email?.toLowerCase().includes(q) ||
-      r.coin?.toLowerCase().includes(q) ||
-      r.to_address?.toLowerCase().includes(q)
+      r.token?.toLowerCase().includes(q) ||
+      r.address?.toLowerCase().includes(q)
     ));
   }, [search, requests]);
+const handleAction = async (action: "approved" | "rejected") => {
+  if (!selected) return;
+  setActing(true);
 
-  const handleAction = async (action: "approved" | "rejected") => {
-    if (!selected) return;
-    setActing(true);
+  const res = await fetch("/api/admin/withdrawals/action", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: selected.id,
+      action,
+      tx_hash: txHash,
+      admin_note: adminNote,
+    }),
+  });
 
-    await supabaseService
-      .from("withdrawal_requests")
-      .update({
-        status:      action,
-        tx_hash:     action === "approved" ? txHash : null,
-        admin_note:  adminNote,
-        reviewed_at: new Date().toISOString(),
-      })
-      .eq("id", selected.id);
+  const json = await res.json();
 
-    // If approved — deduct from wallet
-    if (action === "approved") {
-      const { data: wallet } = await supabaseService
-        .from("wallets")
-        .select("*")
-        .eq("user_id", selected.user_id)
-        .eq("symbol", selected.coin)
-        .single();
-
-      if (wallet) {
-        await supabaseService
-          .from("wallets")
-          .update({ amount: Math.max(0, wallet.amount - selected.amount) })
-          .eq("id", wallet.id);
-      }
-
-      // Log transaction
-      await supabaseService.from("transactions").insert({
-        user_id:   selected.user_id,
-        type:      "Withdraw",
-        coin:      selected.coin,
-        amount:    selected.amount,
-        usd:       selected.usd_value ?? 0,
-        hash:      txHash || selected.id,
-        status:    "confirmed",
-        direction: "out",
-        created_at: new Date().toISOString(),
-      });
-
-      // Notify user
-      await supabaseService.from("notifications").insert({
-        user_id: selected.user_id,
-        text:    `✅ Withdrawal of ${selected.amount} ${selected.coin} approved!`,
-        time:    new Date().toISOString(),
-        read:    false,
-      });
-    } else {
-      await supabaseService.from("notifications").insert({
-        user_id: selected.user_id,
-        text:    `❌ Withdrawal of ${selected.amount} ${selected.coin} was rejected. ${adminNote ? `Reason: ${adminNote}` : ""}`,
-        time:    new Date().toISOString(),
-        read:    false,
-      });
-    }
-
-    setRequests((prev) => prev.map((r) => r.id === selected.id ? { ...r, status: action } : r));
-    setSelected(null);
-    setTxHash("");
-    setAdminNote("");
+  if (!json.success) {
+    console.error(json.error);
     setActing(false);
-  };
+    return;
+  }
+
+  // Update UI
+  setRequests((prev) =>
+    prev.map((r) =>
+      r.id === selected.id ? { ...r, status: action } : r
+    )
+  );
+
+  setSelected(null);
+  setTxHash("");
+  setAdminNote("");
+  setActing(false);
+};
+
+ 
 
   const pendingCount = requests.filter((r) => r.status === "pending").length;
 
@@ -128,7 +95,7 @@ export default function WithdrawalsPage() {
         </button>
       </div>
 
-      <SearchBar value={search} onChange={setSearch} placeholder="Search user, coin, address...">
+      <SearchBar value={search} onChange={setSearch} placeholder="Search user, token, address...">
         {["pending","approved","rejected","all"].map((f) => (
           <FilterChip key={f} label={f.charAt(0).toUpperCase()+f.slice(1)} active={filter===f} onClick={() => setFilter(f)} />
         ))}
@@ -145,14 +112,14 @@ export default function WithdrawalsPage() {
               <p className="text-sm font-bold">{(req.profiles as any)?.name ?? "—"}</p>
               <p className="text-xs text-white/40">{(req.profiles as any)?.email ?? "—"}</p>
             </td>
-            <td className="px-4 py-3.5 text-sm font-bold">{req.coin}</td>
+            <td className="px-4 py-3.5 text-sm font-bold">{req.token}</td>
             <td className="px-4 py-3.5 text-sm font-bold text-[#ff4d6a]">
               -{req.amount.toLocaleString()}
             </td>
             <td className="px-4 py-3.5 text-sm">${(req.usd_value ?? 0).toLocaleString()}</td>
             <td className="px-4 py-3.5">
               <span className="text-xs font-mono text-white/50">
-                {req.to_address?.slice(0, 12)}…
+                {req.address?.slice(0, 12)}…
               </span>
             </td>
             <td className="px-4 py-3.5 text-sm text-white/50">{req.network}</td>
@@ -193,10 +160,10 @@ export default function WithdrawalsPage() {
             <div className="bg-[#1a1a24] rounded-xl p-4 space-y-2">
               {[
                 ["User",    (selected.profiles as any)?.name ?? selected.user_id?.slice(0,8)+"…"],
-                ["Coin",    selected.coin],
-                ["Amount",  `${selected.amount} ${selected.coin}`],
+                ["Coin",    selected.token],
+                ["Amount",  `${selected.amount} ${selected.token}`],
                 ["USD",     `$${(selected.usd_value ?? 0).toLocaleString()}`],
-                ["Address", selected.to_address],
+                ["Address", selected.address],
                 ["Network", selected.network],
                 ["Status",  selected.status],
                 ["Requested", new Date(selected.created_at).toLocaleString()],

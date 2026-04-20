@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabaseClient";
+import { Logo } from "@/components/ui";
 
 const navItems = [
   { label: "Dashboard",       href: "/admin",                    icon: "📊" },
@@ -35,11 +36,9 @@ export default function AdminSidebar({ onClose, pendingWithdrawals = 0 }: AdminS
       {/* Logo */}
       <div className="px-5 py-5 border-b border-white/8">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-[#FF7900] flex items-center justify-center font-black text-black text-sm">
-            P
-          </div>
+          <Logo size="sm" />
           <div>
-            <p className="text-sm font-black">PlutoChain</p>
+           
             <p className="text-[10px] text-[#FF7900] font-bold uppercase tracking-widest">Admin Panel</p>
           </div>
         </div>

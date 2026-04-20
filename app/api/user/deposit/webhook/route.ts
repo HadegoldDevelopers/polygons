@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabaseService } from "@/lib/supabase/service";
 import { createNotification } from "@/lib/helper/notifications";
+import { getPaymentSettings } from "@/lib/settings/getSettings";
 import crypto from "crypto";
 import { recordTransaction } from "@/lib/helper/transactions";
 
@@ -8,10 +9,12 @@ export async function POST(req: Request) {
   try {
     const body = await req.text();
     const signature = req.headers.get("x-nowpayments-sig");
+    const settings = await getPaymentSettings();
+    const ipnSecret = settings?.now_ipn_secret;
 
     // Verify NOWPayments signature
     const expectedSig = crypto
-      .createHmac("sha512", process.env.NOWPAYMENTS_IPN_SECRET!)
+      .createHmac("sha512", ipnSecret)
       .update(body)
       .digest("hex");
 
@@ -30,7 +33,7 @@ export async function POST(req: Request) {
     const { data: session, error: sessionError } = await supabaseService
       .from("deposit_sessions")
       .select("*")
-      .eq("id", data.payment_id)
+      .eq("id", data.order_id)
       .single();
 
     if (sessionError || !session) {
@@ -42,7 +45,7 @@ export async function POST(req: Request) {
       p_user_id: session.user_id,
       p_symbol: session.coin,
       p_amount: data.pay_amount,
-      p_session_id: data.payment_id,
+      p_session_id: data.order_id,
     });
 
     // Mark session as completed
@@ -63,7 +66,7 @@ export async function POST(req: Request) {
       hash: data.payment_id,
       status: "confirmed",
       gateway: "NOWPayments",
-      session_id: session.id,
+      session_id: data.order_id,
       metadata: data,
     });
 

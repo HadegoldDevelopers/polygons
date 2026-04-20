@@ -89,22 +89,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Failed to update balance" }, { status: 500 });
     }
 
-    // Transaction
-    await recordTransaction({
-      user_id: user.id,
-      type: "Withdraw",
-      direction: "out",
-      coin: token,
-      amount: parseFloat(amount),
-      usd: null, // optional — fill if you track USD value
-      from_addr: address,
-      hash: null, // no tx hash yet
-      status: "pending",
-      gateway: "manual",
-      session_id: withdrawData.id,
-      metadata: { network, address },
-    });
-
     // Notification
     await createNotification(
       user.id,

@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
 import { supabaseService } from "@/lib/supabase/service";
+import { getPaymentSettings } from "@/lib/settings/getSettings";
 
 export async function POST(req: Request) {
   try {
 
   const { coin, network, user_id, amount } = await req.json();
+  const settings = await getPaymentSettings();
 
     if (!coin || !network || !user_id) {
       return NextResponse.json(
@@ -54,13 +56,13 @@ if (coin === "BNB") {
     const npRes = await fetch("https://api.nowpayments.io/v1/payment", {
       method: "POST",
       headers: {
-        "x-api-key": process.env.NOWPAYMENTS_API_KEY!,
+        "x-api-key": settings.now_api_key!,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         price_amount: amount,
         price_currency: "usd",
-        is_fixed_rate: true,
+        is_fixed_rate: false,
         pay_currency: payCurrency,
         
         ipn_callback_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/deposit/webhook`,
@@ -68,7 +70,7 @@ if (coin === "BNB") {
     });
 
     const npData = await npRes.json();
-
+    
     if (!npData.pay_address) {
       return NextResponse.json(
         { error: "NOWPayments error", details: npData },

@@ -86,27 +86,6 @@ export function ReferralLinkCard({ link }: ReferralLinkCardProps) {
           </button>
         ))}
       </div>
-
-      {/* How it works — compact on mobile */}
-      <div className="pt-2 border-t border-white/8">
-        <p className="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-3">
-          How It Works
-        </p>
-        <div className="space-y-2.5">
-          {[
-            "Share your referral link with friends",
-            "Friend signs up and starts trading",
-            "You earn a % of their transaction fees — forever",
-          ].map((text, i) => (
-            <div key={i} className="flex items-start gap-3">
-              <div className="w-6 h-6 md:w-7 md:h-7 rounded-lg bg-[#FF7900] flex items-center justify-center text-[10px] md:text-xs font-black text-black flex-shrink-0 mt-0.5">
-                {i + 1}
-              </div>
-              <p className="text-xs md:text-sm text-white/60 leading-relaxed">{text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

@@ -86,11 +86,11 @@ export interface StakingPosition {
 export interface WithdrawalRequest {
   id: string;
   user_id: string;
-  coin: string;
+  token: string;
   network: string;
   amount: number;
   usd_value?: number;
-  to_address: string;
+  address: string;
   status: string;
   tx_hash?: string;
   admin_note?: string;

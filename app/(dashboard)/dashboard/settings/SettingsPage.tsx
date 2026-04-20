@@ -5,13 +5,12 @@ import { PageHeading } from "@/components/ui";
 import ProfileSettings from "@/components/settings/ProfileSettings";
 import PreferencesSettings from "@/components/settings/PreferencesSettings";
 import NotificationSettings from "@/components/settings/NotificationSettings";
-import ApiKeysSettings from "@/components/settings/ApiKeysSettings";
+
 
 const menuItems = [
   { id: "profile", label: "👤 Profile" },
   { id: "preferences", label: "🎨 Preferences" },
   { id: "notifications", label: "🔔 Notifications" },
-  { id: "api", label: "🔑 API Keys" },
 ];
 
 export default function SettingsPage() {
@@ -44,7 +43,6 @@ export default function SettingsPage() {
           {tab === "profile" && <ProfileSettings />}
           {tab === "preferences" && <PreferencesSettings />}
           {tab === "notifications" && <NotificationSettings />}
-          {tab === "api" && <ApiKeysSettings />}
         </div>
       </div>
     </div>

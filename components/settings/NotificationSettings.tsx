@@ -97,7 +97,7 @@ export default function NotificationSettings() {
         <div className="flex items-center justify-between py-4">
           <div>
             <p className="text-sm font-bold">Price Alerts</p>
-            <p className="text-xs text-white/40">POLYC price movement alerts</p>
+            <p className="text-xs text-white/40">POLYCOGNI price movement alerts</p>
           </div>
           <Toggle defaultOn={notif.price_alerts} onChange={toggle("price_alerts")} />
         </div>
@@ -113,7 +113,7 @@ export default function NotificationSettings() {
         <div className="flex items-center justify-between py-4">
           <div>
             <p className="text-sm font-bold">Newsletter</p>
-            <p className="text-xs text-white/40">PlutoChain updates and news</p>
+            <p className="text-xs text-white/40">POLYCOGNI updates and news</p>
           </div>
           <Toggle defaultOn={notif.newsletter} onChange={toggle("newsletter")} />
         </div>
