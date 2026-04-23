@@ -137,7 +137,7 @@ export default function StakingPage() {
 
     if (!res.ok) return showToast(data.error, "error");
 
-    showToast(`🎁 Claimed ${Number(data.claimed).toFixed(8)} ${data.coin}!`, "success");
+    showToast(` Claimed ${Number(data.claimed).toFixed(8)} ${data.coin}!`, "success");
     await loadData();
   };
 

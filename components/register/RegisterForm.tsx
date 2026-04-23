@@ -216,7 +216,7 @@ export default function RegisterForm() {
           />
           <span>
             I agree to the{" "}
-            <a href="#" className="text-[#FF7900]">
+            <a href="/privacy" className="text-[#FF7900]">
               Terms of Service
             </a>{" "}
             and{" "}

@@ -52,8 +52,8 @@ export default function Footer() {
               {[
                 { href: "/whitepaper/Polycogni_Capital_Whitepaper.pdf",                icon: "/icons/d1.svg", label: "Whitepaper"            },
                 { href: "#",                        icon: "/icons/d2.svg", label: "Security and Audits"   },
-                { href: "#", icon: "/icons/d3.svg", label: "Terms and conditions" },
-                { href: "#",       icon: "/icons/d4.svg", label: "privacy policy"       },
+                { href: "/aml-kyc", icon: "/icons/d3.svg", label: "Terms and conditions" },
+                { href: "/privacy",       icon: "/icons/d4.svg", label: "privacy policy"       },
               ].map((item) => (
                 <li key={item.label} className="mb-3">
                   <a
@@ -74,9 +74,9 @@ export default function Footer() {
         {/* Legal disclaimer — exact text from source */}
         <p className="text-[14px] leading-4.5 p-4 text-white/40">
           Disclaimer: By accessing this website, using our services, or purchasing Polycogni Capital tokens, you acknowledge that you have read, understood, and agreed to be bound by our{" "}
-          <Link href="/" target="_blank" className="underline"> Terms of Service </Link>
+          <Link href="/aml-kyc" target="_blank" className="underline"> Terms of Service </Link>
           {" "}and{" "}
-          <Link href="/" target="_blank" className="underline">Privacy Policy.</Link>
+          <Link href="/privacy" target="_blank" className="underline">Privacy Policy.</Link>
           {" "}You further confirm that you fully understand the risks associated with cryptocurrencies, including but not limited to price volatility, regulatory uncertainty, and potential loss of funds. Participation in the Polycogni Capital ecosystem is entirely at your own discretion and risk.
           <br /><br />
           Polycogni Capital is a blockchain based project designed to enhance the capabilities of the Bitcoin network by enabling smart contracts and decentralized applications. While we are committed to building a robust and innovative platform, cryptocurrency markets are inherently unpredictable, and no guarantees can be made regarding future performance, price appreciation, or liquidity.

@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabaseService } from "@/lib/supabase/service";
 
-const COINS = [
-  "USD", "PC", "USDT", "BTC", "ETH"
-];
+const COINS = ["PC", "BTC", "ETH", "USDT", "USD", "BNB", "XRP"];
 
 function generateHexAddress() {
   return (
@@ -48,18 +46,36 @@ export async function POST(req: Request) {
     });
 
     // 2. CREATE WALLETS
-    const walletRows = COINS.map((symbol) => ({
-      user_id,
-      symbol,
-      address: generateHexAddress(),
-      amount: 0,
-      created_at: new Date().toISOString(),
-    
-    }));
+    const { data: existingWallets } = await supabaseService
+  .from("wallets_with_value")
+  .select("symbol")
+  .eq("user_id", user_id);
+
+const existingSymbols = new Set((existingWallets ?? []).map((w) => w.symbol));
+
+const walletRows = COINS
+  .filter((symbol) => !existingSymbols.has(symbol))  // skip already created
+  .map((symbol) => ({
+    user_id,
+    symbol,
+    address:    generateHexAddress(),
+    amount:     0,
+    created_at: new Date().toISOString(),
+  }));
+
+if (walletRows.length > 0) {
+  const { error: walletError } = await supabaseService
+    .from("wallets_with_value")
+    .insert(walletRows);
+
+  if (walletError) {
+    console.error("Wallet creation failed:", walletError);
+  }
+}
 
 
 const { error: walletError } = await supabaseService
-  .from("wallets")
+  .from("wallets_with_value")
   .insert(walletRows);
 
 if (walletError) {

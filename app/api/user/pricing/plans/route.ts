@@ -90,7 +90,7 @@ export async function POST(req: Request) {
 
   // Fetch USD wallet
   const { data: usdWallet, error: walletError } = await supabase
-    .from("wallets")
+    .from("wallets_with_value")
     .select("amount")
     .eq("user_id", user.id)
     .eq("symbol", "USD")
@@ -112,7 +112,7 @@ export async function POST(req: Request) {
 
   // Deduct USD
   const { error: deductError } = await supabase
-    .from("wallets")
+    .from("wallets_with_value")
     .update({ amount: usdWallet.amount - amount })
     .eq("user_id", user.id)
     .eq("symbol", "USD");

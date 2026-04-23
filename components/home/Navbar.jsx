@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import Image from "next/image";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { Logo } from "@/components/ui";
 
@@ -23,7 +22,6 @@ export default function Navbar() {
           <Link href="/#features" className="hover:text-[#FF7900]">Features</Link>
           <Link href="/#token" className="hover:text-[#FF7900]">Token</Link>
           <Link href="/#faq" className="hover:text-[#FF7900]">FAQ</Link>
-          <Link href="/pricing" className="hover:text-[#FF7900]">Pricing</Link>
         </nav>
 
         {/* Right Buttons */}
@@ -62,7 +60,6 @@ export default function Navbar() {
             <Link href="/#features" onClick={() => setOpen(false)}>Features</Link>
             <Link href="/#token" onClick={() => setOpen(false)}>Token</Link>
             <Link href="/#faq" onClick={() => setOpen(false)}>FAQ</Link>
-            <Link href="/pricing" onClick={() => setOpen(false)}>Pricing</Link>
 
             <Link
               href="/dashboard"

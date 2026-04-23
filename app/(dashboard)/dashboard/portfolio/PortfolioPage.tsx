@@ -9,7 +9,7 @@ interface Asset {
   price: number;
   change_24h: number;
   amount: number;
-  value_usd: number;
+  usd_value: number;
   pct: number;
   color: string;
 }
@@ -158,9 +158,7 @@ export default function PortfolioPage() {
 
                 {/* USD Value */}
                 <td className="px-5 py-4 text-sm font-bold">
-                  ${coin.value_usd.toLocaleString("en", {
-                    maximumFractionDigits: 2,
-                  })}
+                  ${(coin.usd_value ?? 0).toLocaleString("en", { maximumFractionDigits: 2 })}
                 </td>
 
                 {/* Action */}

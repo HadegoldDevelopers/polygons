@@ -12,11 +12,11 @@ const pageTitles = {
   "/dashboard/swap":          "Swap",
   "/dashboard/transactions":  "Transactions",
   "/dashboard/portfolio":     "Portfolio",
+  "/dashboard/pricing":       "Pricing",
   "/dashboard/staking":       "Staking",
   "/dashboard/settings":      "Settings",
   "/dashboard/security":      "Security",
   "/dashboard/referral":      "Referral Program",
-  "/dashboard/help":          "Help Center",
 } as const;
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

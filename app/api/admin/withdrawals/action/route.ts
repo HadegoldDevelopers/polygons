@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     if (action === "approved") {
       // Fetch wallet
       const { data: wallet } = await supabaseService
-        .from("wallets")
+        .from("wallets_with_value")
         .select("*")
         .eq("user_id", request.user_id)
         .eq("symbol", request.token)
@@ -67,7 +67,7 @@ export async function POST(req: Request) {
 
       if (wallet) {
         await supabaseService
-          .from("wallets")
+          .from("wallets_with_value")
           .update({
             amount: Math.max(0, wallet.amount - request.amount),
           })

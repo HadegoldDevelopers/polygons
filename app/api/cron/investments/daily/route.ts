@@ -37,7 +37,7 @@ export async function GET() {
 
     // Fetch wallet
     const { data: wallet, error: walletErr } = await supabase
-      .from("wallets")
+      .from("wallets_with_value")
       .select("amount")
       .eq("user_id", p.user_id)
       .eq("symbol", "USD")
@@ -52,7 +52,7 @@ export async function GET() {
     const newBalance = wallet.amount + creditAmount;
 
     await supabase
-      .from("wallets")
+      .from("wallets_with_value")
       .update({ amount: newBalance })
       .eq("user_id", p.user_id)
       .eq("symbol", "USD");
@@ -93,7 +93,7 @@ export async function GET() {
 
       // Return principal
       await supabase
-        .from("wallets")
+        .from("wallets_with_value")
         .update({ amount: finalBalance })
         .eq("user_id", p.user_id)
         .eq("symbol", "USD");

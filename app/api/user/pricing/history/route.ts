@@ -1,10 +1,10 @@
 import { supabaseServer } from "@/lib/supabase/supabaseServer";
 import { NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: Request) {
   const supabase = await supabaseServer();
 
-  // Get user
+  //Get user
   const {
     data: { user },
     error: userError,
@@ -14,15 +14,40 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { data, error } = await supabase
+  // Pagination params
+  const { searchParams } = new URL(req.url);
+  const page = Math.max(Number(searchParams.get("page") || 1), 1);
+  const limit = Math.min(Number(searchParams.get("limit") || 20), 100);
+  const from = (page - 1) * limit;
+  const to = from + limit - 1;
+
+  // Fetch history (optimized)
+  const { data: history, error } = await supabase
     .from("pricing_history")
-    .select("*")
+    .select(`
+      id,
+      amount,
+      type,
+      status,
+      created_at
+    `)
     .eq("user_id", user.id)
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .range(from, to);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  return NextResponse.json({ history: data ?? [] });
+  // Response
+  const response = {
+    history: history ?? [],
+    pagination: {
+      page,
+      limit,
+      hasMore: (history?.length ?? 0) === limit,
+    },
+  };
+
+  return NextResponse.json(response);
 }

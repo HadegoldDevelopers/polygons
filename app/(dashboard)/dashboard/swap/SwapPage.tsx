@@ -63,7 +63,7 @@ export default function SwapPage() {
 
   // 1. Fetch user wallet balances
   const { data: walletRows } = await supabaseClient
-    .from("wallets")
+    .from("wallets_with_value")
     .select("symbol, amount");
 
   // If user has no wallets, stop early

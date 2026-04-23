@@ -1,4 +1,4 @@
-// /app/api/portfolio/route.ts
+// app/api/portfolio/route.ts
 import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/supabaseServer";
 
@@ -11,54 +11,37 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userId = auth.user.id;
+  // Single query — view already joins coins + coins_market
+  // and calculates usd_value automatically
+  const { data: wallets, error } = await supabase
+    .from("wallets_with_value")
+    .select("*")
+    .eq("user_id", auth.user.id)
+    .order("usd_value", { ascending: false });
 
-  // 1. Fetch user wallets
-  const { data: wallets } = await supabase
-    .from("wallets")
-    .select("symbol, amount")
-    .eq("user_id", userId);
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 
-  // 2. Fetch market data
-  const { data: market } = await supabase
-    .from("coins_market")
-    .select("symbol, price, change_24h");
+  const assets = wallets ?? [];
 
-  // 3. Fetch coin config (color + icon)
-  const { data: coinConfig } = await supabase
-     .from("coins")
-    .select("symbol, color, icon");
+  // Total USD = sum of all wallet usd_values (already calculated by view)
+  const totalUSD = assets.reduce((sum, w) => sum + (w.usd_value ?? 0), 0);
 
-  // 4. Merge all data
-  const merged = (wallets || []).map((w) => {
-    const m = market?.find((c) => c.symbol === w.symbol);
-    const cfg = coinConfig?.find((c) => c.symbol === w.symbol);
-
-    const price = m?.price || 0;
-    const value_usd = w.amount * price;
-
-    return {
-      symbol: w.symbol,
-      amount: w.amount,
-      price,
-      change_24h: m?.change_24h || 0,
-      value_usd,
-      color: cfg?.color || "#FF7900",
-      icon: cfg?.icon || "•",
-    };
-  });
-
-  // 5. Total portfolio value
-  const totalUSD = merged.reduce((sum, a) => sum + a.value_usd, 0);
-
-  // 6. Add percentage allocation
-  const assets = merged.map((a) => ({
-    ...a,
-    pct: totalUSD > 0 ? (a.value_usd / totalUSD) * 100 : 0,
+  // Add percentage allocation for each coin
+  const portfolio = assets.map((w) => ({
+    symbol:     w.symbol,
+    name:       w.name,
+    icon:       w.icon,
+    color:      w.color,
+    amount:     w.amount,
+    price:      w.price,
+    usd_value:  w.usd_value,
+    change_24h: w.change_24h,
+    change_7d:  w.change_7d,
+    pct:        totalUSD > 0 ? (w.usd_value / totalUSD) * 100 : 0,
+    address:    w.address,
   }));
 
-  return NextResponse.json({
-    totalUSD,
-    assets,
-  });
+  return NextResponse.json({ totalUSD, assets: portfolio });
 }

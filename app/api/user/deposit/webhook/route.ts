@@ -54,7 +54,7 @@ export async function POST(req: Request) {
       .update({ status: "completed" })
       .eq("id", session.id);
 
-    // ⭐ Insert unified ledger transaction
+    // Insert unified ledger transaction
     await recordTransaction({
       user_id: session.user_id,
       type: "Deposit",

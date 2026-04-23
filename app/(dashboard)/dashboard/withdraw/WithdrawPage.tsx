@@ -65,7 +65,7 @@ const receiveAmount =
 
       // 1. Load wallets
       const { data: walletRows } = await supabase
-        .from("wallets")
+        .from("wallets_with_value")
         .select("*")
         .eq("user_id", user.id);
 

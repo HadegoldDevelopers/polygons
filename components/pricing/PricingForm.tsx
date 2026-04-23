@@ -62,28 +62,36 @@ export function PricingForm({
           Choose plan
         </label>
         <div className="flex flex-col gap-2">
-          {plans.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => setSelectedPlan(p)}
-              className={`flex items-center justify-between px-4 py-3 rounded-xl border text-sm font-bold transition-all ${
-                selectedPlan?.id === p.id
-                  ? "bg-[#FF7900]/15 border-[#FF7900]/40 text-[#FF7900]"
-                  : "bg-[#1a1a24] border-white/8 hover:border-white/20"
-              }`}
-            >
-              <span>{p.name ?? `${p.duration_days} days`}</span>
-              <span
-                className={
-                  selectedPlan?.id === p.id
-                    ? "text-[#FF7900]"
-                    : "text-[#00d4aa]"
-                }
-              >
-                {p.daily_profit}% daily
-              </span>
-            </button>
-          ))}
+          {plans.map((p) => {
+  const isSelected = selectedPlan?.id === p.id;
+
+  return (
+    <div key={p.id} className="rounded-xl overflow-hidden border border-white/8">
+      {/* Plan Button */}
+      <button
+        onClick={() => setSelectedPlan(p)}
+        className={`w-full flex items-center justify-between px-4 py-3 text-sm font-bold transition-all ${
+          isSelected
+            ? "bg-[#FF7900]/15 border-[#FF7900]/40 text-[#FF7900]"
+            : "bg-[#1a1a24] hover:border-white/20"
+        }`}
+      >
+        <span>{p.name ?? `${p.duration_days} days`}</span>
+
+        <span className={isSelected ? "text-[#FF7900]" : "text-[#00d4aa]"}>
+          {p.daily_profit}% daily
+        </span>
+      </button>
+
+      {/* Dropdown Description */}
+      {isSelected && p.notes && (
+        <div className="px-4 py-3 bg-[#111118] text-xs text-white/60 border-t border-white/10 animate-slideDown">
+          {p.notes}
+        </div>
+      )}
+    </div>
+  );
+})}
         </div>
       </div>
 
@@ -106,7 +114,7 @@ export function PricingForm({
         {loadingAction ? (
           <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
         ) : (
-          "Start investment 📈"
+          "Start investment"
         )}
       </button>
     </div>
