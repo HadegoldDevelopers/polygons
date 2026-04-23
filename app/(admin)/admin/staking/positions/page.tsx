@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { supabaseService } from "@/lib/supabase/service";
 import { AdminTable, SearchBar, FilterChip, StatusBadge, TableSkeleton } from "@/components/admin/ui/AdminUI";
 
 export default function StakingPositionsPage() {
@@ -11,18 +10,14 @@ export default function StakingPositionsPage() {
   const [loading,   setLoading]   = useState(true);
 
   const load = async () => {
-    let q = supabaseService
-      .from("staking_positions")
-      .select("*, profiles(name, email), staking_plans(name, apr)")
-      .order("created_at", { ascending: false });
-    if (filter !== "all") q = q.eq("status", filter);
-    const { data } = await q;
-    setPositions(data ?? []);
-    setFiltered(data ?? []);
-    setLoading(false);
-  };
+  const res = await fetch(`/api/admin/staking/positions?status=${filter}`);
+  const json = await res.json();
+  setPositions(json.positions ?? []);
+  setFiltered(json.positions ?? []);
+  setLoading(false);
+};
+useEffect(() => { load(); }, [filter]);
 
-  useEffect(() => { load(); }, [filter]);
 
   useEffect(() => {
     if (!search) { setFiltered(positions); return; }
@@ -30,7 +25,7 @@ export default function StakingPositionsPage() {
     setFiltered(positions.filter((p) =>
       p.profiles?.name?.toLowerCase().includes(q) ||
       p.profiles?.email?.toLowerCase().includes(q) ||
-      p.staking_plans?.name?.toLowerCase().includes(q)
+      p.staking_terms?.name?.toLowerCase().includes(q)
     ));
   }, [search, positions]);
 
@@ -68,10 +63,10 @@ export default function StakingPositionsPage() {
               <p className="text-sm font-bold">{pos.profiles?.name ?? "—"}</p>
               <p className="text-xs text-white/40">{pos.profiles?.email ?? "—"}</p>
             </td>
-            <td className="px-4 py-3.5 text-sm font-bold">{pos.staking_plans?.name ?? "—"}</td>
+            <td className="px-4 py-3.5 text-sm font-bold">{pos.staking_terms?.name ?? "—"}</td>
             <td className="px-4 py-3.5 text-sm font-bold">${(pos.amount ?? 0).toLocaleString()}</td>
             <td className="px-4 py-3.5 text-sm font-bold text-[#00d4aa]">+${(pos.earned ?? 0).toLocaleString()}</td>
-            <td className="px-4 py-3.5 text-sm text-[#FF7900] font-bold">{pos.apy ?? pos.staking_plans?.apr ?? 0}%</td>
+            <td className="px-4 py-3.5 text-sm text-[#FF7900] font-bold">{pos.apy ?? pos.staking_terms?.apr ?? 0}%</td>
             <td className="px-4 py-3.5 text-sm">{pos.days_left ?? 0}d</td>
             <td className="px-4 py-3.5">
               <div className="w-20 h-1.5 bg-white/10 rounded-full">
