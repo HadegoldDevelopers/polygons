@@ -11,7 +11,7 @@ const navItems = [
   { label: "Deposits",        href: "/admin/deposits",           icon: "⬇️" },
   { label: "Withdrawals",     href: "/admin/withdrawals",        icon: "⬆️", badge: "pending" },
   { label: "Wallets",         href: "/admin/wallets",            icon: "💼" },
-  { label: "Staking Plans",   href: "/admin/staking/plans",      icon: "📈" },
+  { label: "Pricing",   href: "/admin/staking/plans",      icon: "📈" },
   { label: "Staking Positions",href: "/admin/staking/positions", icon: "🔒" },
   { label: "Coin Markets",    href: "/admin/coin-markets",       icon: "🪙" },
   { label: "Notifications",   href: "/admin/notifications",      icon: "🔔" },

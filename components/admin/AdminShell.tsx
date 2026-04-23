@@ -12,7 +12,7 @@ const pageTitles: Record<string, string> = {
   "/admin/deposits": "Deposit Sessions",
   "/admin/withdrawals": "Withdrawal Requests",
   "/admin/wallets": "Wallet Balances",
-  "/admin/staking/plans": "Staking Plans",
+  "/admin/staking/plans": "Pricing",
   "/admin/staking/positions": "Staking Positions",
   "/admin/coin-markets": "Coin Markets",
   "/admin/notifications": "Send Notifications",

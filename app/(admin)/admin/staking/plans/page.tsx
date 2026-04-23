@@ -1,35 +1,76 @@
 "use client";
 import { useEffect, useState } from "react";
-import { supabaseService } from "@/lib/supabase/service";
-import { AdminModal, TableSkeleton, StatusBadge } from "@/components/admin/ui/AdminUI";
+import { AdminModal, TableSkeleton } from "@/components/admin/ui/AdminUI";
 import type { StakingPlan } from "@/lib/admin/types";
 
 const emptyPlan: Partial<StakingPlan> = {
-  name: "", min_deposit: 0, max_deposit: undefined,
-  daily_profit: 0, apr: 0, duration_days: 30,
-  referral_bonus: 0, notes: [],
+  name: "",
+  min_deposit: 0,
+  max_deposit: undefined,
+  daily_profit: 0,
+  apr: 0,
+  duration_days: 30,
+  referral_bonus: 0,
+  notes: [],
 };
 
 export default function StakingPlansPage() {
-  const [plans,   setPlans]   = useState<StakingPlan[]>([]);
+  const [plans, setPlans] = useState<StakingPlan[]>([]);
   const [loading, setLoading] = useState(true);
-  const [modal,   setModal]   = useState(false);
+  const [modal, setModal] = useState(false);
   const [editing, setEditing] = useState<Partial<StakingPlan>>(emptyPlan);
-  const [isEdit,  setIsEdit]  = useState(false);
-  const [saving,  setSaving]  = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [noteInput, setNoteInput] = useState("");
 
   const load = async () => {
-    const { data } = await supabaseService
-      .from("staking_plans")
-      .select("*")
-      .order("min_deposit", { ascending: true });
-    setPlans(data ?? []);
+    const res = await fetch("/api/admin/staking/plans");
+    const json = await res.json();
+    setPlans(json.plans ?? []);
     setLoading(false);
   };
 
   useEffect(() => { load(); }, []);
 
+  const save = async () => {
+    setSaving(true);
+
+    const payload = {
+      name: editing.name,
+      min_deposit: editing.min_deposit,
+      max_deposit: editing.max_deposit ?? null,
+      daily_profit: editing.daily_profit ?? 0,
+      apr: editing.apr ?? 0,
+      duration_days: editing.duration_days ?? 30,
+      referral_bonus: editing.referral_bonus ?? 0,
+      notes: editing.notes ?? [],
+    };
+
+    if (isEdit && editing.id) {
+      await fetch("/api/admin/staking/plans", {
+        method: "PATCH",
+        body: JSON.stringify({ id: editing.id, ...payload }),
+      });
+    } else {
+      await fetch("/api/admin/staking/plans", {
+        method: "POST",
+        body: JSON.stringify(payload),
+      });
+    }
+
+    await load();
+    setModal(false);
+    setSaving(false);
+  };
+
+  const deletePlan = async (id: string) => {
+    await fetch("/api/admin/staking/plans", {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+    });
+
+    setPlans((prev) => prev.filter((p) => p.id !== id));
+  };
   const openCreate = () => {
     setEditing(emptyPlan);
     setIsEdit(false);
@@ -44,52 +85,27 @@ export default function StakingPlansPage() {
     setModal(true);
   };
 
-  const save = async () => {
-    setSaving(true);
-    const payload = {
-      name:           editing.name,
-      min_deposit:    editing.min_deposit,
-      max_deposit:    editing.max_deposit ?? null,
-      daily_profit:   editing.daily_profit ?? 0,
-      apr:            editing.apr ?? 0,
-      duration_days:  editing.duration_days ?? 30,
-      referral_bonus: editing.referral_bonus ?? 0,
-      notes:          editing.notes ?? [],
-    };
-
-    if (isEdit && editing.id) {
-      await supabaseService.from("staking_plans").update(payload).eq("id", editing.id);
-    } else {
-      await supabaseService.from("staking_plans").insert(payload);
-    }
-
-    await load();
-    setModal(false);
-    setSaving(false);
-  };
-
-  const deletePlan = async (id: string) => {
-    await supabaseService.from("staking_plans").delete().eq("id", id);
-    setPlans((prev) => prev.filter((p) => p.id !== id));
-  };
-
   const addNote = () => {
     if (!noteInput.trim()) return;
-    setEditing((prev) => ({ ...prev, notes: [...(prev.notes ?? []), noteInput.trim()] }));
+    setEditing((prev) => ({
+      ...prev,
+      notes: [...(prev.notes ?? []), noteInput.trim()],
+    }));
     setNoteInput("");
   };
 
   const removeNote = (i: number) => {
-    setEditing((prev) => ({ ...prev, notes: prev.notes?.filter((_, idx) => idx !== i) }));
+    setEditing((prev) => ({
+      ...prev,
+      notes: prev.notes?.filter((_, idx) => idx !== i),
+    }));
   };
-
-  if (loading) return <TableSkeleton rows={5} cols={7} />;
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-xl font-black mb-0.5">Staking Plans</h1>
+          <h1 className="text-xl font-black mb-0.5">Pricing</h1>
           <p className="text-sm text-white/40">{plans.length} plans</p>
         </div>
         <button onClick={openCreate} className="btn-primary max-w-[160px] py-2.5">
