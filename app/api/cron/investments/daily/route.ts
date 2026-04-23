@@ -1,9 +1,9 @@
-import { supabaseServer } from "@/lib/supabase/supabaseServer";
+import { supabaseService } from "@/lib/supabase/service";
 import { recordTransaction } from "@/lib/helper/transactions";
 import { createNotification } from "@/lib/helper/notifications";
 
 export async function GET() {
-  const supabase = await supabaseServer();
+  const supabase = supabaseService;
 
   // Fetch all active plans
   const { data: positions, error } = await supabase
