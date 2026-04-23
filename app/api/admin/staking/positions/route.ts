@@ -22,9 +22,10 @@ export async function GET(req: Request) {
   const status = searchParams.get("status") ?? "active";
 
   let query = supabaseService
-    .from("staking_positions")
-    .select("*, profiles(name, email), staking_terms(name, apr, months)")
-    .order("created_at", { ascending: false });
+  .from("staking_positions")
+  .select("*, profiles(name, email), staking_terms(name, apr, months), coins_market(decimals)")
+  .order("created_at", { ascending: false });
+
 
   if (status !== "all") query = query.eq("status", status);
 

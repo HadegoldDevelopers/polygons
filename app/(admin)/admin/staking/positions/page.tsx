@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { formatCoin } from "@/lib/helper/decimal";
 import { AdminTable, SearchBar, FilterChip, StatusBadge, TableSkeleton } from "@/components/admin/ui/AdminUI";
 
 export default function StakingPositionsPage() {
@@ -64,8 +65,10 @@ useEffect(() => { load(); }, [filter]);
               <p className="text-xs text-white/40">{pos.profiles?.email ?? "—"}</p>
             </td>
             <td className="px-4 py-3.5 text-sm font-bold">{pos.staking_terms?.name ?? "—"}</td>
-            <td className="px-4 py-3.5 text-sm font-bold">${(pos.amount ?? 0).toLocaleString()}</td>
-            <td className="px-4 py-3.5 text-sm font-bold text-[#00d4aa]">+${(pos.earned ?? 0).toLocaleString()}</td>
+            <td className="px-4 py-3.5 text-sm font-bold">{formatCoin(pos.amount, pos.coin, pos.coins_market?.decimals ?? 8)} {pos.coin}
+</td>
+            <td className="px-4 py-3.5 text-sm font-bold text-[#00d4aa]">+{formatCoin(pos.earned, pos.coin, pos.coins_market?.decimals ?? 8)} {pos.coin}
+</td>
             <td className="px-4 py-3.5 text-sm text-[#FF7900] font-bold">{pos.apy ?? pos.staking_terms?.apr ?? 0}%</td>
             <td className="px-4 py-3.5 text-sm">{pos.days_left ?? 0}d</td>
             <td className="px-4 py-3.5">
