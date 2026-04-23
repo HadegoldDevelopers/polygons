@@ -216,11 +216,11 @@ export default function RegisterForm() {
           />
           <span>
             I agree to the{" "}
-            <a href="/privacy" className="text-[#FF7900]">
+            <a href="/aml-kyc" className="text-[#FF7900]">
               Terms of Service
             </a>{" "}
             and{" "}
-            <a href="#" className="text-[#FF7900]">
+            <a href="/privacy" className="text-[#FF7900]">
               Privacy Policy
             </a>
           </span>
