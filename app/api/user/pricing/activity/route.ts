@@ -25,19 +25,21 @@ export async function GET(req: Request) {
   const { data: positions, error } = await supabase
     .from("plan_positions")
     .select(`
-      id,
-      amount,
-      daily_profit_snapshot,
-      duration_days_snapshot,
-      created_at,
-      end_date,
-      status,
-      staking_plans (
-        name,
-        duration_days,
-        daily_profit
-      )
-    `)
+  id,
+  amount,
+  daily_profit_snapshot,
+  duration_days_snapshot,
+  created_at,
+  end_date,
+  status,
+  earned_so_far,
+  last_credited_at,
+  staking_plans (
+    name,
+    duration_days,
+    daily_profit
+  )
+`)
     .eq("user_id", user.id)
     .order("created_at", { ascending: false })
     .range(from, to);
@@ -68,12 +70,6 @@ export async function GET(req: Request) {
       hasMore: (positions?.length ?? 0) === limit,
     },
   };
-
-  // Debug (remove in production)
-  console.log(
-    "Payload size (KB):",
-    (JSON.stringify(response).length / 1024).toFixed(2)
-  );
 
   return NextResponse.json(response);
 }

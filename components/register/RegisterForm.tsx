@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabaseClient";
+import { countries } from "@/lib/data/countries";
 import { Logo, PasswordInput, StrengthMeter } from "@/components/ui";
 
 export default function RegisterForm() {
@@ -26,9 +27,9 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false);
 
   const set =
-    (key: keyof typeof form) =>
-    (e: React.ChangeEvent<HTMLInputElement>) =>
-      setForm((f) => ({ ...f, [key]: e.target.value }));
+  (key: keyof typeof form) =>
+  (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+    setForm((f) => ({ ...f, [key]: e.target.value }));
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -97,6 +98,22 @@ export default function RegisterForm() {
     setLoading(false);
     router.push("/dashboard");
   }
+useEffect(() => {
+  async function detectCountry() {
+    try {
+      const res = await fetch("https://ipapi.co/json/");
+      const data = await res.json();
+
+      if (data?.country_name) {
+        setForm((f) => ({ ...f, country: data.country_name }));
+      }
+    } catch (e) {
+      console.log("Country detection failed");
+    }
+  }
+
+  detectCountry();
+}, []);
 
   return (
     <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-10 shadow-2xl relative z-10">
@@ -160,13 +177,20 @@ export default function RegisterForm() {
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
             Country
           </label>
-          <input
-            type="text"
-            className="field"
-            placeholder="United States"
-            value={form.country}
-            onChange={set("country")}
-          />
+         <select
+  className="field"
+  value={form.country}
+  onChange={set("country")}
+>
+  <option value="">Select your country</option>
+  {countries.map((c) => (
+    <option key={c.code} value={c.name}>
+      {c.name}
+    </option>
+  ))}
+</select>
+
+
         </div>
 
         <div>

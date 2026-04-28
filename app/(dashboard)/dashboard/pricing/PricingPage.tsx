@@ -57,7 +57,7 @@ export default function PricingPage() {
   // Load positions
   // ───────────────────────────────────────────────
   const loadPositions = async () => {
-    const res = await fetch("/api/user/pricing/position");
+    const res = await fetch("/api/user/pricing/positions");
     const { positions: pos, balance: bal } = await res.json();
 
     const computed = (pos ?? []).map((p: PricingPosition) =>
@@ -81,11 +81,6 @@ export default function PricingPage() {
 
         const { plans: p } = await resPlans.json();
         const { positions: pos, balance: bal } = await resPos.json();
-
-console.log("PLANS:", p);
-console.log("POSITIONS:", pos);
-console.log("BALANCE:", bal);
-
 
         setPlans(p ?? []);
         setSelectedPlan(p?.[0] ?? null);

@@ -58,7 +58,7 @@ export async function POST(req: Request) {
   // Fetch plan (include min/max if you have them)
   const { data: plan, error: planError } = await supabase
     .from("staking_plans")
-    .select("daily_profit, duration_days, min_deposit, max_deposit")
+    .select("daily_profit, duration_days, min_deposit, max_deposit, name")
     .eq("id", plan_id)
     .single();
 
@@ -161,7 +161,7 @@ export async function POST(req: Request) {
 
   await createNotification(
     user.id,
-    `Investment Started: $${amount} in plan ${plan_id} with daily profit ${daily}% for ${duration} days.`
+    `Investment Started: $${amount} in plan ${plan.name} with daily profit ${daily}% for ${duration} days.`
   );
 
   return Response.json({ success: true });

@@ -109,10 +109,7 @@ export default function Topbar({ title, onMenuClick }: TopbarProps) {
             setNotifs((prev) => [payload.new as Notification, ...prev]);
           }
         )
-        .subscribe((status) => {
-          if (status === "SUBSCRIBED") {
-            console.log("Realtime notifications connected");
-          }
+        .subscribe(() => {
         });
     };
 

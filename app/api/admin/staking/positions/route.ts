@@ -32,7 +32,6 @@ export async function GET(req: Request) {
   const { data, error } = await query;
 
   if (error) {
-    console.error("STAKING POSITIONS ERROR:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 

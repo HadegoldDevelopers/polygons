@@ -47,7 +47,6 @@ export async function GET(req: Request) {
     const { data, error, count } = await query.range(from, to);
 
     if (error) {
-      console.error("WITHDRAW REQUESTS ERROR:", error);
       return NextResponse.json(
         { error: error.message },
         { status: 500 }

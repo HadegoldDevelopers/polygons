@@ -17,7 +17,6 @@ export async function GET(req: Request) {
   if (filter !== "all") query = query.eq("type", filter);
 
   const { data, count, error } = await query;
-console.log("Transactions query", { data, count, error });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 

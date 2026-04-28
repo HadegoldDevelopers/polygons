@@ -17,7 +17,6 @@ export function ActivePlans({
   historyLimit,
   setHistoryLimit,
   activeCount,
-  loadingAction,
 }: Props) {
   return (
     <div className="card space-y-5">
@@ -44,10 +43,10 @@ export function ActivePlans({
             const plan = pos.staking_plans;
 
             // Snapshot values
-            const dailyPercent = pos.daily_profit_snapshot ?? 0;
-            const duration = pos.duration_days_snapshot ?? 0;
+            const dailyPercent = Number(pos.daily_profit_snapshot ?? 0);
+            const duration = Number(pos.duration_days_snapshot ?? 0);
 
-            // Compute days left
+            // Compute days left from end_date
             const end = new Date(pos.end_date);
             const now = new Date();
             const msLeft = end.getTime() - now.getTime();
@@ -56,20 +55,21 @@ export function ActivePlans({
               0
             );
 
-            // Compute progress
+            // Compute progress from created_at + duration
             const created = new Date(pos.created_at);
             const msElapsed = now.getTime() - created.getTime();
-            const daysElapsed = Math.floor(
-              msElapsed / (1000 * 60 * 60 * 24)
+            const daysElapsed = Math.max(
+              Math.floor(msElapsed / (1000 * 60 * 60 * 24)),
+              0
             );
+
             const progress =
               duration > 0
                 ? Math.min((daysElapsed / duration) * 100, 100)
                 : 0;
 
-            // Compute earned
-            const earned =
-              pos.amount * (dailyPercent / 100) * daysElapsed;
+            // Earned from DB (cron result)
+            const earned = Number(pos.earned_so_far ?? 0);
 
             return (
               <div
@@ -91,7 +91,7 @@ export function ActivePlans({
                   <div className="flex justify-between text-sm">
                     <span className="text-white/45">Invested amount</span>
                     <span className="font-bold">
-                      ${pos.amount.toLocaleString()}
+                      ${Number(pos.amount).toLocaleString()}
                     </span>
                   </div>
 

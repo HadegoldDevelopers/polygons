@@ -114,10 +114,6 @@ export async function POST(req: Request) {
   .select()
   .single();
 
-console.log("UPDATED WALLET:", updatedWallet, updateError);
-
-
-
     // ─────────────────────────────────────────────
     // Create staking position
     // ─────────────────────────────────────────────

@@ -35,8 +35,6 @@ async function testWebhook() {
 
     if (insertError) throw insertError;
 
-    console.log('✅ Created test deposit session:', session);
-
     // 3️⃣ Call your webhook code directly
     const { POST } = await import('./pages/api/deposit-webhook.js'); // adjust path if needed
     const req = new Request('http://localhost:3000/api/deposit-webhook', {

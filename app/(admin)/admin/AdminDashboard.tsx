@@ -16,7 +16,6 @@ export default function AdminDashboard() {
     setStats(data.stats);
     setRecentTx(data.recentTx);
     setLoading(false);
-    console.log(data);
   };
 
   load();
