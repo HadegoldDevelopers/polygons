@@ -251,6 +251,37 @@
   "createOne": "Create one",
   "invalidCredentials": "Invalid email or password.",
   "fillAllFields": "Please fill in all fields."
+},
+"register": {
+  "createAccount": "Create account",
+  "subtitle": "Join the waitlist to get early access and be the first to know when we launch!",
+  "firstName": "First name",
+  "firstNamePlaceholder": "John",
+  "lastName": "Last name",
+  "lastNamePlaceholder": "Doe",
+  "email": "Email address",
+  "emailPlaceholder": "you@example.com",
+  "country": "Country",
+  "selectCountry": "Select your country",
+  "phone": "Phone number",
+  "phonePlaceholder": "+1 555-123-4567",
+  "password": "Password",
+  "passwordPlaceholder": "Min. 8 characters",
+  "confirmPassword": "Confirm password",
+  "confirmPasswordPlaceholder": "Repeat password",
+  "agreeTo": "I agree to the",
+  "termsOfService": "Terms of Service",
+  "privacyPolicy": "Privacy Policy",
+  "and": "and",
+  "createAccountBtn": "Create Account →",
+  "alreadyHaveAccount": "Already have an account?",
+  "signIn": "Sign in",
+  "fillAllFields": "Please fill in all fields.",
+  "passwordsNoMatch": "Passwords do not match.",
+  "passwordMin": "Password must be at least 8 characters.",
+  "acceptTerms": "Please accept the Terms of Service.",
+  "signupFailed": "Signup failed."
 }
+
 
 }

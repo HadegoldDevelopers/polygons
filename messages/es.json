@@ -258,6 +258,37 @@
   "createOne": "Crea una",
   "invalidCredentials": "Correo o contraseña incorrectos.",
   "fillAllFields": "Por favor completa todos los campos."
+},
+"register": {
+  "createAccount": "Crear cuenta",
+  "subtitle": "Únete a la lista de espera para obtener acceso anticipado y ser el primero en enterarte del lanzamiento.",
+  "firstName": "Nombre",
+  "firstNamePlaceholder": "Juan",
+  "lastName": "Apellido",
+  "lastNamePlaceholder": "Pérez",
+  "email": "Correo electrónico",
+  "emailPlaceholder": "tu@ejemplo.com",
+  "country": "País",
+  "selectCountry": "Selecciona tu país",
+  "phone": "Número de teléfono",
+  "phonePlaceholder": "+34 600-123-456",
+  "password": "Contraseña",
+  "passwordPlaceholder": "Mín. 8 caracteres",
+  "confirmPassword": "Confirmar contraseña",
+  "confirmPasswordPlaceholder": "Repite la contraseña",
+  "agreeTo": "Acepto los",
+  "termsOfService": "Términos de Servicio",
+  "privacyPolicy": "Política de Privacidad",
+  "and": "y",
+  "createAccountBtn": "Crear cuenta →",
+  "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+  "signIn": "Inicia sesión",
+  "fillAllFields": "Por favor completa todos los campos.",
+  "passwordsNoMatch": "Las contraseñas no coinciden.",
+  "passwordMin": "La contraseña debe tener al menos 8 caracteres.",
+  "acceptTerms": "Por favor acepta los Términos de Servicio.",
+  "signupFailed": "Error al registrarse."
 }
+
 
 }

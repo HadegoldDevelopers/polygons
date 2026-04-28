@@ -258,6 +258,37 @@
   "createOne": "Δημιούργησε έναν",
   "invalidCredentials": "Λανθασμένο email ή κωδικός.",
   "fillAllFields": "Παρακαλώ συμπλήρωσε όλα τα πεδία."
+},
+"register": {
+  "createAccount": "Δημιουργία λογαριασμού",
+  "subtitle": "Μπες στη λίστα αναμονής για έγκαιρη πρόσβαση και μάθε πρώτος πότε θα λανσάρουμε!",
+  "firstName": "Όνομα",
+  "firstNamePlaceholder": "Γιάννης",
+  "lastName": "Επώνυμο",
+  "lastNamePlaceholder": "Παπαδόπουλος",
+  "email": "Διεύθυνση email",
+  "emailPlaceholder": "εσύ@example.com",
+  "country": "Χώρα",
+  "selectCountry": "Επίλεξε τη χώρα σου",
+  "phone": "Τηλέφωνο",
+  "phonePlaceholder": "+30 690 123 4567",
+  "password": "Κωδικός πρόσβασης",
+  "passwordPlaceholder": "Ελάχιστο 8 χαρακτήρες",
+  "confirmPassword": "Επιβεβαίωση κωδικού",
+  "confirmPasswordPlaceholder": "Επανάλαβε τον κωδικό",
+  "agreeTo": "Συμφωνώ με τους",
+  "termsOfService": "Όρους Χρήσης",
+  "privacyPolicy": "Πολιτική Απορρήτου",
+  "and": "και",
+  "createAccountBtn": "Δημιουργία λογαριασμού →",
+  "alreadyHaveAccount": "Έχεις ήδη λογαριασμό;",
+  "signIn": "Σύνδεση",
+  "fillAllFields": "Παρακαλώ συμπλήρωσε όλα τα πεδία.",
+  "passwordsNoMatch": "Οι κωδικοί δεν ταιριάζουν.",
+  "passwordMin": "Ο κωδικός πρέπει να έχει τουλάχιστον 8 χαρακτήρες.",
+  "acceptTerms": "Παρακαλώ αποδέξου τους Όρους Χρήσης.",
+  "signupFailed": "Η εγγραφή απέτυχε."
 }
+
 
 }

@@ -258,6 +258,37 @@
   "createOne": "Създай един",
   "invalidCredentials": "Невалиден имейл или парола.",
   "fillAllFields": "Моля, попълни всички полета."
+},
+"register": {
+  "createAccount": "Създай акаунт",
+  "subtitle": "Присъедини се към списъка с чакащи за ранен достъп и първи научи кога стартираме!",
+  "firstName": "Име",
+  "firstNamePlaceholder": "Иван",
+  "lastName": "Фамилия",
+  "lastNamePlaceholder": "Иванов",
+  "email": "Имейл адрес",
+  "emailPlaceholder": "ti@example.com",
+  "country": "Държава",
+  "selectCountry": "Избери държава",
+  "phone": "Телефонен номер",
+  "phonePlaceholder": "+359 888 123 456",
+  "password": "Парола",
+  "passwordPlaceholder": "Мин. 8 символа",
+  "confirmPassword": "Потвърди паролата",
+  "confirmPasswordPlaceholder": "Повтори паролата",
+  "agreeTo": "Съгласявам се с",
+  "termsOfService": "Условията за ползване",
+  "privacyPolicy": "Политиката за поверителност",
+  "and": "и",
+  "createAccountBtn": "Създай акаунт →",
+  "alreadyHaveAccount": "Вече имаш акаунт?",
+  "signIn": "Вход",
+  "fillAllFields": "Моля, попълни всички полета.",
+  "passwordsNoMatch": "Паролите не съвпадат.",
+  "passwordMin": "Паролата трябва да е поне 8 символа.",
+  "acceptTerms": "Моля, приеми Условията за ползване.",
+  "signupFailed": "Регистрацията не бе успешна."
 }
+
 
 }

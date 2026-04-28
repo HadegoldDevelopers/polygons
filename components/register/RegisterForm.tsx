@@ -6,8 +6,12 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/supabaseClient";
 import { countries } from "@/lib/data/countries";
 import { Logo, PasswordInput, StrengthMeter } from "@/components/ui";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function RegisterForm() {
+  const t = useTranslations("register");
+  const locale = useLocale();
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const referralCode = searchParams.get("ref");
@@ -27,34 +31,33 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false);
 
   const set =
-  (key: keyof typeof form) =>
-  (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setForm((f) => ({ ...f, [key]: e.target.value }));
+    (key: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+      setForm((f) => ({ ...f, [key]: e.target.value }));
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
 
     if (!form.firstName || !form.lastName || !form.email || !form.password) {
-      setError("Please fill in all fields.");
+      setError(t("fillAllFields"));
       return;
     }
     if (form.password !== form.confirm) {
-      setError("Passwords do not match.");
+      setError(t("passwordsNoMatch"));
       return;
     }
     if (form.password.length < 8) {
-      setError("Password must be at least 8 characters.");
+      setError(t("passwordMin"));
       return;
     }
     if (!terms) {
-      setError("Please accept the Terms of Service.");
+      setError(t("acceptTerms"));
       return;
     }
 
     setLoading(true);
 
-    // 1. SIGN UP USER
     const { data, error: signupError } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
@@ -75,12 +78,11 @@ export default function RegisterForm() {
 
     const user = data.user;
     if (!user) {
-      setError("Signup failed.");
+      setError(t("signupFailed"));
       setLoading(false);
       return;
     }
 
-    // 2. CALL API TO CREATE PROFILE + WALLETS + REFERRAL
     await fetch("/api/user/auth/setup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -96,34 +98,38 @@ export default function RegisterForm() {
     });
 
     setLoading(false);
-    router.push("/dashboard");
+    router.push(`/${locale}/dashboard`);
   }
-useEffect(() => {
-  async function detectCountry() {
-    try {
-      const res = await fetch("https://ipapi.co/json/");
-      const data = await res.json();
 
-      if (data?.country_name) {
-        setForm((f) => ({ ...f, country: data.country_name }));
+  useEffect(() => {
+    async function detectCountry() {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+
+        if (data?.country_name) {
+          setForm((f) => ({ ...f, country: data.country_name }));
+        }
+      } catch (e) {
+        console.log("Country detection failed");
       }
-    } catch (e) {
-      console.log("Country detection failed");
     }
-  }
 
-  detectCountry();
-}, []);
+    detectCountry();
+  }, []);
 
   return (
     <div className="w-full max-w-[440px] bg-[#111118] border border-white/8 rounded-2xl p-10 shadow-2xl relative z-10">
       <div className="flex justify-center mb-8">
-          <Logo size="md" />
+        <Logo size="md" />
       </div>
 
-      <h1 className="text-2xl font-black text-center mb-1">Create account</h1>
+      <h1 className="text-2xl font-black text-center mb-1">
+        {t("createAccount")}
+      </h1>
+
       <p className="text-sm text-white/45 text-center mb-7">
-        Join the waitlist to get early access and be the first to know when we launch!
+        {t("subtitle")}
       </p>
 
       {error && (
@@ -136,24 +142,25 @@ useEffect(() => {
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-              First name
+              {t("firstName")}
             </label>
             <input
               type="text"
               className="field"
-              placeholder="John"
+              placeholder={t("firstNamePlaceholder")}
               value={form.firstName}
               onChange={set("firstName")}
             />
           </div>
+
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-              Last name
+              {t("lastName")}
             </label>
             <input
               type="text"
               className="field"
-              placeholder="Doe"
+              placeholder={t("lastNamePlaceholder")}
               value={form.lastName}
               onChange={set("lastName")}
             />
@@ -162,12 +169,12 @@ useEffect(() => {
 
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Email address
+            {t("email")}
           </label>
           <input
             type="email"
             className="field"
-            placeholder="you@example.com"
+            placeholder={t("emailPlaceholder")}
             value={form.email}
             onChange={set("email")}
           />
@@ -175,32 +182,27 @@ useEffect(() => {
 
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Country
+            {t("country")}
           </label>
-         <select
-  className="field"
-  value={form.country}
-  onChange={set("country")}
->
-  <option value="">Select your country</option>
-  {countries.map((c) => (
-    <option key={c.code} value={c.name}>
-      {c.name}
-    </option>
-  ))}
-</select>
 
-
+          <select className="field" value={form.country} onChange={set("country")}>
+            <option value="">{t("selectCountry")}</option>
+            {countries.map((c) => (
+              <option key={c.code} value={c.name}>
+                {c.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Phone number
+            {t("phone")}
           </label>
           <input
             type="number"
             className="field"
-            placeholder="+1 555-123-4567"
+            placeholder={t("phonePlaceholder")}
             value={form.phone}
             onChange={set("phone")}
           />
@@ -208,11 +210,11 @@ useEffect(() => {
 
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Password
+            {t("password")}
           </label>
           <PasswordInput
             id="password"
-            placeholder="Min. 8 characters"
+            placeholder={t("passwordPlaceholder")}
             value={form.password}
             onChange={set("password")}
           />
@@ -221,11 +223,11 @@ useEffect(() => {
 
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Confirm password
+            {t("confirmPassword")}
           </label>
           <PasswordInput
             id="confirm"
-            placeholder="Repeat password"
+            placeholder={t("confirmPasswordPlaceholder")}
             value={form.confirm}
             onChange={set("confirm")}
           />
@@ -239,14 +241,14 @@ useEffect(() => {
             className="accent-[#FF7900] w-4 h-4 mt-0.5"
           />
           <span>
-            I agree to the{" "}
-            <a href="/aml-kyc" className="text-[#FF7900]">
-              Terms of Service
-            </a>{" "}
-            and{" "}
-            <a href="/privacy" className="text-[#FF7900]">
-              Privacy Policy
-            </a>
+            {t("agreeTo")}{" "}
+            <Link href={`/${locale}/aml-kyc`} className="text-[#FF7900]">
+              {t("termsOfService")}
+            </Link>{" "}
+            {t("and")}{" "}
+            <Link href={`/${locale}/privacy`} className="text-[#FF7900]">
+              {t("privacyPolicy")}
+            </Link>
           </span>
         </label>
 
@@ -254,15 +256,18 @@ useEffect(() => {
           {loading ? (
             <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
           ) : (
-            "Create Account →"
+            t("createAccountBtn")
           )}
         </button>
       </form>
 
       <p className="text-center text-sm text-white/45 mt-6">
-        Already have an account?{" "}
-        <Link href="/login" className="text-[#FF7900] font-semibold hover:underline">
-          Sign in
+        {t("alreadyHaveAccount")}{" "}
+        <Link
+          href={`/${locale}/login`}
+          className="text-[#FF7900] font-semibold hover:underline"
+        >
+          {t("signIn")}
         </Link>
       </p>
     </div>

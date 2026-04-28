@@ -258,6 +258,37 @@
   "createOne": "Creane uno",
   "invalidCredentials": "Email o password non validi.",
   "fillAllFields": "Per favore compila tutti i campi."
+},
+"register": {
+  "createAccount": "Crea account",
+  "subtitle": "Unisciti alla lista d’attesa per ottenere accesso anticipato e sapere per primo quando lanceremo!",
+  "firstName": "Nome",
+  "firstNamePlaceholder": "Marco",
+  "lastName": "Cognome",
+  "lastNamePlaceholder": "Rossi",
+  "email": "Indirizzo email",
+  "emailPlaceholder": "tu@example.com",
+  "country": "Paese",
+  "selectCountry": "Seleziona il tuo paese",
+  "phone": "Numero di telefono",
+  "phonePlaceholder": "+39 320 123 4567",
+  "password": "Password",
+  "passwordPlaceholder": "Min. 8 caratteri",
+  "confirmPassword": "Conferma password",
+  "confirmPasswordPlaceholder": "Ripeti la password",
+  "agreeTo": "Accetto i",
+  "termsOfService": "Termini di Servizio",
+  "privacyPolicy": "Informativa sulla Privacy",
+  "and": "e",
+  "createAccountBtn": "Crea account →",
+  "alreadyHaveAccount": "Hai già un account?",
+  "signIn": "Accedi",
+  "fillAllFields": "Per favore compila tutti i campi.",
+  "passwordsNoMatch": "Le password non corrispondono.",
+  "passwordMin": "La password deve contenere almeno 8 caratteri.",
+  "acceptTerms": "Per favore accetta i Termini di Servizio.",
+  "signupFailed": "Registrazione fallita."
 }
+
 
 }

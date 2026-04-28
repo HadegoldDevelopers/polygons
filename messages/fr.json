@@ -258,6 +258,37 @@
   "createOne": "Créez-en un",
   "invalidCredentials": "E-mail ou mot de passe incorrect.",
   "fillAllFields": "Veuillez remplir tous les champs."
+},
+"register": {
+  "createAccount": "Créer un compte",
+  "subtitle": "Rejoignez la liste d’attente pour obtenir un accès anticipé et être informé dès le lancement.",
+  "firstName": "Prénom",
+  "firstNamePlaceholder": "Jean",
+  "lastName": "Nom",
+  "lastNamePlaceholder": "Dupont",
+  "email": "Adresse e-mail",
+  "emailPlaceholder": "vous@exemple.com",
+  "country": "Pays",
+  "selectCountry": "Sélectionnez votre pays",
+  "phone": "Numéro de téléphone",
+  "phonePlaceholder": "+33 6 12 34 56 78",
+  "password": "Mot de passe",
+  "passwordPlaceholder": "Min. 8 caractères",
+  "confirmPassword": "Confirmer le mot de passe",
+  "confirmPasswordPlaceholder": "Répétez le mot de passe",
+  "agreeTo": "J’accepte les",
+  "termsOfService": "Conditions d’utilisation",
+  "privacyPolicy": "Politique de confidentialité",
+  "and": "et",
+  "createAccountBtn": "Créer un compte →",
+  "alreadyHaveAccount": "Vous avez déjà un compte ?",
+  "signIn": "Connexion",
+  "fillAllFields": "Veuillez remplir tous les champs.",
+  "passwordsNoMatch": "Les mots de passe ne correspondent pas.",
+  "passwordMin": "Le mot de passe doit contenir au moins 8 caractères.",
+  "acceptTerms": "Veuillez accepter les Conditions d’utilisation.",
+  "signupFailed": "Échec de l’inscription."
 }
+
 
 }

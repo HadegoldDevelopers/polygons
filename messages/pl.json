@@ -258,6 +258,37 @@
   "createOne": "Utwórz je",
   "invalidCredentials": "Nieprawidłowy e-mail lub hasło.",
   "fillAllFields": "Proszę wypełnić wszystkie pola."
+},
+"register": {
+  "createAccount": "Utwórz konto",
+  "subtitle": "Dołącz do listy oczekujących, aby uzyskać wczesny dostęp i dowiedzieć się pierwszy o starcie!",
+  "firstName": "Imię",
+  "firstNamePlaceholder": "Jan",
+  "lastName": "Nazwisko",
+  "lastNamePlaceholder": "Kowalski",
+  "email": "Adres e-mail",
+  "emailPlaceholder": "ty@example.com",
+  "country": "Kraj",
+  "selectCountry": "Wybierz swój kraj",
+  "phone": "Numer telefonu",
+  "phonePlaceholder": "+48 600 123 456",
+  "password": "Hasło",
+  "passwordPlaceholder": "Min. 8 znaków",
+  "confirmPassword": "Potwierdź hasło",
+  "confirmPasswordPlaceholder": "Powtórz hasło",
+  "agreeTo": "Zgadzam się na",
+  "termsOfService": "Regulamin",
+  "privacyPolicy": "Politykę prywatności",
+  "and": "oraz",
+  "createAccountBtn": "Utwórz konto →",
+  "alreadyHaveAccount": "Masz już konto?",
+  "signIn": "Zaloguj się",
+  "fillAllFields": "Proszę wypełnić wszystkie pola.",
+  "passwordsNoMatch": "Hasła nie są takie same.",
+  "passwordMin": "Hasło musi mieć co najmniej 8 znaków.",
+  "acceptTerms": "Proszę zaakceptować Regulamin.",
+  "signupFailed": "Rejestracja nie powiodła się."
 }
+
 
 }

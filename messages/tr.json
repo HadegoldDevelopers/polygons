@@ -258,6 +258,37 @@
   "createOne": "Hesap oluştur",
   "invalidCredentials": "Geçersiz e‑posta veya şifre.",
   "fillAllFields": "Lütfen tüm alanları doldurun."
+},
+"register": {
+  "createAccount": "Hesap oluştur",
+  "subtitle": "Erken erişim için bekleme listesine katıl ve lansmanı ilk öğrenen ol!",
+  "firstName": "Ad",
+  "firstNamePlaceholder": "Ahmet",
+  "lastName": "Soyad",
+  "lastNamePlaceholder": "Yılmaz",
+  "email": "E‑posta adresi",
+  "emailPlaceholder": "sen@example.com",
+  "country": "Ülke",
+  "selectCountry": "Ülkeni seç",
+  "phone": "Telefon numarası",
+  "phonePlaceholder": "+90 555 123 4567",
+  "password": "Şifre",
+  "passwordPlaceholder": "En az 8 karakter",
+  "confirmPassword": "Şifreyi doğrula",
+  "confirmPasswordPlaceholder": "Şifreyi tekrar et",
+  "agreeTo": "Şu şartları kabul ediyorum:",
+  "termsOfService": "Hizmet Şartları",
+  "privacyPolicy": "Gizlilik Politikası",
+  "and": "ve",
+  "createAccountBtn": "Hesap oluştur →",
+  "alreadyHaveAccount": "Zaten hesabın var mı?",
+  "signIn": "Giriş yap",
+  "fillAllFields": "Lütfen tüm alanları doldurun.",
+  "passwordsNoMatch": "Şifreler eşleşmiyor.",
+  "passwordMin": "Şifre en az 8 karakter olmalıdır.",
+  "acceptTerms": "Lütfen Hizmet Şartlarını kabul edin.",
+  "signupFailed": "Kayıt başarısız oldu."
 }
+
 
 }
