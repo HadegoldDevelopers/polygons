@@ -105,7 +105,7 @@ export default function PricingPage() {
   // Derived values
   // ───────────────────────────────────────────────
   const totalInvested = positions.reduce((s, p) => s + p.amount, 0);
-  const totalEarned = positions.reduce((s, p) => s + p.earned, 0);
+  const totalEarned = positions.reduce((s, p) => s + p.earned_so_far, 0);
 
   const avgDaily =
     positions.length > 0
