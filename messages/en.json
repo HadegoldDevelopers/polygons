@@ -141,42 +141,75 @@
 },
 
   "tokenomics": {
-    "description": "Explore Polycogni Capital tokenomics - simple and effective. Our smart contracts are fully audited, enhancing safety and transparency. Dive into our Investment Trading Plan to discover more about how Polycogni Capital Trading works",
-    "buyNow": "BUY NOW",
-    "whitepaper": "WHITEPAPER"
-  },
+  "title": "Tokenomics",
+  "description": "Explore Polycogni Capital tokenomics; simple and effective. Our smart contracts are fully audited, enhancing safety and transparency. Dive into our Investment Trading Plan to discover more about how Polycogni Capital Trading works.",
+  "buyNow": "BUY NOW",
+  "whitepaper": "WHITEPAPER"
+},
 
   "howToBuy": {
-    "step1Title": "CREATE YOUR ACCOUNT",
-    "step1Desc": "Create an Account with us or Connect your wallet to our website, Load Wallet With Crypto: Use BTC, ETH, USDT, USDC, or your preferred crypto",
-    "step2Title": "SWAP FOR POLYCOGNI CAPITAL",
-    "step2Desc": "Select Bitcoin, Ethereum, USDT or USDC as the input currency and enter the amount you want to spend, then select Polycogni Capital as the output currency.",
-    "step3Title": "Confirm the Transaction",
-    "step3Desc": "Review the transaction details and confirm the swap, then wait for the transaction to process and receive your Polycogni Capital tokens",
-    "buyNow": "BUY NOW",
-    "docs": "Read Docs"
-  },
+  "title": "How to Buy",
+
+  "step1Title": "CREATE YOUR ACCOUNT",
+  "step1Desc": "Create an Account with us or Connect your wallet to our website, Load Wallet With Crypto: Use BTC, ETH, USDT, USDC, or your preferred crypto",
+
+  "step2Title": "SWAP FOR POLYCOGNI CAPITAL",
+  "step2Desc": "SELECT BITCOIN, ETHEREUM, USDT OR USDC AS THE INPUT CURRENCY AND ENTER THE AMOUNT YOU WANT TO SPEND, THEN SELECT POLYCOGNI CAPITAL AS THE OUTPUT CURRENCY.",
+
+  "step3Title": "Confirm the Transaction",
+  "step3Desc": "Review the transaction details and confirm the swap, then wait for the transaction to process and receive your Polycogni Capital tokens",
+
+  "buyNow": "BUY NOW",
+  "readDocs": "Read Docs"
+},
 
   "dev": {
-    "codeTitle": "Develop on Polycogni Capital",
-    "cta": "Get Started Now",
-    "description": "Our easy to integrate library allows developers to build Polycogni Apps in minutes.",
-    "dontMiss": "Don’t miss the chance to build the next generation of blockchain applications."
-  },
+  "titleLeft": "Develop on Polycogni Capital",
+  "titleRight": "Get Started in Minutes",
 
-  "community": {
-    "title": "Join the Growing Community of Developers",
-    "buyNow": "Buy Now"
-  },
+  "desc1": "Our easy to integrate library allows developers to build Polycogni Apps in minutes.",
+  "desc2": "Don’t miss the chance to build the next generation of blockchain applications.",
 
-  "faq": {
-    "q1": "What is Polycogni Capital?",
-    "q2": "Why Polycogni Capital?",
-    "q3": "What is Layer 2?",
-    "q4": "How Do I Buy Polycogni Capital Tokens?",
-    "q5": "When Can I Claim My Tokens?",
-    "q6": "Can I also invest in the company without Purchasing Polycogni Capital?"
-  },
+  "ctaPrimary": "Get Started Now",
+  "ctaSecondary": "Buy Now",
+
+  "communityTitle": "Join the Growing Community of Developers"
+},
+"faq": {
+  "title": "FAQ",
+
+  "q1": "What is Polycogni Capital?",
+  "a1": "The Future of Bitcoin Layer 2, Polycogni Capital is a state-of-the-art layer 2 solution that aims to address the scalability challenges faced by Bitcoin: By leveraging advanced scaling mechanisms such as state channels, sidechains, and blockchain rollups, Polycogni Capital enhances transaction speed and reduces fees, making Bitcoin and Ethereum more accessible and efficient for users worldwide",
+
+  "q2": "Why Polycogni Capital?",
+"a2": "Polycogni Capital is positioned at the intersection of Bitcoin security and next generation blockchain innovation. By introducing smart contract capabilities and decentralized applications to the Bitcoin ecosystem, we aim to unlock new possibilities for developers, investors, and global users.<br /><br />Our focus is on long-term value creation through:<br />• Scalable and efficient blockchain infrastructure<br />• Strategic development and continuous innovation<br />• A growing ecosystem designed for real-world adoption<br /><br />As the digital asset space continues to evolve, Polycogni Capital seeks to be part of the transformation shaping the future of global finance.",
+
+  "q3": "What is Layer 2?",
+  "a3": "Layer 2 is a solution built on top of the Bitcoin and Ethereum Network, offering faster and cheaper transactions, enabling double staking rewards for Polycogni Capital.",
+
+  "q4": "How Do I Buy Polycogni Capital Tokens?",
+  "a4": "Create an Account with us or Connect your wallet to our website. Load Wallet With Crypto: Use BTC, ETH, USDT, USDC, or your preferred cryptocurrency. Buy $PC, select your payment method, and opt to buy your token.",
+
+  "q5": "When Can I Claim My Tokens?",
+  "a5": "After your first purchase of Polycogni Capital tokens, you will see your allocation on the Polycogni Capital Dashboard. The token will be sent to you on the blockchain.",
+
+  "q6": "Can I also invest in the company without Purchasing Polycogni Capital?",
+  "a6": "Yes, you can invest with us without purchasing Polycogni Capital.",
+
+  "contact": "Contact Us",
+  "helpDocs": "Help Docs"
+},
+
+  "tradingBots": {
+  "title1": "TRADING BOT LICENSES",
+  "text1": "Users can purchase AI powered bot licenses for automated trading across various markets.",
+
+  "title2": "PROFIT SHARING MODEL",
+  "text2": "Earn passive income from the successful trades executed by your AI trading bots.",
+
+  "title3": "NFT BASED BOT OWNERSHIP",
+  "text3": "Users can buy, sell, and trade AI bot licenses as NFTs on our marketplace, ensuring true asset ownership."
+},
 
   "footer": {
     "powering": "Powering Next Gen Crypto",
@@ -203,5 +236,21 @@
     "jurisdiction": "You are not a citizen or resident of any jurisdiction where participation in token sales or cryptocurrency investments is restricted or prohibited.",
     "legally": "You are legally permitted to engage in such transactions under the laws applicable to you.",
     "noAgree": "If you do not agree with these terms, please do not use our services or purchase our tokens."
-  }
+  },
+  "auth": {
+  "welcomeBack": "Welcome back 👋",
+  "loginSubtitle": "Sign in to your account to access the dashboard and manage your stakes.",
+  "email": "Email address",
+  "emailPlaceholder": "you@example.com",
+  "password": "Password",
+  "rememberMe": "Remember me",
+  "forgotPassword": "Forgot password?",
+  "signIn": "Sign In →",
+  "orContinueWith": "or continue with",
+  "noAccount": "Don't have an account?",
+  "createOne": "Create one",
+  "invalidCredentials": "Invalid email or password.",
+  "fillAllFields": "Please fill in all fields."
+}
+
 }

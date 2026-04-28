@@ -1,22 +1,25 @@
 "use client";
 
 import { FeatureCard } from "./FeatureCard";
+import { useTranslations } from "next-intl";
 
 export default function TradingBotFeatures() {
+  const t = useTranslations("tradingBots");
+
   const items = [
     {
-      title: "TRADING BOT LICENSES",
-      text: "Users can purchase AI powered bot licenses for automated trading across various markets.",
+      title: t("title1"),
+      text: t("text1"),
       img: "/assets/tradingbot.png",
     },
     {
-      title: "PROFIT SHARING MODEL",
-      text: "Earn passive income from the successful trades executed by your AI trading bots.",
+      title: t("title2"),
+      text: t("text2"),
       img: "/assets/tradinghuman.png",
     },
     {
-      title: "NFT BASED BOT OWNERSHIP",
-      text: "Users can buy, sell, and trade AI bot licenses as NFTs on our marketplace, ensuring true asset ownership.",
+      title: t("title3"),
+      text: t("text3"),
       img: "/assets/ai_bot.png",
     },
   ];

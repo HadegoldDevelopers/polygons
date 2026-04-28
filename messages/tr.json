@@ -1,0 +1,263 @@
+{
+  "nav": {
+    "logo": "PolyCogni Logosu",
+    "brand": "POLYCOGNI Capital",
+    "about": "Hakkında",
+    "features": "Özellikler",
+    "token": "Token",
+    "faq": "SSS",
+    "dashboard": "Panel",
+    "connectWallet": "Cüzdan Bağla",
+    "language": "TR"
+  },
+
+  "hero": {
+    "build": "İnşa Et",
+    "defi": "DEFI",
+    "ai": "AI",
+    "gaming": "OYUN",
+    "nfts": "NFTS",
+    "memecoins": "MEMECOINS",
+    "everything": "HER ŞEY",
+    "onBitcoin": "Bitcoin üzerinde",
+    "description": "Polycogni Capital, Bitcoin’e akıllı sözleşmeler getiren ilk hibrit Layer 2 blockchain’dir.",
+    "register": "KAYIT OL",
+    "swap": "Takas Et",
+    "featuredIn": "Yer aldığı platformlar"
+  },
+
+  "featured": {
+    "title": "Yer aldığı platformlar",
+    "analyticsInsight": "Analytics Insight",
+    "cryptoTimes": "The Crypto Times",
+    "cryptoNewsFlash": "Crypto News Flash",
+    "coinspeaker": "Coinspeaker",
+    "coinGape": "Coin Gape"
+  },
+
+  "whatIs": {
+    "title": "POLYCOGNI CAPITAL NEDİR?",
+    "description": "Polycogni Capital, Bitcoin blockchain’inin tam potansiyelini açığa çıkarmayı amaçlayan ve akıllı sözleşmeleri ile merkeziyetsiz uygulamaları Bitcoin’e getiren bir kripto para projesidir.",
+
+    "smartContracts": "Akıllı Sözleşmeler",
+    "develop": "Geliştir",
+    "presale": "Ön Satış",
+    "staking": "Staking",
+    "token": "Polycogni Capital Token",
+    "ecosystem": "Ekosistem",
+
+    "evmCompatible": "EVM Uyumlu",
+    "scalable": "Ölçeklenebilir",
+    "generic": "Genel",
+
+    "defi": "DeFi",
+    "ai": "Yapay Zekâ",
+    "gaming": "Oyun",
+
+    "selfCustodial": "Kendi Kendine Saklama",
+    "auditedContract": "Denetlenmiş Sözleşme",
+    "finishedProduct": "Tamamlanmış Ürün",
+
+    "instantStaking": "Anında Staking",
+    "easyToUse": "Kullanımı Kolay",
+    "governanceFeature": "Yönetim Özelliği",
+
+    "instantFinality": "Anında Kesinlik",
+    "lightningFast": "Yıldırım Hızında",
+    "governanceRights": "Yönetim Hakları",
+
+    "buildersProgram": "Geliştirici Programı",
+    "interoperability": "Birlikte Çalışabilirlik",
+    "bitcoinL2": "Bitcoin L2"
+  },
+
+  "testnet": {
+    "title": "Polycogni Capital TESTNET",
+    "totalTx": "Toplam İşlem",
+    "dailyTx": "Günlük İşlem",
+    "wallets": "Cüzdan Adresleri",
+    "blocks": "Toplam Blok"
+  },
+
+  "unleash": {
+    "title": "Bitcoin’in Trilyon Dolarlık Ekonomisini Serbest Bırak",
+    "subtitle": "Dolaşımdaki Bitcoin’in büyük kısmı kullanılmıyor",
+
+    "point1": "Bitcoin üzerinde merkeziyetsiz finansın temelini atmak",
+    "point2": "Bitcoin blockchain’inde akıllı sözleşmeleri etkinleştirmek",
+    "point3": "Değer yaratımı için yeni fırsatları açığa çıkarmak ve Bitcoin tabanlı finansal sistemlerin bir sonraki neslini desteklemek",
+
+    "cta": "Polycogni Capital TOKEN SATIN AL"
+  },
+
+  "why": {
+    "title": "Neden Polycogni Capital?",
+
+    "scalability": "Ölçeklenebilirlik",
+    "scalabilityDesc": "Layer 2 teknolojisi ve akıllı sözleşmeler ile Bitcoin blockchain’inin ölçeklenmesine yardımcı olur",
+
+    "lowCost": "Düşük İşlem Ücreti",
+    "lowCostDesc": "İşlem maliyetlerini Bitcoin’in tipik ücretlerinin çok küçük bir kısmına düşürür",
+
+    "evm": "EVM Uyumluluğu",
+    "evmDesc": "En güvenli blockchain’e EVM uyumluluğu getirerek geliştiricilerin uygulamalarını Bitcoin’e taşımasını sağlar",
+
+    "trillion": "Trilyon Dolarlık Ekonomi",
+    "trillionDesc": "Akıllı sözleşmeleri Bitcoin’in trilyon dolarlık ekonomisine getirir",
+
+    "buyNow": "ŞİMDİ SATIN AL",
+    "readWhitepaper": "WHITEPAPER OKU"
+  },
+
+  "stakingSection": {
+    "title": "Polycogni Capital Staking",
+    "subtitle": "Polycogni Capital, en çok katılım sağlayan kullanıcıları ödüllendiren yeni bir staking sistemi oluşturdu.",
+
+    "step1": "Polycogni Capital token satın al",
+    "step2": "Tokenlerini stake et",
+    "step3": "Her gün giriş yap ve ödülleri talep et",
+    "stepPlus": "Protokol yönetim kararlarına katıl",
+
+    "buyNow": "ŞİMDİ SATIN AL",
+    "readWhitepaper": "Whitepaper Oku"
+  },
+
+  "phases": {
+    "title": "Geliştirme Aşamaları",
+    "subject": "*Yönetim Oylamasına Tabi",
+
+    "phase": "AŞAMA",
+
+    "p1i1": "Ön Satış Başlangıcı",
+    "p1i2": "Yönetim Sistemi Yayını",
+    "p1i3": "Devnet",
+
+    "p2i1": "Özel Testnet",
+    "p2i2": "Genel Testnet",
+    "p2i3": "Birleşik Explorer",
+
+    "p3i1": "Bridge Başlangıcı",
+    "p3i2": "Araştırma ve Geliştirme",
+    "p3i3": "Staking",
+
+    "p4i1": "Mainnet Başlangıcı",
+    "p4i2": "Ekosistem Genişlemesi",
+    "p4i3": "Topluluk Genişlemesi"
+  },
+
+  "tokenomics": {
+    "title": "Tokenomik",
+    "description": "Polycogni Capital tokenomiklerini keşfet; basit ve etkili. Akıllı sözleşmelerimiz tamamen denetlenmiştir, bu da güvenliği ve şeffaflığı artırır. Polycogni Capital Trading’in nasıl çalıştığını öğrenmek için Yatırım ve Trading Planımıza göz at.",
+    "buyNow": "ŞİMDİ SATIN AL",
+    "whitepaper": "WHITEPAPER"
+  },
+
+  "howToBuy": {
+    "title": "Nasıl Satın Alınır",
+
+    "step1Title": "HESABINI OLUŞTUR",
+    "step1Desc": "Bizimle bir hesap oluştur veya cüzdanını web sitemize bağla. Cüzdanını kripto ile doldur: BTC, ETH, USDT, USDC veya tercih ettiğin kriptoyu kullan.",
+
+    "step2Title": "POLYCOGNI CAPITAL İÇİN TAKAS ET",
+    "step2Desc": "GİRİŞ PARA BİRİMİ OLARAK BITCOIN, ETHEREUM, USDT VEYA USDC SEÇ VE HARCAMAK İSTEDİĞİN MİKTARI GİR. SONRA ÇIKIŞ PARA BİRİMİ OLARAK POLYCOGNI CAPITAL SEÇ.",
+
+    "step3Title": "İşlemi Onayla",
+    "step3Desc": "İşlem detaylarını gözden geçir ve takası onayla. Ardından işlemin tamamlanmasını bekle ve Polycogni Capital tokenlerini al.",
+
+    "buyNow": "ŞİMDİ SATIN AL",
+    "readDocs": "Dokümanları Oku"
+  },
+
+  "dev": {
+    "titleLeft": "Polycogni Capital Üzerinde Geliştir",
+    "titleRight": "Dakikalar İçinde Başla",
+
+    "desc1": "Kolay entegre edilebilir kütüphanemiz, geliştiricilerin dakikalar içinde Polycogni uygulamaları oluşturmasını sağlar.",
+    "desc2": "Bir sonraki nesil blockchain uygulamalarını oluşturma fırsatını kaçırma.",
+
+    "ctaPrimary": "Hemen Başla",
+    "ctaSecondary": "Şimdi Satın Al",
+
+    "communityTitle": "Büyüyen Geliştirici Topluluğuna Katıl"
+  },
+
+  "faq": {
+    "title": "SSS",
+
+    "q1": "Polycogni Capital nedir?",
+    "a1": "Bitcoin Layer 2’nin geleceği olan Polycogni Capital, Bitcoin’in ölçeklenebilirlik sorunlarını çözmeyi amaçlayan gelişmiş bir Layer 2 çözümüdür. State channels, sidechains ve rollups gibi gelişmiş ölçeklendirme mekanizmalarını kullanarak işlem hızını artırır ve ücretleri düşürür, Bitcoin ve Ethereum’u dünya genelindeki kullanıcılar için daha erişilebilir ve verimli hale getirir.",
+
+    "q2": "Neden Polycogni Capital?",
+    "a2": "Polycogni Capital, Bitcoin güvenliği ile yeni nesil blockchain inovasyonunun kesişim noktasında konumlanmıştır. Bitcoin ekosistemine akıllı sözleşme yetenekleri ve merkeziyetsiz uygulamalar getirerek geliştiriciler, yatırımcılar ve küresel kullanıcılar için yeni fırsatlar açmayı hedefliyoruz.<br /><br />Uzun vadeli değer yaratmaya odaklanıyoruz:<br />- Ölçeklenebilir ve verimli blockchain altyapısı<br />- Stratejik geliştirme ve sürekli inovasyon<br />- Gerçek dünya kullanımına uygun büyüyen bir ekosistem<br /><br />Dijital varlık alanı gelişmeye devam ederken, Polycogni Capital küresel finansın geleceğini şekillendiren dönüşümün bir parçası olmayı amaçlıyor.",
+
+    "q3": "Layer 2 nedir?",
+    "a3": "Layer 2, Bitcoin ve Ethereum ağlarının üzerine inşa edilen, daha hızlı ve daha ucuz işlemler sunan ve Polycogni Capital için çift staking ödülleri sağlayan bir çözümdür.",
+
+    "q4": "Polycogni Capital tokenlerini nasıl satın alabilirim?",
+    "a4": "Bizimle bir hesap oluştur veya cüzdanını web sitemize bağla. Cüzdanını kripto ile doldur: BTC, ETH, USDT, USDC veya tercih ettiğin kriptoyu kullan. Ödeme yöntemini seçerek ve satın alımı tamamlayarak $PC satın al.",
+
+    "q5": "Tokenlerimi ne zaman alabilirim?",
+    "a5": "Polycogni Capital tokenlerini ilk kez satın aldıktan sonra, Polycogni Capital Panelinde tahsisini göreceksin. Token blockchain üzerinden sana gönderilecektir.",
+
+    "q6": "Polycogni Capital satın almadan şirkete yatırım yapabilir miyim?",
+    "a6": "Evet, Polycogni Capital satın almadan da bize yatırım yapabilirsin.",
+
+    "contact": "Bize Ulaş",
+    "helpDocs": "Dokümanlar"
+  },
+
+  "tradingBots": {
+    "title1": "TRADING BOT LİSANSLARI",
+    "text1": "Kullanıcılar, çeşitli piyasalarda otomatik alım satım için yapay zekâ destekli bot lisansları satın alabilir.",
+
+    "title2": "KÂR PAYLAŞIMI MODELİ",
+    "text2": "Yapay zekâ trading botlarının gerçekleştirdiği başarılı işlemlerden pasif gelir elde et.",
+
+    "title3": "NFT TABANLI BOT SAHİPLİĞİ",
+    "text3": "Kullanıcılar, yapay zekâ bot lisanslarını NFT olarak satın alabilir, satabilir ve takas edebilir; bu da gerçek varlık sahipliği sağlar."
+  },
+
+  "footer": {
+    "powering": "Yeni Nesil Kriptoyu Güçlendiriyoruz",
+    "copyright": "© Polycogni Capital Copyright 2025",
+    "rights": "Tüm Hakları Saklıdır",
+    "joinUs": "BİZE KATIL",
+    "twitter": "Twitter",
+    "telegram": "Telegram",
+    "github": "Github",
+    "discord": "Discord",
+    "contact": "İletişim",
+    "documentation": "Dokümantasyon",
+    "whitepaper": "Whitepaper",
+    "security": "Güvenlik ve Denetimler",
+    "terms": "Şartlar ve Koşullar",
+    "privacy": "Gizlilik Politikası"
+  },
+
+  "legal": {
+    "disclaimer": "Yasal Uyarı: Bu web sitesine erişerek, hizmetlerimizi kullanarak veya Polycogni Capital tokenleri satın alarak, şartlarımızı okuduğunu, anladığını ve kabul ettiğini onaylarsın.",
+    "and": "ve",
+    "risks": "Ayrıca, kripto paralarla ilişkili fiyat oynaklığı, düzenleyici belirsizlik ve fon kaybı gibi riskleri tamamen anladığını doğrularsın.",
+    "about": "Polycogni Capital, Bitcoin ağının yeteneklerini artırmak için akıllı sözleşmeler ve merkeziyetsiz uygulamalar sağlayan bir blockchain projesidir.",
+    "byProceeding": "Satın almaya devam ederek aşağıdakileri beyan ve garanti edersin:",
+    "jurisdiction": "Token satışlarının veya kripto yatırımlarının kısıtlandığı veya yasaklandığı bir yargı bölgesinin vatandaşı veya sakini değilsin.",
+    "legally": "Geçerli yasalara göre bu tür işlemlere katılman yasaldır.",
+    "noAgree": "Bu şartları kabul etmiyorsan, lütfen hizmetlerimizi kullanma veya tokenlerimizi satın alma."
+  },
+  "auth": {
+  "welcomeBack": "Tekrar hoş geldin 👋",
+  "loginSubtitle": "Panel erişimi ve stake yönetimi için hesabına giriş yap.",
+  "email": "E‑posta adresi",
+  "emailPlaceholder": "sen@example.com",
+  "password": "Şifre",
+  "rememberMe": "Beni hatırla",
+  "forgotPassword": "Şifreni mi unuttun?",
+  "signIn": "Giriş Yap →",
+  "orContinueWith": "veya devam et",
+  "noAccount": "Hesabın yok mu?",
+  "createOne": "Hesap oluştur",
+  "invalidCredentials": "Geçersiz e‑posta veya şifre.",
+  "fillAllFields": "Lütfen tüm alanları doldurun."
+}
+
+}

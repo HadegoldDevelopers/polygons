@@ -1,25 +1,29 @@
 "use client";
+
 import { supabase } from "@/lib/supabase/supabaseClient";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Logo, PasswordInput } from "@/components/ui";
-
+import { useTranslations, useLocale } from "next-intl";
 
 export default function LoginPage() {
+  const t = useTranslations("auth");
+  const locale = useLocale();
   const router = useRouter();
-  const [email,    setEmail]    = useState("");
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
-  const [error,    setError]    = useState("");
-  const [loading,  setLoading]  = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
 
     if (!email || !password) {
-      setError("Please fill in all fields.");
+      setError(t("fillAllFields"));
       return;
     }
 
@@ -33,13 +37,11 @@ export default function LoginPage() {
     setLoading(false);
 
     if (loginError) {
-      setError("Invalid email or password.");
+      setError(t("invalidCredentials"));
       return;
     }
 
-    // router.refresh() is critical — tells Next.js server to
-    // re-read the session cookie that Supabase just set
-    router.push("/dashboard");
+    router.push(`/${locale}/dashboard`);
     router.refresh();
   }
 
@@ -49,9 +51,12 @@ export default function LoginPage() {
         <Logo size="md" />
       </div>
 
-      <h1 className="text-2xl font-black text-center mb-1">Welcome back 👋</h1>
+      <h1 className="text-2xl font-black text-center mb-1">
+        {t("welcomeBack")}
+      </h1>
+
       <p className="text-sm text-white/45 text-center mb-7">
-        Sign in to your account to access the dashboard and manage your stakes.
+        {t("loginSubtitle")}
       </p>
 
       {error && (
@@ -64,12 +69,12 @@ export default function LoginPage() {
         {/* Email */}
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Email address
+            {t("email")}
           </label>
           <input
             type="email"
             className="field"
-            placeholder="you@example.com"
+            placeholder={t("emailPlaceholder")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
@@ -79,7 +84,7 @@ export default function LoginPage() {
         {/* Password */}
         <div>
           <label className="block text-[11px] font-bold uppercase tracking-widest text-white/45 mb-2">
-            Password
+            {t("password")}
           </label>
           <PasswordInput
             id="password"
@@ -100,13 +105,14 @@ export default function LoginPage() {
               onChange={(e) => setRemember(e.target.checked)}
               className="accent-[#FF7900] w-4 h-4"
             />
-            Remember me
+            {t("rememberMe")}
           </label>
+
           <Link
-            href="/forgot-password"
+            href={`/${locale}/forgot-password`}
             className="text-sm text-[#FF7900] font-semibold hover:underline"
           >
-            Forgot password?
+            {t("forgotPassword")}
           </Link>
         </div>
 
@@ -115,7 +121,7 @@ export default function LoginPage() {
           {loading ? (
             <span className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin" />
           ) : (
-            "Sign In →"
+            t("signIn")
           )}
         </button>
       </form>
@@ -123,7 +129,7 @@ export default function LoginPage() {
       {/* Divider */}
       <div className="flex items-center gap-3 my-5 text-white/30 text-xs">
         <div className="flex-1 h-px bg-white/8" />
-        or continue with
+        {t("orContinueWith")}
         <div className="flex-1 h-px bg-white/8" />
       </div>
 
@@ -134,24 +140,25 @@ export default function LoginPage() {
           onClick={async () => {
             await supabase.auth.signInWithOAuth({
               provider: "google",
-              options: { redirectTo: `${window.location.origin}/dashboard` },
+              options: { redirectTo: `${window.location.origin}/${locale}/dashboard` },
             });
           }}
         >
           🌐 Google
         </button>
+
         <button className="btn-ghost text-sm py-2.5">
           🦊 MetaMask
         </button>
       </div>
 
       <p className="text-center text-sm text-white/45 mt-6">
-        Don't have an account?{" "}
+        {t("noAccount")}{" "}
         <Link
-          href="/register"
+          href={`/${locale}/register`}
           className="text-[#FF7900] font-semibold hover:underline"
         >
-          Create one
+          {t("createOne")}
         </Link>
       </p>
     </div>

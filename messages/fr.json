@@ -1,0 +1,263 @@
+{
+  "nav": {
+    "logo": "Logo PolyCogni",
+    "brand": "POLYCOGNI Capital",
+    "about": "À propos",
+    "features": "Fonctionnalités",
+    "token": "Token",
+    "faq": "FAQ",
+    "dashboard": "Tableau de bord",
+    "connectWallet": "Connecter le portefeuille",
+    "language": "FR"
+  },
+
+  "hero": {
+    "build": "Construire",
+    "defi": "DEFI",
+    "ai": "IA",
+    "gaming": "JEUX",
+    "nfts": "NFTS",
+    "memecoins": "MEMECOINS",
+    "everything": "TOUT",
+    "onBitcoin": "sur Bitcoin",
+    "description": "Polycogni Capital est la première blockchain hybride Layer 2 qui introduit les contrats intelligents sur Bitcoin.",
+    "register": "S'INSCRIRE POUR",
+    "swap": "Échanger",
+    "featuredIn": "Présenté dans"
+  },
+
+  "featured": {
+    "title": "Présenté dans",
+    "analyticsInsight": "Analytics Insight",
+    "cryptoTimes": "The Crypto Times",
+    "cryptoNewsFlash": "Crypto News Flash",
+    "coinspeaker": "Coinspeaker",
+    "coinGape": "Coin Gape"
+  },
+
+  "whatIs": {
+    "title": "QU'EST‑CE QUE POLYCOGNI CAPITAL ?",
+    "description": "Polycogni Capital est un projet de cryptomonnaie qui vise à libérer tout le potentiel de la blockchain Bitcoin en y apportant des contrats intelligents et des applications décentralisées.",
+
+    "smartContracts": "Contrats intelligents",
+    "develop": "Développer",
+    "presale": "Prévente",
+    "staking": "Staking",
+    "token": "Token Polycogni Capital",
+    "ecosystem": "Écosystème",
+
+    "evmCompatible": "Compatible EVM",
+    "scalable": "Scalable",
+    "generic": "Générique",
+
+    "defi": "DeFi",
+    "ai": "Intelligence Artificielle",
+    "gaming": "Jeux",
+
+    "selfCustodial": "Auto‑garde",
+    "auditedContract": "Contrat Audité",
+    "finishedProduct": "Produit Fini",
+
+    "instantStaking": "Staking Instantané",
+    "easyToUse": "Facile à Utiliser",
+    "governanceFeature": "Fonction de Gouvernance",
+
+    "instantFinality": "Finalité Instantanée",
+    "lightningFast": "Ultra‑rapide",
+    "governanceRights": "Droits de Gouvernance",
+
+    "buildersProgram": "Programme Développeurs",
+    "interoperability": "Interopérabilité",
+    "bitcoinL2": "Bitcoin L2"
+  },
+
+  "testnet": {
+    "title": "TESTNET Polycogni Capital",
+    "totalTx": "Transactions Totales",
+    "dailyTx": "Transactions Quotidiennes",
+    "wallets": "Adresses de Portefeuille",
+    "blocks": "Blocs Totaux"
+  },
+
+  "unleash": {
+    "title": "Libérer l'Économie Bitcoin à un Billion de Dollars",
+    "subtitle": "La majorité du Bitcoin en circulation reste inutilisée",
+
+    "point1": "Poser les bases de la finance décentralisée sur Bitcoin",
+    "point2": "Activer les contrats intelligents sur la blockchain Bitcoin",
+    "point3": "Débloquer de nouvelles opportunités de création de valeur et stimuler la prochaine génération de systèmes financiers basés sur Bitcoin",
+
+    "cta": "ACHETER LE TOKEN Polycogni Capital"
+  },
+
+  "why": {
+    "title": "Pourquoi Polycogni Capital ?",
+
+    "scalability": "Scalabilité",
+    "scalabilityDesc": "Aider à faire évoluer la blockchain Bitcoin grâce à la technologie Layer 2 et aux contrats intelligents",
+
+    "lowCost": "Faible Coût de Transaction",
+    "lowCostDesc": "Réduire les coûts de transaction à une fraction de ceux habituellement observés sur Bitcoin",
+
+    "evm": "Compatibilité EVM",
+    "evmDesc": "Apporter la compatibilité EVM à la blockchain la plus sécurisée, permettant aux développeurs de porter leurs applications sur Bitcoin",
+
+    "trillion": "Économie à un Billion de Dollars",
+    "trillionDesc": "Apporter des contrats intelligents à l’économie Bitcoin à un billion de dollars",
+
+    "buyNow": "ACHETER MAINTENANT",
+    "readWhitepaper": "LIRE LE WHITEPAPER"
+  },
+
+  "stakingSection": {
+    "title": "Staking Polycogni Capital",
+    "subtitle": "Polycogni Capital a créé un nouveau système de staking exceptionnel qui récompense les utilisateurs les plus actifs.",
+
+    "step1": "Acheter des tokens Polycogni Capital",
+    "step2": "Mettre vos tokens en staking",
+    "step3": "Se connecter quotidiennement et réclamer des récompenses",
+    "stepPlus": "Participer aux décisions importantes de gouvernance du protocole",
+
+    "buyNow": "ACHETER MAINTENANT",
+    "readWhitepaper": "Lire le Whitepaper"
+  },
+
+  "phases": {
+    "title": "Phases de Développement",
+    "subject": "*Sous réserve du vote de gouvernance",
+
+    "phase": "PHASE",
+
+    "p1i1": "Lancement de la Prévente",
+    "p1i2": "Déploiement de la Gouvernance",
+    "p1i3": "Devnet",
+
+    "p2i1": "Testnet Privé",
+    "p2i2": "Testnet Public",
+    "p2i3": "Explorateur Unifié",
+
+    "p3i1": "Lancement du Pont",
+    "p3i2": "Recherche et Développement",
+    "p3i3": "Staking",
+
+    "p4i1": "Lancement du Mainnet",
+    "p4i2": "Expansion de l'Écosystème",
+    "p4i3": "Expansion de la Communauté"
+  },
+
+  "tokenomics": {
+    "title": "Tokenomics",
+    "description": "Découvrez le tokenomics de Polycogni Capital ; simple et efficace. Nos contrats intelligents sont entièrement audités, renforçant la sécurité et la transparence. Explorez notre Plan d’Investissement et de Trading pour en savoir plus sur le fonctionnement du Trading Polycogni Capital.",
+    "buyNow": "ACHETER MAINTENANT",
+    "whitepaper": "WHITEPAPER"
+  },
+
+  "howToBuy": {
+    "title": "Comment Acheter",
+
+    "step1Title": "CRÉEZ VOTRE COMPTE",
+    "step1Desc": "Créez un compte chez nous ou connectez votre portefeuille à notre site. Chargez votre portefeuille avec des cryptomonnaies : utilisez BTC, ETH, USDT, USDC ou votre crypto préférée.",
+
+    "step2Title": "ÉCHANGER POUR POLYCOGNI CAPITAL",
+    "step2Desc": "SÉLECTIONNEZ BITCOIN, ETHEREUM, USDT OU USDC COMME MONNAIE D’ENTRÉE ET INDIQUEZ LE MONTANT À DÉPENSER, PUIS SÉLECTIONNEZ POLYCOGNI CAPITAL COMME MONNAIE DE SORTIE.",
+
+    "step3Title": "Confirmer la Transaction",
+    "step3Desc": "Vérifiez les détails de la transaction et confirmez l’échange, puis attendez le traitement et recevez vos tokens Polycogni Capital.",
+
+    "buyNow": "ACHETER MAINTENANT",
+    "readDocs": "Lire la Documentation"
+  },
+
+  "dev": {
+    "titleLeft": "Développer sur Polycogni Capital",
+    "titleRight": "Commencez en Quelques Minutes",
+
+    "desc1": "Notre bibliothèque facile à intégrer permet aux développeurs de créer des applications Polycogni en quelques minutes.",
+    "desc2": "Ne manquez pas l’occasion de construire la prochaine génération d’applications blockchain.",
+
+    "ctaPrimary": "Commencer Maintenant",
+    "ctaSecondary": "Acheter Maintenant",
+
+    "communityTitle": "Rejoignez la Communauté Croissante de Développeurs"
+  },
+
+  "faq": {
+    "title": "FAQ",
+
+    "q1": "Qu’est‑ce que Polycogni Capital ?",
+    "a1": "L’avenir du Bitcoin Layer 2, Polycogni Capital est une solution de couche 2 de pointe visant à résoudre les défis de scalabilité rencontrés par Bitcoin. En utilisant des mécanismes avancés tels que les state channels, les sidechains et les rollups, Polycogni Capital améliore la vitesse des transactions et réduit les frais, rendant Bitcoin et Ethereum plus accessibles et efficaces pour les utilisateurs du monde entier.",
+
+    "q2": "Pourquoi Polycogni Capital ?",
+    "a2": "Polycogni Capital se situe à l’intersection de la sécurité de Bitcoin et de l’innovation blockchain de nouvelle génération. En introduisant des capacités de contrats intelligents et des applications décentralisées dans l’écosystème Bitcoin, nous visons à débloquer de nouvelles possibilités pour les développeurs, les investisseurs et les utilisateurs du monde entier.<br /><br />Notre objectif est la création de valeur à long terme grâce à :<br />- Une infrastructure blockchain scalable et efficace<br />- Un développement stratégique et une innovation continue<br />- Un écosystème en croissance conçu pour une adoption réelle<br /><br />À mesure que l’espace des actifs numériques évolue, Polycogni Capital cherche à faire partie de la transformation qui façonne l’avenir de la finance mondiale.",
+
+    "q3": "Qu’est‑ce que Layer 2 ?",
+    "a3": "Layer 2 est une solution construite au‑dessus des réseaux Bitcoin et Ethereum, offrant des transactions plus rapides et moins coûteuses, permettant des récompenses de staking doubles pour Polycogni Capital.",
+
+    "q4": "Comment acheter des tokens Polycogni Capital ?",
+    "a4": "Créez un compte chez nous ou connectez votre portefeuille à notre site. Chargez votre portefeuille avec des cryptomonnaies : utilisez BTC, ETH, USDT, USDC ou votre crypto préférée. Achetez $PC en sélectionnant votre méthode de paiement et en finalisant l’achat.",
+
+    "q5": "Quand puis‑je réclamer mes tokens ?",
+    "a5": "Après votre premier achat de tokens Polycogni Capital, vous verrez votre allocation dans le Tableau de bord Polycogni Capital. Le token vous sera envoyé sur la blockchain.",
+
+    "q6": "Puis‑je investir dans l’entreprise sans acheter Polycogni Capital ?",
+    "a6": "Oui, vous pouvez investir avec nous sans acheter Polycogni Capital.",
+
+    "contact": "Nous Contacter",
+    "helpDocs": "Documentation"
+  },
+
+  "tradingBots": {
+    "title1": "LICENCES DE TRADING BOT",
+    "text1": "Les utilisateurs peuvent acheter des licences de bots IA pour le trading automatisé sur divers marchés.",
+
+    "title2": "MODÈLE DE PARTAGE DES PROFITS",
+    "text2": "Gagnez un revenu passif grâce aux opérations réussies exécutées par vos bots de trading IA.",
+
+    "title3": "PROPRIÉTÉ DE BOTS BASÉE SUR NFT",
+    "text3": "Les utilisateurs peuvent acheter, vendre et échanger des licences de bots IA sous forme de NFTs sur notre marketplace, garantissant une véritable propriété de l’actif."
+  },
+
+  "footer": {
+    "powering": "Propulsant la Prochaine Génération de Crypto",
+    "copyright": "© Polycogni Capital Copyright 2025",
+    "rights": "Tous Droits Réservés",
+    "joinUs": "REJOIGNEZ‑NOUS",
+    "twitter": "Twitter",
+    "telegram": "Telegram",
+    "github": "Github",
+    "discord": "Discord",
+    "contact": "Contact",
+    "documentation": "Documentation",
+    "whitepaper": "Whitepaper",
+    "security": "Sécurité et Audits",
+    "terms": "Termes et Conditions",
+    "privacy": "Politique de Confidentialité"
+  },
+
+  "legal": {
+    "disclaimer": "Avertissement : En accédant à ce site web, en utilisant nos services ou en achetant des tokens Polycogni Capital, vous reconnaissez avoir lu, compris et accepté d’être lié par nos",
+    "and": "et",
+    "risks": "Vous confirmez également comprendre pleinement les risques associés aux cryptomonnaies, y compris, sans s’y limiter, la volatilité des prix, l’incertitude réglementaire et la perte potentielle de fonds.",
+    "about": "Polycogni Capital est un projet basé sur la blockchain conçu pour améliorer les capacités du réseau Bitcoin en permettant les contrats intelligents et les applications décentralisées.",
+    "byProceeding": "En procédant à un achat, vous déclarez et garantissez que :",
+    "jurisdiction": "Vous n’êtes pas citoyen ou résident d’une juridiction où la participation aux ventes de tokens ou aux investissements en cryptomonnaies est restreinte ou interdite.",
+    "legally": "Vous êtes légalement autorisé à effectuer de telles transactions selon les lois qui vous sont applicables.",
+    "noAgree": "Si vous n’acceptez pas ces conditions, veuillez ne pas utiliser nos services ni acheter nos tokens."
+  },
+  "auth": {
+  "welcomeBack": "Bon retour 👋",
+  "loginSubtitle": "Connectez-vous à votre compte pour accéder au tableau de bord et gérer vos mises.",
+  "email": "Adresse e-mail",
+  "emailPlaceholder": "vous@exemple.com",
+  "password": "Mot de passe",
+  "rememberMe": "Se souvenir de moi",
+  "forgotPassword": "Mot de passe oublié ?",
+  "signIn": "Se connecter →",
+  "orContinueWith": "ou continuer avec",
+  "noAccount": "Vous n’avez pas de compte ?",
+  "createOne": "Créez-en un",
+  "invalidCredentials": "E-mail ou mot de passe incorrect.",
+  "fillAllFields": "Veuillez remplir tous les champs."
+}
+
+}

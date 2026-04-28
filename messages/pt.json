@@ -145,42 +145,76 @@
 },
 
   "tokenomics": {
-    "description": "Explore a tokenomics da PolyCogni Capital — simples e eficiente. Nossos contratos inteligentes são totalmente auditados, garantindo mais segurança e transparência. Consulte nosso plano de investimento e trading para entender como funciona o ecossistema.",
-    "buyNow": "COMPRAR AGORA",
-    "whitepaper": "WHITEPAPER"
-  },
+  "title": "Tokenomics",
+  "description": "Explore o tokenomics da Polycogni Capital; simples e eficaz. Nossos contratos inteligentes são totalmente auditados, aumentando a segurança e a transparência. Mergulhe em nosso Plano de Investimento e Trading para descobrir mais sobre como funciona o Trading da Polycogni Capital.",
+  "buyNow": "COMPRAR AGORA",
+  "whitepaper": "WHITEPAPER"
+},
 
-  "howToBuy": {
-    "step1Title": "CRIE SUA CONTA",
-    "step1Desc": "Crie uma conta conosco ou conecte sua carteira ao nosso site. Adicione fundos com cripto: BTC, ETH, USDT, USDC ou sua moeda preferida.",
-    "step2Title": "FAÇA SWAP PARA POLYCOGNI CAPITAL",
-    "step2Desc": "Selecione Bitcoin, Ethereum, USDT ou USDC como moeda de entrada e insira o valor desejado. Em seguida, selecione PolyCogni Capital como moeda de saída.",
-    "step3Title": "CONFIRME A TRANSAÇÃO",
-    "step3Desc": "Revise os detalhes e confirme o swap. Aguarde o processamento e receba seus tokens PolyCogni Capital.",
-    "buyNow": "COMPRAR AGORA",
-    "docs": "Ler documentação"
-  },
+ "howToBuy": {
+  "title": "Como Comprar",
+
+  "step1Title": "CRIE SUA CONTA",
+  "step1Desc": "Crie uma conta conosco ou conecte sua carteira ao nosso site. Carregue sua carteira com cripto: use BTC, ETH, USDT, USDC ou sua criptomoeda preferida.",
+
+  "step2Title": "FAÇA SWAP PARA POLYCOGNI CAPITAL",
+  "step2Desc": "SELECIONE BITCOIN, ETHEREUM, USDT OU USDC COMO A MOEDA DE ENTRADA E INSIRA O VALOR QUE DESEJA GASTAR. EM SEGUIDA, SELECIONE POLYCOGNI CAPITAL COMO A MOEDA DE SAÍDA.",
+
+  "step3Title": "Confirme a Transação",
+  "step3Desc": "Revise os detalhes da transação e confirme o swap. Depois, aguarde o processamento e receba seus tokens Polycogni Capital.",
+
+  "buyNow": "COMPRAR AGORA",
+  "readDocs": "Ler Documentação"
+},
 
   "dev": {
-    "codeTitle": "Desenvolva na PolyCogni Capital",
-    "cta": "Começar agora",
-    "description": "Nossa biblioteca fácil de integrar permite que desenvolvedores criem aplicações PolyCogni em poucos minutos.",
-    "dontMiss": "Não perca a oportunidade de construir a próxima geração de aplicações blockchain."
-  },
+  "titleLeft": "Desenvolva na Polycogni Capital",
+  "titleRight": "Comece em Minutos",
 
-  "community": {
-    "title": "Junte-se à crescente comunidade de desenvolvedores",
-    "buyNow": "Comprar agora"
-  },
+  "desc1": "Nossa biblioteca fácil de integrar permite que desenvolvedores criem Apps Polycogni em minutos.",
+  "desc2": "Não perca a chance de construir a próxima geração de aplicações blockchain.",
 
-  "faq": {
-    "q1": "O que é a PolyCogni Capital?",
-    "q2": "Por que escolher a PolyCogni Capital?",
-    "q3": "O que é Layer 2?",
-    "q4": "Como comprar tokens PolyCogni Capital?",
-    "q5": "Quando posso reivindicar meus tokens?",
-    "q6": "Posso investir na empresa sem comprar tokens?"
-  },
+  "ctaPrimary": "Começar Agora",
+  "ctaSecondary": "Comprar Agora",
+
+  "communityTitle": "Junte-se à Comunidade Crescente de Desenvolvedores"
+},
+
+"faq": {
+  "title": "FAQ",
+
+  "q1": "O que é a Polycogni Capital?",
+  "a1": "O Futuro do Bitcoin Layer 2, a Polycogni Capital é uma solução de camada 2 de última geração que busca resolver os desafios de escalabilidade enfrentados pelo Bitcoin. Ao utilizar mecanismos avançados de escalabilidade, como state channels, sidechains e rollups, a Polycogni Capital aumenta a velocidade das transações e reduz as taxas, tornando Bitcoin e Ethereum mais acessíveis e eficientes para usuários em todo o mundo.",
+
+  "q2": "Por que a Polycogni Capital?",
+  "a2": "A Polycogni Capital está posicionada na interseção entre a segurança do Bitcoin e a inovação da próxima geração de blockchains. Ao introduzir contratos inteligentes e aplicações descentralizadas no ecossistema Bitcoin, buscamos desbloquear novas possibilidades para desenvolvedores, investidores e usuários globais.<br /><br />Nosso foco está na criação de valor a longo prazo por meio de:<br />- Infraestrutura blockchain escalável e eficiente<br />- Desenvolvimento estratégico e inovação contínua<br />- Um ecossistema em crescimento projetado para adoção no mundo real<br /><br />À medida que o espaço de ativos digitais continua evoluindo, a Polycogni Capital busca fazer parte da transformação que molda o futuro das finanças globais.",
+
+  "q3": "O que é Layer 2?",
+  "a3": "Layer 2 é uma solução construída sobre as redes Bitcoin e Ethereum, oferecendo transações mais rápidas e baratas, permitindo recompensas de staking duplas para a Polycogni Capital.",
+
+  "q4": "Como compro tokens Polycogni Capital?",
+  "a4": "Crie uma conta conosco ou conecte sua carteira ao nosso site. Carregue sua carteira com cripto: use BTC, ETH, USDT, USDC ou sua criptomoeda preferida. Compre $PC selecionando o método de pagamento e finalize a compra.",
+
+  "q5": "Quando posso reivindicar meus tokens?",
+  "a5": "Após sua primeira compra de tokens Polycogni Capital, você verá sua alocação no Dashboard da Polycogni Capital. O token será enviado para você na blockchain.",
+
+  "q6": "Posso investir na empresa sem comprar Polycogni Capital?",
+  "a6": "Sim, você pode investir conosco sem comprar Polycogni Capital.",
+
+  "contact": "Fale Conosco",
+  "helpDocs": "Documentação"
+},
+
+  "tradingBots": {
+  "title1": "LICENÇAS DE TRADING BOT",
+  "text1": "Os usuários podem comprar licenças de bots com IA para trading automatizado em diversos mercados.",
+
+  "title2": "MODELO DE DIVISÃO DE LUCROS",
+  "text2": "Ganhe renda passiva com as operações bem‑sucedidas executadas pelos seus bots de trading com IA.",
+
+  "title3": "PROPRIEDADE DE BOTS BASEADA EM NFT",
+  "text3": "Os usuários podem comprar, vender e negociar licenças de bots de IA como NFTs em nosso marketplace, garantindo verdadeira propriedade do ativo."
+},
 
   "footer": {
     "powering": "Impulsionando a próxima geração do mercado cripto",
@@ -208,5 +242,22 @@
     "jurisdiction": "Você não é cidadão nem residente de qualquer jurisdição onde a participação em vendas de tokens ou investimentos em criptomoedas seja restrita ou proibida.",
     "legally": "Você possui autorização legal para realizar essas transações de acordo com as leis aplicáveis.",
     "noAgree": "Se você não concordar com estes termos, não utilize nossos serviços nem adquira nossos tokens."
-  }
+  },
+
+  "auth": {
+  "welcomeBack": "Bem-vindo de volta 👋",
+  "loginSubtitle": "Acesse sua conta para entrar no painel e gerenciar seus stakes.",
+  "email": "Endereço de e-mail",
+  "emailPlaceholder": "voce@example.com",
+  "password": "Senha",
+  "rememberMe": "Lembrar de mim",
+  "forgotPassword": "Esqueceu a senha?",
+  "signIn": "Entrar →",
+  "orContinueWith": "ou continue com",
+  "noAccount": "Não tem uma conta?",
+  "createOne": "Crie uma",
+  "invalidCredentials": "E-mail ou senha inválidos.",
+  "fillAllFields": "Por favor, preencha todos os campos."
+}
+  
 }

@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function Hero() {
   const t = useTranslations("hero");
@@ -117,8 +118,21 @@ export default function Hero() {
 
         {/* AUDIT BADGES */}
         <div className="flex gap-4 md:gap-6 mt-6 md:mt-8">
-          <img src="/sp-horizontala1ee.png" className="h-10 md:h-14" alt={t("featuredIn")} />
-          <img src="/quill-horizontalc1e1.png" className="h-10 md:h-14" alt={t("featuredIn")} />
+         <Image
+  src="/sp-horizontala1ee.png"
+  width={120}
+  height={40}
+  className="h-10 md:h-14 w-auto"
+  alt={t("featuredIn")}
+/>
+
+<Image
+  src="/quill-horizontalc1e1.png"
+  width={120}
+  height={40}
+  className="h-10 md:h-14 w-auto"
+  alt={t("featuredIn")}
+/>
         </div>
       </div>
     </section>
