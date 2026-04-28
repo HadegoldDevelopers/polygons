@@ -1,8 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function Staking() {
+  const t = useTranslations("stakingSection");
+
   return (
     <section>
       <div className="container">
@@ -22,10 +26,11 @@ export default function Staking() {
           {/* Right: steps */}
           <div className="w-full lg:w-1/2 p-4">
             <h2 className="font-[800] md:text-[56px] text-[32px] text-[#fff] uppercase md:leading-[75px] leading-[40px] mb-4 text-center md:text-left">
-              Polycogni Capital Staking
+              {t("title")}
             </h2>
+
             <p className="font-[500] text-[18px] leading-[22px] text-center md:text-left">
-              Polycogni Capital has created an awesome new staking system that rewards users who participate the most.
+              {t("subtitle")}
             </p>
 
             {/* Mobile coin video */}
@@ -39,34 +44,54 @@ export default function Staking() {
               <li>
                 <div className="flex items-center mb-4 gap-3">
                   <span className="bg-[#FF7900] text-[#000] text-[20px] uppercase px-[22px] py-2 rounded-[8px] font-[600]">1</span>
-                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Purchase Polycogni Capital tokens</p>
+                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">
+                    {t("step1")}
+                  </p>
                 </div>
               </li>
+
               <li className="bg-black">
                 <div className="flex items-center mb-4 gap-3">
                   <span className="bg-[#FF7900] text-[#000] text-[20px] uppercase px-5 py-2 rounded-[8px] bg-opacity-70 font-[600]">2</span>
-                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Stake your tokens </p>                </div>
+                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">
+                    {t("step2")}
+                  </p>
+                </div>
               </li>
+
               <li>
                 <div className="flex items-center mb-4 gap-3">
                   <span className="bg-[#FF7900] text-[#000] text-[20px] uppercase px-5 py-2 rounded-[8px] bg-opacity-70 font-[600]">3</span>
-                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Login daily and claim rewards </p>
+                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">
+                    {t("step3")}
+                  </p>
                 </div>
               </li>
+
               <li>
                 <div className="flex md:items-center items-start mb-4 gap-3">
                   <span className="border border-[#FF7900] bg-transparent text-[#FF7900] text-[20px] uppercase px-5 py-2 rounded-[8px] font-[600]">+</span>
-                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">Participate in important protocol governance decisions</p>
+                  <p className="uppercase md:text-[22px] text-[18px] font-[600] leading-[20px] md:leading-[25px]">
+                    {t("stepPlus")}
+                  </p>
                 </div>
               </li>
             </ul>
 
             <div className="flex gap-4 items-center pt-6 md:pt-0">
-              <Link href="/register" className="bg-[#FF7900] hover:bg-opacity-90 md:w-auto w-full text-center text-[#000] text-[14px] px-8 md:px-16 py-6 sm:py-3 rounded-[8px] font-[800]">
-                BUY NOW
+              <Link
+                href="/register"
+                className="bg-[#FF7900] hover:bg-opacity-90 md:w-auto w-full text-center text-[#000] text-[14px] px-8 md:px-16 py-6 sm:py-3 rounded-[8px] font-[800]"
+              >
+                {t("buyNow")}
               </Link>
-              <Link href="/whitepaper/Polycogni_Capital_Whitepaper.pdf" target="_blank" className="border bg-[transparent] border-[#FF7900] md:w-auto w-full text-center text-[#fff] text-[14px] uppercase px-6 py-3 rounded-[8px] font-[800]">
-                Read Whitepaper
+
+              <Link
+                href="/whitepaper/Polycogni_Capital_Whitepaper.pdf"
+                target="_blank"
+                className="border bg-[transparent] border-[#FF7900] md:w-auto w-full text-center text-[#fff] text-[14px] uppercase px-6 py-3 rounded-[8px] font-[800]"
+              >
+                {t("readWhitepaper")}
               </Link>
             </div>
           </div>

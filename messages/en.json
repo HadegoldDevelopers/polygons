@@ -105,26 +105,40 @@
   "readWhitepaper": "READ WHITEPAPER"
 },
 
-  "staking": {
-    "title": "Polycogni Capital Staking",
-    "description": "Polycogni Capital has created an awesome new staking system that rewards users who participate the most.",
-    "step1": "Purchase Polycogni Capital tokens",
-    "step2": "Stake your tokens",
-    "step3": "Login daily and claim rewards",
-    "governance": "Participate in important protocol governance decisions"
-  },
+  "stakingSection": {
+  "title": "Polycogni Capital Staking",
+  "subtitle": "Polycogni Capital has created an awesome new staking system that rewards users who participate the most.",
 
+  "step1": "Purchase Polycogni Capital tokens",
+  "step2": "Stake your tokens",
+  "step3": "Login daily and claim rewards",
+  "stepPlus": "Participate in important protocol governance decisions",
+
+  "buyNow": "BUY NOW",
+  "readWhitepaper": "Read Whitepaper"
+},
   "phases": {
-    "phase1": "PHASE 1",
-    "phase1Items": ["Pre-Sale Launch", "Governance Rollout", "Devnet"],
-    "phase2": "PHASE 2",
-    "phase2Items": ["Private Testnet", "Public Testnet", "Unified Explorer"],
-    "phase3": "PHASE 3",
-    "phase3Items": ["Bridge Launch", "Research and Development", "Staking"],
-    "phase4": "PHASE 4",
-    "phase4Items": ["Mainnet Launch", "Ecosystem Expansion", "Community Expansion"],
-    "note": "*Subject to Governance Voting"
-  },
+  "title": "Development Phases",
+  "subject": "*Subject to Governance Voting",
+
+  "phase": "PHASE",
+
+  "p1i1": "Pre-Sale Launch",
+  "p1i2": "Governance Rollout",
+  "p1i3": "Devnet",
+
+  "p2i1": "Private Testnet",
+  "p2i2": "Public Testnet",
+  "p2i3": "Unified Explorer",
+
+  "p3i1": "Bridge Launch",
+  "p3i2": "Research and Development",
+  "p3i3": "Staking",
+
+  "p4i1": "Mainnet Launch",
+  "p4i2": "Ecosystem Expansion",
+  "p4i3": "Community Expansion"
+},
 
   "tokenomics": {
     "description": "Explore Polycogni Capital tokenomics - simple and effective. Our smart contracts are fully audited, enhancing safety and transparency. Dive into our Investment Trading Plan to discover more about how Polycogni Capital Trading works",

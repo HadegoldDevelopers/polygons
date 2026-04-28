@@ -108,26 +108,41 @@
   "readWhitepaper": "LER O WHITEPAPER"
 },
 
-  "staking": {
-    "title": "Staking PolyCogni Capital",
-    "description": "A PolyCogni Capital criou um sistema de staking inovador que recompensa os usuários mais engajados.",
-    "step1": "Compre tokens PolyCogni Capital",
-    "step2": "Faça staking dos seus tokens",
-    "step3": "Acesse diariamente e reivindique suas recompensas",
-    "governance": "Participe das decisões importantes de governança do protocolo"
-  },
+  "stakingSection": {
+  "title": "Staking da Polycogni Capital",
+  "subtitle": "A Polycogni Capital criou um novo sistema de staking incrível que recompensa os usuários que mais participam.",
+
+  "step1": "Compre tokens Polycogni Capital",
+  "step2": "Faça staking dos seus tokens",
+  "step3": "Faça login diariamente e reivindique recompensas",
+  "stepPlus": "Participe de decisões importantes de governança do protocolo",
+
+  "buyNow": "COMPRAR AGORA",
+  "readWhitepaper": "LER O WHITEPAPER"
+},
 
   "phases": {
-    "phase1": "FASE 1",
-    "phase1Items": ["Lançamento da pré-venda", "Implementação da governança", "Devnet"],
-    "phase2": "FASE 2",
-    "phase2Items": ["Testnet privada", "Testnet pública", "Explorador unificado"],
-    "phase3": "FASE 3",
-    "phase3Items": ["Lançamento da ponte", "Pesquisa e desenvolvimento", "Staking"],
-    "phase4": "FASE 4",
-    "phase4Items": ["Lançamento da mainnet", "Expansão do ecossistema", "Expansão da comunidade"],
-    "note": "*Sujeito à votação da governança"
-  },
+  "title": "Fases de Desenvolvimento",
+  "subject": "*Sujeito à Votação de Governança",
+
+  "phase": "FASE",
+
+  "p1i1": "Lançamento da Pré‑venda",
+  "p1i2": "Implementação da Governança",
+  "p1i3": "Devnet",
+
+  "p2i1": "Testnet Privada",
+  "p2i2": "Testnet Pública",
+  "p2i3": "Explorador Unificado",
+
+  "p3i1": "Lançamento da Ponte",
+  "p3i2": "Pesquisa e Desenvolvimento",
+  "p3i3": "Staking",
+
+  "p4i1": "Lançamento da Mainnet",
+  "p4i2": "Expansão do Ecossistema",
+  "p4i3": "Expansão da Comunidade"
+},
 
   "tokenomics": {
     "description": "Explore a tokenomics da PolyCogni Capital — simples e eficiente. Nossos contratos inteligentes são totalmente auditados, garantindo mais segurança e transparência. Consulte nosso plano de investimento e trading para entender como funciona o ecossistema.",
