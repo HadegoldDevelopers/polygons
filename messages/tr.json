@@ -5,7 +5,7 @@
     "about": "Hakkında",
     "features": "Özellikler",
     "token": "Token",
-    "faq": "SSS",
+    "faq": "Sıkça Sorulan Sorular",
     "dashboard": "Panel",
     "connectWallet": "Cüzdan Bağla",
     "language": "TR"
@@ -182,7 +182,7 @@
   },
 
   "faq": {
-    "title": "SSS",
+    "title": "Sıkça Sorulan Sorular",
 
     "q1": "Polycogni Capital nedir?",
     "a1": "Bitcoin Layer 2’nin geleceği olan Polycogni Capital, Bitcoin’in ölçeklenebilirlik sorunlarını çözmeyi amaçlayan gelişmiş bir Layer 2 çözümüdür. State channels, sidechains ve rollups gibi gelişmiş ölçeklendirme mekanizmalarını kullanarak işlem hızını artırır ve ücretleri düşürür, Bitcoin ve Ethereum’u dünya genelindeki kullanıcılar için daha erişilebilir ve verimli hale getirir.",
