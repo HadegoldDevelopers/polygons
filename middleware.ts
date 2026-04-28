@@ -1,9 +1,35 @@
+// middleware.ts
+import createIntlMiddleware from "next-intl/middleware";
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request });
+// ── Supported locales ─────────────────────────────────────────────
+const locales       = ["en", "pt", "es", "fr", "it", "bg", "el", "pl", "tr"];
+const defaultLocale = "en";
 
+// ── next-intl middleware ──────────────────────────────────────────
+const intlMiddleware = createIntlMiddleware({
+  locales,
+  defaultLocale,
+  localePrefix: "as-needed", // / = English, /pt = Portuguese etc
+});
+
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // ── Strip locale prefix for route matching ─────────────────────
+  const localePrefix = locales.find(
+    (l) => pathname.startsWith(`/${l}/`) || pathname === `/${l}`
+  );
+  const pathnameWithoutLocale = localePrefix
+    ? pathname.slice(`/${localePrefix}`.length) || "/"
+    : pathname;
+
+  // ── Run next-intl first ────────────────────────────────────────
+  const intlResponse = intlMiddleware(request);
+  let supabaseResponse = intlResponse ?? NextResponse.next({ request });
+
+  // ── Supabase client ────────────────────────────────────────────
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -25,39 +51,42 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  // Refresh session
-const { data: { user } } = await supabase.auth.getUser();
-const { pathname } = request.nextUrl;
+  // ── Refresh session ────────────────────────────────────────────
+  const { data: { user } } = await supabase.auth.getUser();
 
-// User dashboard protection
-if (!user && pathname.startsWith("/dashboard")) {
-  return NextResponse.redirect(new URL("/login", request.url));
-}
-
-// Admin protection
-if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
-  if (!user) {
-    return NextResponse.redirect(new URL("/admin/login", request.url));
+  // ── Protect /dashboard ─────────────────────────────────────────
+  if (!user && pathnameWithoutLocale.startsWith("/dashboard")) {
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Check admin role
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("is_admin")
-    .eq("id", user.id)
-    .single();
+  // ── Protect /admin ─────────────────────────────────────────────
+  if (
+    pathnameWithoutLocale.startsWith("/admin") &&
+    !pathnameWithoutLocale.startsWith("/admin/login")
+  ) {
+    if (!user) {
+      return NextResponse.redirect(new URL("/admin/login", request.url));
+    }
 
-  if (!profile || profile.is_admin !== true) {
-    return NextResponse.redirect(new URL("/", request.url));
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("is_admin, role")
+      .eq("id", user.id)
+      .single();
+
+    // Support both is_admin boolean and role === "admin"
+    const isAdmin = profile?.is_admin === true || profile?.role === "admin";
+
+    if (!isAdmin) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
   }
-}
 
- 
-  // Redirect logged-in users away from auth pages
+  // ── Redirect logged-in users away from auth pages ──────────────
   if (
     user &&
-    (request.nextUrl.pathname === "/login" ||
-      request.nextUrl.pathname === "/register")
+    (pathnameWithoutLocale === "/login" ||
+      pathnameWithoutLocale === "/register")
   ) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
@@ -67,6 +96,6 @@ if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|woff2?)$).*)",
   ],
 };

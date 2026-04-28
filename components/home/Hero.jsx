@@ -1,12 +1,24 @@
 "use client";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Hero() {
-  const words = ["DEFI", "AI", "GAMING", "NFTS", "MEMECOINS", "EVERYTHING"];
+  const t = useTranslations("hero");
+
+  // Rotating words from your translation file
+  const words = [
+    t("defi"),
+    t("ai"),
+    t("gaming"),
+    t("nfts"),
+    t("memecoins"),
+    t("everything")
+  ];
+
   const [index, setIndex] = useState(0);
   const [itemHeight, setItemHeight] = useState(0);
-  const measureRef = useRef(null);
+  const measureRef = useRef(null); // <-- FIXED for .jsx
 
   useEffect(() => {
     if (measureRef.current) {
@@ -19,7 +31,7 @@ export default function Hero() {
       setIndex((prev) => (prev + 1) % words.length);
     }, 2600);
     return () => clearInterval(interval);
-  }, []);
+  }, [words.length]);
 
   return (
     <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden">
@@ -50,7 +62,7 @@ export default function Hero() {
 
             {/* BUILD */}
             <h1 className="text-white font-extrabold uppercase text-[32px] md:text-[70px] leading-none bg-white/10 backdrop-blur-xl px-3 md:px-4 py-2 rounded-lg whitespace-nowrap">
-              Build
+              {t("build")}
             </h1>
 
             {/* ROTATING WORD */}
@@ -86,13 +98,13 @@ export default function Hero() {
 
           {/* LINE 2 */}
           <h1 className="text-white font-extrabold uppercase text-[32px] md:text-[70px] leading-none bg-white/10 backdrop-blur-xl px-3 md:px-4 py-2 rounded-lg w-fit">
-            on Bitcoin
+            {t("onBitcoin")}
           </h1>
         </div>
 
         {/* SUBHEADLINE */}
         <p className="text-white max-w-xl mt-6 md:mt-10 text-base md:text-xl font-semibold">
-          Polycogni Capital is the First Hybrid Layer 2 Blockchain that introduces smart contracts to Bitcoin.
+          {t("description")}
         </p>
 
         {/* CTA BUTTON */}
@@ -100,13 +112,13 @@ export default function Hero() {
           href="/register"
           className="inline-flex items-center gap-2 mt-8 md:mt-10 bg-[#FF7900] text-black font-bold px-8 md:px-10 py-3 md:py-4 rounded-lg uppercase shadow-[0_0_10px_rgba(255,255,255,0.4)]"
         >
-          REGISTER TO <span className="font-extrabold">Swap</span>
+          {t("register")} <span className="font-extrabold">{t("swap")}</span>
         </Link>
 
         {/* AUDIT BADGES */}
         <div className="flex gap-4 md:gap-6 mt-6 md:mt-8">
-          <img src="/sp-horizontala1ee.png" className="h-10 md:h-14" alt="SolidProof" />
-          <img src="/quill-horizontalc1e1.png" className="h-10 md:h-14" alt="QuillAudits" />
+          <img src="/sp-horizontala1ee.png" className="h-10 md:h-14" alt={t("featuredIn")} />
+          <img src="/quill-horizontalc1e1.png" className="h-10 md:h-14" alt={t("featuredIn")} />
         </div>
       </div>
     </section>

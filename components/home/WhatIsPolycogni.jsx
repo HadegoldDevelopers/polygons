@@ -1,48 +1,51 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-
-const cards = [
-  {
-    title: "Smart Contracts",
-    video: "/videos/pluto_card_compressed.mp4",
-    poster: "/frames/smart-contracts-frame.webp",
-    features: ["EVM Compatible", "Scalable", "Generic"],
-  },
-  {
-    title: "Develop",
-    video: "/videos/pluto_gear_compressed.mp4",
-    poster: "/frames/develop-frame.webp",
-    features: ["DeFi", "Artificial Intelligence", "Gaming"],
-  },
-  {
-    title: "Presale",
-    video: "/videos/pluto_rocket_compressed.mp4",
-    poster: "/frames/presale-frame.webp",
-    features: ["Self-Custodial", "Audited Contract", "Finished Product"],
-  },
-  {
-    title: "Staking",
-    video: "/videos/pluto_chest_compressed.mp4",
-    poster: "/frames/staking-frame.webp",
-    features: ["Instant Staking", "Easy to Use", "Governance Feature"],
-  },
-  {
-    title: "Polycogni Capital Token",
-    video: "/videos/pluto_hand_compressed.mp4",
-    poster: "/frames/pluto-token-frame.webp",
-    features: ["Instant Finality", "Lightning Fast", "Governance Rights"],
-  },
-  {
-    title: "Ecosystem",
-    video: "/videos/pluto_ecosystem_compressed.mp4",
-    poster: "/frames/ecosystem-frame.webp",
-    features: ["Builders Program", "Interoperability", "Bitcoin L2"],
-  },
-];
-
-const total = cards.length;
+import { useTranslations } from "next-intl";
 
 export default function WhatIsPolycogni() {
+  const t = useTranslations("whatIs");
+
+  const cards = [
+    {
+      title: t("smartContracts"),
+      video: "/videos/pluto_card_compressed.mp4",
+      poster: "/frames/smart-contracts-frame.webp",
+      features: [t("evmCompatible"), t("scalable"), t("generic")],
+    },
+    {
+      title: t("develop"),
+      video: "/videos/pluto_gear_compressed.mp4",
+      poster: "/frames/develop-frame.webp",
+      features: [t("defi"), t("ai"), t("gaming")],
+    },
+    {
+      title: t("presale"),
+      video: "/videos/pluto_rocket_compressed.mp4",
+      poster: "/frames/presale-frame.webp",
+      features: [t("selfCustodial"), t("auditedContract"), t("finishedProduct")],
+    },
+    {
+      title: t("staking"),
+      video: "/videos/pluto_chest_compressed.mp4",
+      poster: "/frames/staking-frame.webp",
+      features: [t("instantStaking"), t("easyToUse"), t("governanceFeature")],
+    },
+    {
+      title: t("token"),
+      video: "/videos/pluto_hand_compressed.mp4",
+      poster: "/frames/pluto-token-frame.webp",
+      features: [t("instantFinality"), t("lightningFast"), t("governanceRights")],
+    },
+    {
+      title: t("ecosystem"),
+      video: "/videos/pluto_ecosystem_compressed.mp4",
+      poster: "/frames/ecosystem-frame.webp",
+      features: [t("buildersProgram"), t("interoperability"), t("bitcoinL2")],
+    },
+  ];
+
+  const total = cards.length;
+
   const [active, setActive] = useState(1);
   const [animating, setAnimating] = useState(false);
 
@@ -69,12 +72,11 @@ export default function WhatIsPolycogni() {
             fontSize: "clamp(32px, 6vw, 64px)",
           }}
         >
-          WHAT IS POLYCOGNI CAPITAL?
+          {t("title")}
         </h2>
 
         <p className="text-white/60 text-center max-w-2xl mx-auto mb-12 text-base leading-relaxed">
-          Polycogni Capital is a cryptocurrency project that seeks to unlock the full potential of the
-          Bitcoin blockchain by bringing smart contracts and decentralized applications to Bitcoin.
+          {t("description")}
         </p>
 
         {/* Carousel */}
@@ -92,7 +94,7 @@ export default function WhatIsPolycogni() {
           {/* TRACK */}
           <div className="flex items-center justify-center gap-3 md:gap-5 flex-1 max-w-5xl overflow-hidden">
 
-            {/* LEFT CARD — hidden on mobile */}
+            {/* LEFT CARD */}
             <div
               className="hidden md:block flex-shrink-0 cursor-pointer select-none transition-all duration-500"
               style={{ width: "26%", opacity: 0.55, transform: "scale(0.9)" }}
@@ -101,7 +103,7 @@ export default function WhatIsPolycogni() {
               <Card key={`left-${leftIdx}`} card={cards[leftIdx]} isActive={false} />
             </div>
 
-            {/* CENTER CARD — full width on mobile */}
+            {/* CENTER CARD */}
             <div
               className="flex-shrink-0 transition-all duration-500 w-full md:w-auto"
               style={{
@@ -114,7 +116,7 @@ export default function WhatIsPolycogni() {
               <Card key={`center-${active}`} card={cards[active]} isActive={true} />
             </div>
 
-            {/* RIGHT CARD — hidden on mobile */}
+            {/* RIGHT CARD */}
             <div
               className="hidden md:block flex-shrink-0 cursor-pointer select-none transition-all duration-500"
               style={{ width: "26%", opacity: 0.55, transform: "scale(0.9)" }}
