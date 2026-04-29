@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
@@ -17,6 +18,8 @@ const LANGS = [
 ];
 
 export default function LanguageSelector() {
+  const [open, setOpen] = useState(false);
+
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -25,29 +28,37 @@ export default function LanguageSelector() {
     const segments = pathname.split("/");
     segments[1] = lang;
     router.push(segments.join("/"));
+    setOpen(false);
   }
 
   const current = LANGS.find(l => l.code === locale);
 
   return (
-    <div className="relative group">
-      <div className="flex items-center gap-2 cursor-pointer">
+    <div className="relative">
+      {/* Trigger */}
+      <div
+        className="flex items-center gap-2 cursor-pointer"
+        onClick={() => setOpen(!open)}
+      >
         <Image src={current?.flag || "/assets/flags/gb.svg"} width={20} height={20} alt="" />
         <span className="uppercase text-white">{locale}</span>
       </div>
 
-      <div className="hidden group-hover:block absolute top-full left-0 bg-black border border-[#FF7900] rounded-lg w-40 z-50">
-        {LANGS.map(lang => (
-          <div
-            key={lang.code}
-            onClick={() => changeLanguage(lang.code)}
-            className="flex items-center gap-3 px-4 py-2 hover:bg-[#FF790020] cursor-pointer text-white text-sm font-bold uppercase"
-          >
-            <Image src={lang.flag} width={20} height={20} alt={lang.label} />
-            <span>{lang.label}</span>
-          </div>
-        ))}
-      </div>
+      {/* Dropdown */}
+      {open && (
+        <div className="absolute top-full left-0 bg-black border border-[#FF7900] rounded-lg w-40 z-50">
+          {LANGS.map(lang => (
+            <div
+              key={lang.code}
+              onClick={() => changeLanguage(lang.code)}
+              className="flex items-center gap-3 px-4 py-2 hover:bg-[#FF790020] cursor-pointer text-white text-sm font-bold uppercase"
+            >
+              <Image src={lang.flag} width={20} height={20} alt={lang.label} />
+              <span>{lang.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
