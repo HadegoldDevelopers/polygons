@@ -11,21 +11,18 @@ const defaultLocale = "en";
 const intlMiddleware = createIntlMiddleware({
   locales,
   defaultLocale,
-  localePrefix: "as-needed", // / = English, /pt = Portuguese etc
+  localePrefix: "as-needed"
 });
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // ── Strip locale prefix for route matching ─────────────────────
-  const localePrefix = locales.find(
-    (l) => pathname.startsWith(`/${l}/`) || pathname === `/${l}`
-  );
-  const pathnameWithoutLocale = localePrefix
-    ? pathname.slice(`/${localePrefix}`.length) || "/"
-    : pathname;
+  if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
+  return NextResponse.next();
+}
 
-  // ── Run next-intl first ────────────────────────────────────────
+
+  // ── Run next-intl for all NON-admin routes ─────────────────────
   const intlResponse = intlMiddleware(request);
   let supabaseResponse = intlResponse ?? NextResponse.next({ request });
 
@@ -46,49 +43,38 @@ export async function middleware(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options)
           );
-        },
-      },
+        }
+      }
     }
   );
 
   // ── Refresh session ────────────────────────────────────────────
   const { data: { user } } = await supabase.auth.getUser();
 
-  // ── Protect /dashboard ─────────────────────────────────────────
+  // ── Strip locale prefix for route matching ─────────────────────
+  const localePrefix = locales.find(
+    (l) => pathname.startsWith(`/${l}/`) || pathname === `/${l}`
+  );
+  const pathnameWithoutLocale = localePrefix
+    ? pathname.slice(`/${localePrefix}`.length) || "/"
+    : pathname;
+
+  // ── Protect /dashboard (localized) ─────────────────────────────
   if (!user && pathnameWithoutLocale.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(
+      new URL(`/${localePrefix ?? defaultLocale}/login`, request.url)
+    );
   }
 
-  // ── Protect /admin ─────────────────────────────────────────────
-  if (
-    pathnameWithoutLocale.startsWith("/admin") &&
-    !pathnameWithoutLocale.startsWith("/admin/login")
-  ) {
-    if (!user) {
-      return NextResponse.redirect(new URL("/admin/login", request.url));
-    }
-
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("is_admin, role")
-      .eq("id", user.id)
-      .single();
-
-    // Support both is_admin boolean and role === "admin"
-    const isAdmin = profile?.is_admin === true || profile?.role === "admin";
-
-    if (!isAdmin) {
-      return NextResponse.redirect(new URL("/", request.url));
-    }
-  }
-
-  // ── Redirect logged-in users away from auth pages ──────────────
+  // ── Redirect logged-in users away from localized auth pages ────
   if (
     user &&
     (pathnameWithoutLocale === "/login" ||
-      pathnameWithoutLocale === "/register")
+     pathnameWithoutLocale === "/register")
   ) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    return NextResponse.redirect(
+      new URL(`/${localePrefix ?? defaultLocale}/dashboard`, request.url)
+    );
   }
 
   return supabaseResponse;
@@ -96,6 +82,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|woff2?)$).*)",
-  ],
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|woff2?)$).*)"
+  ]
 };
