@@ -21,6 +21,9 @@ export async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
+if (pathname.startsWith("/api")) {
+  return NextResponse.next();
+}
 
   // ── Run next-intl for all NON-admin routes ─────────────────────
   const intlResponse = intlMiddleware(request);
