@@ -27,8 +27,6 @@ async function loadRecent() {
   const data: AdminNotification[] = await res.json();
   setRecent(Array.isArray(data) ? data : []);
 }
-
-
   //
   // 2. Load initial data (React‑approved pattern)
   //

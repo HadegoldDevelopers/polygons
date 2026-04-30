@@ -11,11 +11,14 @@ const navItems = [
   { label: "Deposits",        href: "/admin/deposits",           icon: "⬇️" },
   { label: "Withdrawals",     href: "/admin/withdrawals",        icon: "⬆️", badge: "pending" },
   { label: "Wallets",         href: "/admin/wallets",            icon: "💼" },
-  { label: "Pricing",   href: "/admin/staking/plans",      icon: "📈" },
+  { label: "Pricing",         href: "/admin/staking/plans",      icon: "📈" },
   { label: "Staking Positions",href: "/admin/staking/positions", icon: "🔒" },
+  { label: "User Plans",      href: "/admin/plans",              icon: "🧾" },
   { label: "Coin Markets",    href: "/admin/coin-markets",       icon: "🪙" },
   { label: "Notifications",   href: "/admin/notifications",      icon: "🔔" },
+  { label: "Settings",        href: "/admin/settings",           icon: "⚙️" },
 ];
+
 
 interface AdminSidebarProps {
   onClose?: () => void;

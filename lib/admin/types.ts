@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*                               USER / PROFILE                               */
+/* -------------------------------------------------------------------------- */
+
 export interface AdminProfile {
   id: string;
   name: string;
@@ -11,17 +15,83 @@ export interface AdminProfile {
   phone?: string;
   created_at: string;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                               NOTIFICATIONS                                */
+/* -------------------------------------------------------------------------- */
+
 export interface AdminNotification {
   id: string;
   user_id: string | null;
   text: string;
-  time: string; // ISO timestamp
+  time: string;
   read: boolean;
   profiles?: {
     name: string;
     email?: string;
   } | null;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                       BASE TYPE FOR PLAN POSITIONS                         */
+/* -------------------------------------------------------------------------- */
+
+export interface BasePlanPosition {
+  id: string;
+  user_id: string;
+  plan_id: string;
+  amount: number;
+  earned: number;
+  status: string;
+  created_at: string;
+
+  profiles?: { name: string; email: string };
+  staking_plans?: { name: string; apr: number };
+}
+
+/* -------------------------------------------------------------------------- */
+/*                         ADMIN PLAN POSITION (RAW DB)                       */
+/* -------------------------------------------------------------------------- */
+
+export interface AdminPlanPosition extends BasePlanPosition {
+  end_date: string;
+
+  // Snapshot fields that exist in the DB and are required by the UI
+  daily_profit_snapshot: number;
+  duration_days_snapshot: number;
+  earned_so_far: number;
+
+  // Optional DB fields
+  last_credited_at?: string | null;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                     USER STAKING POSITION (COMPUTED FIELDS)               */
+/* -------------------------------------------------------------------------- */
+
+export interface StakingPosition extends BasePlanPosition {
+  apy: number;
+  lock_days: number;
+  days_left: number;
+  progress: number;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  SETTINGS                                  */
+/* -------------------------------------------------------------------------- */
+
+export interface AdminSettings {
+  id: string;
+  now_api_key?: string;
+  now_ipn_secret?: string;
+  now_public_key?: string;
+  updated_at: string;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               TRANSACTIONS                                 */
+/* -------------------------------------------------------------------------- */
 
 export interface AdminTransaction {
   id: string;
@@ -35,8 +105,13 @@ export interface AdminTransaction {
   status: string;
   direction: string;
   created_at: string;
+
   profiles?: { name: string; email: string };
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                  WALLETS                                   */
+/* -------------------------------------------------------------------------- */
 
 export interface AdminWallet {
   id: string;
@@ -47,8 +122,13 @@ export interface AdminWallet {
   price: number;
   change_pct: number;
   address: string;
+
   profiles?: { name: string; email: string };
 }
+
+/* -------------------------------------------------------------------------- */
+/*                               DEPOSIT SESSIONS                             */
+/* -------------------------------------------------------------------------- */
 
 export interface AdminDepositSession {
   id: string;
@@ -62,8 +142,13 @@ export interface AdminDepositSession {
   actually_paid?: number;
   created_at: string;
   updated_at?: string;
+
   profiles?: { name: string; email: string };
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                STAKING PLANS                               */
+/* -------------------------------------------------------------------------- */
 
 export interface StakingPlan {
   id: string;
@@ -78,21 +163,9 @@ export interface StakingPlan {
   created_at: string;
 }
 
-export interface StakingPosition {
-  id: string;
-  user_id: string;
-  amount: number;
-  earned: number;
-  apy: number;
-  lock_days: number;
-  days_left: number;
-  progress: number;
-  status: string;
-  plan_id?: string;
-  created_at: string;
-  profiles?: { name: string; email: string };
-  staking_plans?: { name: string; apr: number };
-}
+/* -------------------------------------------------------------------------- */
+/*                             WITHDRAWAL REQUESTS                            */
+/* -------------------------------------------------------------------------- */
 
 export interface WithdrawalRequest {
   id: string;
@@ -108,8 +181,13 @@ export interface WithdrawalRequest {
   reviewed_by?: string;
   reviewed_at?: string;
   created_at: string;
+
   profiles?: { name: string; email: string };
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                COIN MARKETS                                */
+/* -------------------------------------------------------------------------- */
 
 export interface CoinMarket {
   symbol: string;
@@ -123,6 +201,10 @@ export interface CoinMarket {
   circulating_supply: number;
   updated_at: string;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                ANALYTICS                                   */
+/* -------------------------------------------------------------------------- */
 
 export interface AnalyticsStats {
   totalUsers: number;
