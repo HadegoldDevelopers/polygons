@@ -1,7 +1,7 @@
 "use client";
 
 import PlansTableRow from "./PlansTableRow";
-import type { AdminPlanPosition } from "@/lib/admin/types";
+import type { AdminPlanPosition, SortKey } from "@/lib/admin/types";
 
 type Props = {
   loading: boolean;

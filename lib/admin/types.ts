@@ -64,6 +64,13 @@ export interface AdminPlanPosition extends BasePlanPosition {
   // Optional DB fields
   last_credited_at?: string | null;
 }
+/* -------------------------------------------------------------------------- */
+/*                         PLAN POSITION FILTER / SORT TYPES                  */
+/* -------------------------------------------------------------------------- */
+
+export type StatusFilter = "all" | "active" | "completed" | "cancelled";
+
+export type SortKey = "created_at" | "amount" | "end_date";
 
 
 /* -------------------------------------------------------------------------- */
