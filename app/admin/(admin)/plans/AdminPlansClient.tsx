@@ -130,7 +130,6 @@ export default function AdminPlansClient() {
   setStatusFilter={(v) => setStatusFilter(v as StatusFilter)}
 />
 
-
       <PlansTable
         loading={loading}
         filtered={filtered}
