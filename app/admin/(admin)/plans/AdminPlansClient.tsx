@@ -124,11 +124,12 @@ export default function AdminPlansClient() {
       <PlansHeader />
 
       <PlansFilters
-        search={search}
-        setSearch={setSearch}
-        statusFilter={statusFilter}
-        setStatusFilter={setStatusFilter}
-      />
+  search={search}
+  setSearch={setSearch}
+  statusFilter={statusFilter}
+  setStatusFilter={(v) => setStatusFilter(v as StatusFilter)}
+/>
+
 
       <PlansTable
         loading={loading}
