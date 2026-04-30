@@ -40,7 +40,7 @@ export default function LanguageSelector() {
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => setOpen(!open)}
       >
-        <Image src={current?.flag || "/assets/flags/gb.svg"} width={20} height={20} alt="" />
+        <Image src={current?.flag || "/assets/flags/gb.svg"} width={20} height={20} alt="flags" />
         <span className="uppercase text-white">{locale}</span>
       </div>
 

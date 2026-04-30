@@ -1,16 +1,11 @@
 import { supabaseService } from "@/lib/supabase/service";
 
 export async function GET() {
-  try {
-    const { data, error } = await supabaseService
-      .from("profiles")
-      .select("*")
-      .order("created_at", { ascending: false });
+  const { data, error } = await supabaseService
+    .from("profiles")
+    .select("id, name, email");
 
-    if (error) throw error;
+  if (error) return Response.json([], { status: 200 });
 
-    return Response.json({ users: data });
-  } catch (err) {
-    return Response.json({ error: "Failed to fetch users" }, { status: 500 });
-  }
+  return Response.json(data ?? []);
 }
