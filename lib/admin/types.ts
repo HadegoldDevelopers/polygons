@@ -11,6 +11,17 @@ export interface AdminProfile {
   phone?: string;
   created_at: string;
 }
+export interface AdminNotification {
+  id: string;
+  user_id: string | null;
+  text: string;
+  time: string; // ISO timestamp
+  read: boolean;
+  profiles?: {
+    name: string;
+    email?: string;
+  } | null;
+}
 
 export interface AdminTransaction {
   id: string;

@@ -1,34 +1,48 @@
 "use client";
 
+import { AdminNotification, AdminProfile } from "@/lib/admin/types";
 import { useEffect, useState } from "react";
 
 export default function NotificationsClient() {
-  const [users, setUsers] = useState<any[]>([]);
-  const [target, setTarget] = useState<"all" | "specific">("all");
+ const [users, setUsers] = useState<AdminProfile[]>([]);
+ const [recent, setRecent] = useState<AdminNotification[]>([]);
+ const [target, setTarget] = useState<"all" | "specific">("all");
   const [userId, setUserId] = useState("");
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
-  const [recent, setRecent] = useState<any[]>([]);
 
-  // Load users + recent notifications
+
+  //
+  // 1. Helper functions (must be defined BEFORE useEffect)
+  //
+  async function loadUsers() {
+  const res = await fetch("/api/admin/users", { cache: "no-store" });
+  const data: AdminProfile[] = await res.json();
+  setUsers(Array.isArray(data) ? data : []);
+}
+
+async function loadRecent() {
+  const res = await fetch("/api/admin/notifications", { cache: "no-store" });
+  const data: AdminNotification[] = await res.json();
+  setRecent(Array.isArray(data) ? data : []);
+}
+
+
+  //
+  // 2. Load initial data (React‑approved pattern)
+  //
   useEffect(() => {
-    loadUsers();
-    loadRecent();
+    async function load() {
+      await loadUsers();
+      await loadRecent();
+    }
+    load();
   }, []);
 
-  const loadUsers = async () => {
-    const res = await fetch("/api/admin/users", { cache: "no-store" });
-    const data = await res.json();
-    setUsers(Array.isArray(data) ? data : []);
-  };
-
-  const loadRecent = async () => {
-    const res = await fetch("/api/admin/notifications", { cache: "no-store" });
-    const data = await res.json();
-    setRecent(Array.isArray(data) ? data : []);
-  };
-
+  //
+  // 3. Send notification
+  //
   const send = async () => {
     if (!message.trim()) return;
     setSending(true);
@@ -144,7 +158,7 @@ export default function NotificationsClient() {
         {/* Recent notifications */}
         <div className="bg-[#111118] border border-white/8 rounded-2xl p-5">
           <h3 className="text-sm font-bold mb-4">Recently Sent</h3>
-          <div className="space-y-2 max-h-[400px] overflow-y-auto">
+          <div className="space-y-2 max-h-100 overflow-y-auto">
             {recent.length === 0 && (
               <p className="text-sm text-white/30 text-center py-8">No notifications sent yet</p>
             )}
