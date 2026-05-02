@@ -1,23 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  AdminTable,
-  SearchBar,
-  FilterChip,
-  StatusBadge,
-  AdminModal,
-  TableSkeleton,
-} from "@/components/admin/ui/AdminUI";
+import { AdminTable, SearchBar, FilterChip, StatusBadge, AdminModal, TableSkeleton, } from "@/components/admin/ui/AdminUI";
 
 import type { AdminProfile } from "@/lib/admin/types";
+import EditUserModal from "@/components/admin/pages/users/EditUserModal";
+import UserViewModal from "@/components/admin/pages/users/UserViewModal";
 
 export default function UsersPage() {
   const [users, setUsers] = useState<AdminProfile[]>([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<AdminProfile | null>(null);
+
+  // VIEW + EDIT MODAL STATES
+  const [viewing, setViewing] = useState<AdminProfile | null>(null);
+  const [editing, setEditing] = useState<AdminProfile | null>(null);
+
   const [confirm, setConfirm] = useState<{ type: string; user: AdminProfile } | null>(null);
   const [banReason, setBanReason] = useState("");
 
@@ -36,22 +35,22 @@ export default function UsersPage() {
 
   // 🔹 Filter + search
   const filtered = users.filter((u) => {
-  const q = search.toLowerCase();
+    const q = search.toLowerCase();
 
-  const matchesSearch =
-    !search ||
-    u.name?.toLowerCase().includes(q) ||
-    u.email?.toLowerCase().includes(q) ||
-    u.id.includes(q);
+    const matchesSearch =
+      !search ||
+      u.name?.toLowerCase().includes(q) ||
+      u.email?.toLowerCase().includes(q) ||
+      u.id.includes(q);
 
-  const matchesFilter =
-    filter === "all" ||
-    (filter === "banned" && u.is_banned) ||
-    (filter === "admin" && u.is_admin === true) ||
-    (filter === "verified" && u.is_verified);
+    const matchesFilter =
+      filter === "all" ||
+      (filter === "banned" && u.is_banned) ||
+      (filter === "admin" && u.is_admin === true) ||
+      (filter === "verified" && u.is_verified);
 
-  return matchesSearch && matchesFilter;
-});
+    return matchesSearch && matchesFilter;
+  });
 
   // 🔹 Helper
   const adminAction = async (body: object) => {
@@ -115,7 +114,7 @@ export default function UsersPage() {
   };
 
   const makeAdmin = async (user: AdminProfile) => {
-    const newRole = !user.is_admin
+    const newRole = !user.is_admin;
 
     await adminAction({
       action: "is_admin",
@@ -129,7 +128,6 @@ export default function UsersPage() {
       )
     );
   };
-
 
   if (loading) return <TableSkeleton rows={8} cols={6} />;
 
@@ -180,14 +178,14 @@ export default function UsersPage() {
             </td>
 
             <td className="px-4 py-3.5">
-              <StatusBadge status={user.is_admin === true ? "is_admin" : "user"} />
+              <StatusBadge status={user.is_admin ? "is_admin" : "user"} />
             </td>
-            
+
             <td className="px-4 py-3.5">
               <div className="flex flex-col gap-1">
                 {user.is_banned && <StatusBadge status="banned" />}
                 {user.is_verified && <StatusBadge status="verified" />}
-                {!user.is_banned && !user.is_verified && (<StatusBadge status="user" />)}
+                {!user.is_banned && !user.is_verified && <StatusBadge status="user" />}
               </div>
             </td>
 
@@ -201,13 +199,24 @@ export default function UsersPage() {
 
             <td className="px-4 py-3.5">
               <div className="flex items-center gap-1.5 flex-wrap">
+
+                {/* VIEW BUTTON */}
                 <button
-                  onClick={() => setSelected(user)}
+                  onClick={() => setViewing(user)}
                   className="px-2.5 py-1 rounded-lg bg-white/6 text-xs font-bold hover:bg-white/10 transition-colors"
                 >
                   View
                 </button>
 
+                {/* EDIT BUTTON */}
+                <button
+                  onClick={() => setEditing(user)}
+                  className="px-2.5 py-1 rounded-lg bg-[#FF7900]/10 text-[#FF7900] text-xs font-bold hover:bg-[#FF7900]/20 transition-colors"
+                >
+                  Edit
+                </button>
+
+                {/* VERIFY */}
                 <button
                   onClick={() => verifyUser(user)}
                   className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-colors ${
@@ -219,6 +228,7 @@ export default function UsersPage() {
                   {user.is_verified ? "Unverify" : "Verify"}
                 </button>
 
+                {/* BAN / UNBAN */}
                 {user.is_banned ? (
                   <button
                     onClick={() => unbanUser(user)}
@@ -235,11 +245,12 @@ export default function UsersPage() {
                   </button>
                 )}
 
+                {/* MAKE ADMIN */}
                 <button
                   onClick={() => makeAdmin(user)}
                   className="px-2.5 py-1 rounded-lg bg-[#FF7900]/10 text-[#FF7900] text-xs font-bold hover:bg-[#FF7900]/20 transition-colors"
                 >
-                  {user.is_admin === true ? "Remove Admin" : "Make Admin"}
+                  {user.is_admin ? "Remove Admin" : "Make Admin"}
                 </button>
               </div>
             </td>
@@ -247,31 +258,26 @@ export default function UsersPage() {
         ))}
       </AdminTable>
 
-      {/* Modal */}
-      <AdminModal open={!!selected} onClose={() => setSelected(null)} title="User Details">
-        {selected && (
-          <div className="space-y-3">
-            {[
-              ["ID", selected.id],
-              ["Name", selected.name ?? "—"],
-              ["Email", selected.email],
-              ["Role", selected.is_admin === true ? "Admin" : "User"],
-              ["Country", selected.country ?? "—"],
-              ["Phone", selected.phone ?? "—"],
-              ["Verified", selected.is_verified ? "Yes" : "No"],
-              ["Banned", selected.is_banned ? `Yes — ${selected.ban_reason ?? "No reason"}` : "No"],
-              ["Joined", new Date(selected.created_at).toLocaleString()],
-            ].map(([k, v]) => (
-              <div key={k} className="flex justify-between py-2 border-b border-white/8 last:border-0">
-                <span className="text-xs text-white/40 font-semibold">{k}</span>
-                <span className="text-sm font-semibold text-right">{v}</span>
-              </div>
-            ))}
-          </div>
-        )}
-      </AdminModal>
+      {/* VIEW MODAL */}
+      <UserViewModal
+        user={viewing}
+        open={!!viewing}
+        onClose={() => setViewing(null)}
+      />
 
-      {/* Ban modal */}
+      {/* EDIT MODAL */}
+      <EditUserModal
+        user={editing}
+        open={!!editing}
+        onClose={() => setEditing(null)}
+        onUpdated={(updated) => {
+          setUsers((prev) =>
+            prev.map((u) => (u.id === updated.id ? updated : u))
+          );
+        }}
+      />
+
+      {/* BAN MODAL */}
       {confirm?.type === "ban" && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-[#111118] border border-white/8 rounded-2xl p-6 w-full max-w-[400px]">
